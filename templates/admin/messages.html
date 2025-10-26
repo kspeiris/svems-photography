@@ -1,0 +1,58 @@
+{% extends "admin/base_admin.html" %}
+
+{% block content %}
+<!-- Header Section -->
+<div class="admin-header" style="background-color: #4CAF50; color: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+    <h1 style="font-size: 2rem; font-weight: bold;">Contact Messages</h1>
+    <p style="font-size: 1.1rem;">Manage inquiries and messages from visitors</p>
+</div>
+
+<!-- Messages Table Section -->
+{% if messages %}
+<div class="table-container" style="margin-top: 2rem; background-color: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+    <table class="table" style="width: 100%; border-collapse: collapse; background-color: #fff;">
+        <thead style="background-color: #f4f4f4; text-align: left;">
+            <tr>
+                <th style="padding: 1rem; font-weight: bold;">Name</th>
+                <th style="padding: 1rem; font-weight: bold;">Email</th>
+                <th style="padding: 1rem; font-weight: bold;">Message</th>
+                <th style="padding: 1rem; font-weight: bold;">Date</th>
+                <th style="padding: 1rem; font-weight: bold;">Status</th>
+                <th style="padding: 1rem; font-weight: bold;">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for message in messages %}
+            <tr class="message-item {% if not message.read %}unread{% endif %}" style="transition: background-color 0.3s ease; cursor: pointer;">
+                <td style="padding: 1rem;">{{ message.name }}</td>
+                <td style="padding: 1rem;">{{ message.email }}</td>
+                <td style="padding: 1rem;">{{ message.message[:50] }}{% if message.message|length > 50 %}...{% endif %}</td>
+                <td style="padding: 1rem;">{{ message.submitted_at.strftime('%Y-%m-%d %H:%M') }}</td>
+                <td style="padding: 1rem;">
+                    {% if message.read %}
+                    <span class="status-read" style="color: #4CAF50; font-weight: bold;">Read</span>
+                    {% else %}
+                    <span class="status-unread" style="color: #f44336; font-weight: bold;">Unread</span>
+                    {% endif %}
+                </td>
+                <td style="padding: 1rem;">
+                    {% if not message.read %}
+                    <a href="{{ url_for('mark_message_read', message_id=message._id) }}" class="btn btn-primary btn-sm mark-read-btn" style="padding: 0.5rem 1rem; background-color: #4CAF50; color: white; border-radius: 5px; text-decoration: none; margin-right: 10px;">Mark Read</a>
+                    {% endif %}
+                    <a href="{{ url_for('delete_message', message_id=message._id) }}" class="btn btn-danger btn-sm delete-btn" onclick="return confirm('Are you sure you want to delete this message?')" style="padding: 0.5rem 1rem; background-color: #f44336; color: white; border-radius: 5px; text-decoration: none;">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% else %}
+<div class="empty-state" style="text-align: center; padding: 2rem; background-color: #f9f9f9; border-radius: 8px;">
+    <p style="font-size: 1.2rem; color: #888;">No messages yet</p>
+</div>
+{% endif %}
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/admin.js') }}"></script>
+{% endblock %}

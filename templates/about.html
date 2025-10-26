@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="about-hero" aria-labelledby="about-section">
+    <div class="container">
+        <h1 class="page-title" id="about-section">About Me</h1>
+        <p class="page-subtitle">Get to know the person behind the lens</p>
+    </div>
+</section>
+
+<section class="about-content" aria-labelledby="about-me">
+    <div class="container">
+        <div class="about-grid">
+            <!-- About Image Section -->
+            <div class="about-image-section" aria-labelledby="about-image-section">
+                <div class="main-image">
+                    <img src="{{ url_for('static', filename='images/pulindu-about.jpg') }}" alt="Pulindu Peiris Portrait" loading="lazy">
+                </div>
+                <div class="image-stack">
+                    <img src="{{ url_for('static', filename='images/about-1.jpg') }}" alt="Photography Image" loading="lazy">
+                    <img src="{{ url_for('static', filename='images/about-2.jpg') }}" alt="Camera Equipment" loading="lazy">
+                </div>
+            </div>
+            
+            <!-- About Text Section -->
+            <div class="about-text-section" id="about-me">
+                <h2>Pulindu Peiris</h2>
+                <p class="about-intro">Professional Photographer & Visual Storyteller</p>
+                
+                <div class="about-story">
+                    <p>Welcome to Svems Photography! I'm Pulindu, a passionate photographer dedicated to capturing the beauty in everyday moments and turning them into timeless memories.</p>
+                    
+                    <p>My journey in photography began 8 years ago when I picked up my first camera. Since then, I've developed a unique style that blends technical precision with artistic vision, focusing on natural light and authentic emotions.</p>
+                    
+                    <p>I believe that every photograph tells a story, and my mission is to tell yours in the most beautiful and authentic way possible.</p>
+                </div>
+
+                <!-- Skills Section -->
+                <div class="skills-section" aria-labelledby="specialties">
+                    <h3 id="specialties">Specialties</h3>
+                    <div class="skills-grid">
+                        <div class="skill-item">
+                            <span class="skill-name">Portrait Photography</span>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 95%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Landscape Photography</span>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Event Photography</span>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 88%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Photo Editing</span>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 92%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stats Section -->
+                <div class="stats-section">
+                    <div class="stat-item">
+                        <span class="stat-number">500+</span>
+                        <span class="stat-label">Projects Completed</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">8</span>
+                        <span class="stat-label">Years Experience</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">100%</span>
+                        <span class="stat-label">Client Satisfaction</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="testimonials" aria-labelledby="testimonials-section">
+    <div class="container">
+        <h2 class="section-title" id="testimonials-section">Client Testimonials</h2>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="testimonial-content">
+                    <p>"Pulindu captured our wedding day perfectly! The photos are absolutely stunning and truly reflect the emotions of the day."</p>
+                </div>
+                <div class="testimonial-author">
+                    <strong>Sarah & James</strong>
+                    <span>Wedding Clients</span>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-content">
+                    <p>"The family portraits we got are incredible. Pulindu made everyone feel comfortable and the results speak for themselves."</p>
+                </div>
+                <div class="testimonial-author">
+                    <strong>The Johnson Family</strong>
+                    <span>Family Portrait</span>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-content">
+                    <p>"Working with Pulindu was a fantastic experience. His attention to detail and creative eye resulted in amazing corporate photos."</p>
+                </div>
+                <div class="testimonial-author">
+                    <strong>TechCorp Inc.</strong>
+                    <span>Corporate Client</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Svems Photography - Professional Photography by Pulindu Peiris{% endblock %}</title>
+    <meta name="description" content="Professional photography services by Pulindu Peiris. Specializing in portraits, landscapes, events, and commercial photography.">
+    
+    <!-- Preload Essential Assets -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" as="style">
+    <link rel="preload" href="{{ url_for('static', filename='images/logo.svg') }}" as="image">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css') }}">
+    
+    <!-- Fonts & Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+    
+    {% block extra_css %}{% endblock %}
+    
+    <!-- Smooth Scroll and Animations -->
+    <style>
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Animation for fade-in */
+        .fade-in {
+            animation: fadeIn 1s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        
+        /* Transition for smooth loading screen */
+        #loading-screen {
+            transition: opacity 0.5s ease-out;
+        }
+    </style>
+</head>
+<body class="fade-in">
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen" aria-live="polite">
+        <div class="loading-content">
+            <div class="loading-logo">
+                <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="Svems Logo" aria-hidden="true">
+                <span class="brand-name" aria-hidden="true">Svems</span>
+            </div>
+            <div class="loading-spinner" aria-hidden="true"></div>
+            <p aria-hidden="true">Loading amazing moments...</p>
+        </div>
+    </div>
+
+    <!-- Header Include -->
+    {% include 'includes/header.html' %}
+    
+    <!-- Flash Messages -->
+    {% include 'includes/flash_messages.html' %}
+
+    <!-- Main Content -->
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer Include -->
+    {% include 'includes/footer.html' %}
+
+    <!-- Scripts -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/enhanced.js') }}"></script>
+    
+    <!-- Page Specific Scripts -->
+    {% block scripts %}{% endblock %}
+
+    <script>
+        // Enhanced loading screen removal with transition
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                const loadingScreen = document.getElementById('loading-screen');
+                if (loadingScreen) {
+                    loadingScreen.style.transition = 'opacity 0.5s ease-out';
+                    loadingScreen.style.opacity = '0';
+                    setTimeout(function() {
+                        loadingScreen.style.display = 'none';
+                    }, 500);
+                }
+            }, 1000);
+        });
+    </script>
+    
+    <!-- Accessibility Enhancements -->
+    <script>
+        // Adding focus trap for accessibility
+        document.addEventListener('keydown', function(e) {
+            const focusableElements = document.querySelectorAll('a, button, input, select, textarea');
+            const firstFocusableElement = focusableElements[0];  
+            const lastFocusableElement = focusableElements[focusableElements.length - 1];
+            
+            if (e.key === 'Tab') {
+                if (e.shiftKey) { // Shift + Tab
+                    if (document.activeElement === firstFocusableElement) {
+                        lastFocusableElement.focus();
+                        e.preventDefault();
+                    }
+                } else { // Tab
+                    if (document.activeElement === lastFocusableElement) {
+                        firstFocusableElement.focus();
+                        e.preventDefault();
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

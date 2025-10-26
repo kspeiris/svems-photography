@@ -1,0 +1,30 @@
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-section">
+            <div class="footer-logo">
+                <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="Svems Logo">
+                <span>Svems Photography</span>
+            </div>
+            <p>Capturing moments that tell your story</p>
+        </div>
+        <div class="footer-section">
+            <h3>Quick Links</h3>
+            <a href="{{ url_for('home') }}">Home</a>
+            <a href="{{ url_for('portfolio') }}">Portfolio</a>
+            <a href="{{ url_for('about') }}">About</a>
+            <a href="{{ url_for('contact') }}">Contact</a>
+        </div>
+        <div class="footer-section">
+            <h3>Connect</h3>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; {{ current_year }} Svems Photography by Pulindu Peiris. All rights reserved.</p>
+    </div>
+</footer>

@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="portfolio-hero" aria-labelledby="portfolio-hero">
+    <div class="container">
+        <h1 class="page-title" id="portfolio-hero">Portfolio</h1>
+        <p class="page-subtitle">A collection of my favorite moments and projects</p>
+    </div>
+</section>
+
+<section class="portfolio-content">
+    <div class="container">
+        <div class="category-filter">
+            <button class="filter-btn active" data-filter="all" aria-label="Show all projects">All</button>
+            {% for category in categories %}
+            <button class="filter-btn" data-filter="{{ category }}" aria-label="Filter by {{ category.title() }}">{{ category.title() }}</button>
+            {% endfor %}
+        </div>
+
+        <div class="portfolio-grid" id="portfolioGrid" role="grid" aria-labelledby="portfolio-hero">
+            {% for image in images %}
+            <div class="portfolio-item" data-category="{{ image.category }}" role="gridcell">
+                <div class="portfolio-card">
+                    <img src="{{ url_for('static', filename='uploads/' + image.filename) }}" 
+                         alt="{{ image.title }}" 
+                         class="portfolio-image" loading="lazy">
+                    <div class="portfolio-overlay" role="presentation">
+                        <div class="portfolio-info">
+                            <h3>{{ image.title }}</h3>
+                            <p>{{ image.description }}</p>
+                            <span class="portfolio-category">{{ image.category }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        {% if not images %}
+        <div class="empty-state" role="alert">
+            <i class="fas fa-images"></i>
+            <h3>No images yet</h3>
+            <p>Check back soon for amazing photography work!</p>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+<div id="lightbox" class="lightbox" role="dialog" aria-hidden="true">
+    <span class="lightbox-close" aria-label="Close lightbox">&times;</span>
+    <div class="lightbox-content">
+        <img src="" alt="" id="lightbox-image" class="lightbox-image">
+        <div class="lightbox-caption">
+            <h3 id="lightbox-title"></h3>
+            <p id="lightbox-description"></p>
+        </div>
+    </div>
+    <button class="lightbox-nav lightbox-prev" aria-label="Previous image">&#10094;</button>
+    <button class="lightbox-nav lightbox-next" aria-label="Next image">&#10095;</button>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/portfolio.js') }}"></script>
+{% endblock %}

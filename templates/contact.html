@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="portfolio-hero" aria-labelledby="contact-section">
+    <div class="container">
+        <h1 class="page-title" id="contact-section">Contact Me</h1>
+        <p class="page-subtitle">Let's create something amazing together</p>
+    </div>
+</section>
+
+<section class="contact-content" aria-labelledby="contact-content">
+    <div class="container">
+        <div class="contact-grid">
+            <div class="contact-info">
+                <h2 id="contact-info-title">Get In Touch</h2>
+                <p>I’d love to hear from you! Whether you're interested in a photoshoot, have questions about my services, or just want to say hello, feel free to reach out.</p>
+                
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <i class="fas fa-envelope" aria-hidden="true"></i>
+                        <div>
+                            <h3>Email</h3>
+                            <p><a href="mailto:pulindu@svems.com">pulindu@svems.com</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone" aria-hidden="true"></i>
+                        <div>
+                            <h3>Phone</h3>
+                            <p><a href="tel:+94771234567">+94 77 123 4567</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                        <div>
+                            <h3>Location</h3>
+                            <p>Colombo, Sri Lanka</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="social-links">
+                    <a href="#" class="social-link" aria-label="Instagram">
+                        <i class="fab fa-instagram" aria-hidden="true"></i>
+                    </a>
+                    <a href="#" class="social-link" aria-label="Facebook">
+                        <i class="fab fa-facebook" aria-hidden="true"></i>
+                    </a>
+                    <a href="#" class="social-link" aria-label="Twitter">
+                        <i class="fab fa-twitter" aria-hidden="true"></i>
+                    </a>
+                    <a href="#" class="social-link" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="contact-form">
+                <h2>Send a Message</h2>
+                <form action="{{ url_for('contact') }}" method="POST" id="contactForm" aria-labelledby="contact-form-title">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" name="name" required aria-required="true">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Your Email</label>
+                        <input type="email" id="email" name="email" required aria-required="true">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Your Message</label>
+                        <textarea id="message" name="message" required aria-required="true"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/contact.js') }}"></script>
+{% endblock %}

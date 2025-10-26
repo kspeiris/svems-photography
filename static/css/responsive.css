@@ -1,0 +1,558 @@
+/* ===== ENHANCED RESPONSIVE DESIGN ===== */
+
+/* Large Desktop Screens (1440px and above) */
+@media screen and (min-width: 1440px) {
+    .container {
+        max-width: 1400px;
+    }
+    
+    .hero-title {
+        font-size: 4.5rem;
+    }
+    
+    .hero-content {
+        gap: 6rem;
+    }
+    
+    .gallery-grid,
+    .portfolio-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 2.5rem;
+    }
+    
+    .services-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 3rem;
+    }
+}
+
+/* Standard Desktop (1200px - 1439px) */
+@media screen and (min-width: 1200px) {
+    .container {
+        max-width: 1200px;
+    }
+    
+    .hero-title {
+        font-size: 4rem;
+    }
+}
+
+/* Small Desktop / Large Tablet (1024px - 1199px) */
+@media screen and (max-width: 1199px) and (min-width: 1024px) {
+    .container {
+        max-width: 1000px;
+        padding: 0 30px;
+    }
+    
+    .hero-title {
+        font-size: 3.5rem;
+    }
+    
+    .hero-content {
+        gap: 3rem;
+    }
+    
+    .gallery-grid,
+    .portfolio-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+    }
+    
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2.5rem;
+    }
+}
+
+/* Tablet Landscape (768px - 1023px) */
+@media screen and (max-width: 1023px) and (min-width: 768px) {
+    .container {
+        padding: 0 25px;
+    }
+    
+    .nav-menu {
+        gap: 1.5rem;
+    }
+    
+    .nav-link {
+        font-size: 0.9rem;
+    }
+    
+    .btn-book {
+        padding: 8px 16px;
+        font-size: 0.85rem;
+    }
+    
+    .hero-title {
+        font-size: 3rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.2rem;
+    }
+    
+    .hero-content {
+        gap: 2.5rem;
+    }
+    
+    .gallery-grid,
+    .portfolio-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+    
+    .services-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .service-detailed-card.featured {
+        transform: scale(1.05);
+    }
+    
+    /* Blog */
+    .blog-grid {
+        grid-template-columns: 2fr 1fr;
+        gap: 2rem;
+    }
+    
+    .contact-grid,
+    .booking-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+}
+
+/* Tablet Portrait & Large Mobile (600px - 767px) */
+@media screen and (max-width: 767px) and (min-width: 600px) {
+    .container {
+        padding: 0 20px;
+    }
+    
+    .nav-container {
+        padding: 0 15px;
+    }
+    
+    .brand-name {
+        font-size: 1.5rem;
+    }
+    
+    .logo {
+        height: 35px;
+    }
+    
+    .hero {
+        min-height: 80vh;
+    }
+    
+    .hero-title {
+        font-size: 2.8rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+    
+    .hero-buttons .btn {
+        width: 220px;
+        justify-content: center;
+    }
+    
+    section {
+        padding: 4rem 0;
+    }
+    
+    .section-title {
+        font-size: 2.5rem;
+        margin-bottom: 3rem;
+    }
+    
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .image-stack {
+        position: relative;
+        bottom: 0;
+        right: 0;
+        justify-content: center;
+        margin-top: 2rem;
+    }
+    
+    .image-stack img {
+        width: 160px;
+        height: 110px;
+    }
+    
+    .gallery-grid,
+    .portfolio-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.25rem;
+    }
+    
+    .gallery-image,
+    .portfolio-image {
+        height: 250px;
+    }
+    
+    .services-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .service-detailed-card.featured {
+        transform: none;
+        order: -1;
+    }
+    
+    .stats-section {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+    
+    .blog-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .blog-sidebar {
+        order: -1;
+    }
+    
+    .sidebar-widget {
+        margin-bottom: 2rem;
+    }
+    
+    .contact-form,
+    .booking-form {
+        padding: 2rem;
+    }
+    
+    .form-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+}
+
+/* Mobile Devices (480px - 599px) */
+@media screen and (max-width: 599px) and (min-width: 480px) {
+    .container {
+        padding: 0 15px;
+    }
+    
+    .nav-menu {
+        position: fixed;
+        top: 70px;
+        left: -100%;
+        background: var(--white);
+        width: 100%;
+        flex-direction: column;
+        padding: 2rem;
+        box-shadow: var(--shadow);
+        transition: var(--transition);
+        gap: 1rem;
+    }
+    
+    .nav-menu.active {
+        left: 0;
+    }
+    
+    .nav-toggle {
+        display: flex;
+    }
+    
+    .nav-link {
+        padding: 0.75rem 0;
+        font-size: 1.1rem;
+        border-bottom: 1px solid #f0f0f0;
+        width: 100%;
+        text-align: center;
+    }
+    
+    .btn-book {
+        margin-top: 1rem;
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .hero {
+        min-height: 70vh;
+        text-align: center;
+    }
+    
+    .hero-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        text-align: center;
+    }
+    
+    .hero-title {
+        font-size: 2.5rem;
+        line-height: 1.2;
+    }
+    
+    .hero-subtitle {
+        font-size: 1rem;
+        margin-bottom: 2rem;
+    }
+    
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+    
+    .hero-buttons .btn {
+        width: 200px;
+        justify-content: center;
+    }
+    
+    section {
+        padding: 3rem 0;
+    }
+    
+    .section-title {
+        font-size: 2.2rem;
+        margin-bottom: 2.5rem;
+    }
+    
+    .about-text-section h2 {
+        font-size: 2.2rem;
+    }
+    
+    .about-intro {
+        font-size: 1.2rem;
+    }
+    
+    .image-stack {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+    
+    .image-stack img {
+        width: 200px;
+        height: 140px;
+    }
+    
+    .gallery-grid,
+    .portfolio-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .gallery-image,
+    .portfolio-image {
+        height: 280px;
+    }
+    
+    .category-filter {
+        gap: 0.5rem;
+    }
+    
+    .filter-btn {
+        padding: 8px 16px;
+        font-size: 0.85rem;
+    }
+    
+    .service-detailed-card {
+        padding: 1.5rem;
+    }
+    
+    .service-features li {
+        font-size: 0.9rem;
+    }
+    
+    .stats-section {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .stat-item {
+        padding: 1.5rem 1rem;
+    }
+    
+    .stat-number {
+        font-size: 2rem;
+    }
+    
+    .testimonials-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .testimonial-card {
+        padding: 1.5rem;
+    }
+    
+    .blog-post-card {
+        flex-direction: column;
+    }
+    
+    .post-image {
+        width: 100%;
+        height: 200px;
+    }
+    
+    .post-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    
+    .recent-post {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .recent-post img {
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+    
+    .contact-form,
+    .booking-form {
+        padding: 1.5rem;
+    }
+    
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+        padding: 12px 15px;
+    }
+}
+
+/* Small Mobile Devices (320px - 479px) */
+@media screen and (max-width: 479px) {
+    .container {
+        padding: 0 10px;
+    }
+    
+    .nav-container {
+        padding: 0 10px;
+    }
+    
+    .brand-name {
+        font-size: 1.3rem;
+    }
+    
+    .logo {
+        height: 30px;
+    }
+    
+    .hero-title {
+        font-size: 2rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 0.95rem;
+    }
+    
+    .btn {
+        padding: 12px 25px;
+        font-size: 0.9rem;
+    }
+    
+    .page-title {
+        font-size: 2.5rem;
+    }
+    
+    .page-subtitle {
+        font-size: 1.1rem;
+    }
+    
+    section {
+        padding: 2.5rem 0;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .about-text-section h2 {
+        font-size: 1.8rem;
+    }
+    
+    .about-intro {
+        font-size: 1.1rem;
+    }
+    
+    .skills-section h3 {
+        font-size: 1.3rem;
+    }
+    
+    .gallery-image,
+    .portfolio-image {
+        height: 250px;
+    }
+    
+    .service-detailed-card {
+        padding: 1.25rem;
+    }
+    
+    .service-icon {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .service-icon i {
+        font-size: 1.5rem;
+    }
+    
+    .stat-number {
+        font-size: 1.8rem;
+    }
+    
+    .stat-label {
+        font-size: 0.8rem;
+    }
+    
+    .contact-form,
+    .booking-form {
+        padding: 1.25rem;
+    }
+    
+    .form-group {
+        margin-bottom: 1.25rem;
+    }
+    
+    .lightbox-content {
+        max-width: 95%;
+        max-height: 95%;
+    }
+    
+    .lightbox-close {
+        top: 10px;
+        right: 10px;
+        width: 35px;
+        height: 35px;
+    }
+    
+    #scroll-to-top {
+        bottom: 15px;
+        right: 15px;
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+    
+    .loading-logo {
+        font-size: 1.5rem;
+    }
+    
+    .loading-logo img {
+        height: 40px;
+    }
+    
+    .loading-spinner {
+        width: 40px;
+        height: 40px;
+    }
+}
