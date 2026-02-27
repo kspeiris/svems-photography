@@ -4,6 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Admin - Svems Photography{% endblock %}</title>
+    <script>
+        tailwind = {
+            config: {
+                theme: {
+                    extend: {
+                        fontFamily: {
+                            sans: ['Manrope', 'Segoe UI', 'sans-serif'],
+                            display: ['Sora', 'Manrope', 'sans-serif']
+                        },
+                        colors: {
+                            brand: {
+                                500: '#06b6d4',
+                                600: '#0891b2',
+                                700: '#0e7490'
+                            }
+                        }
+                    }
+                }
+            }
+        };
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@600;700&display=swap">
@@ -12,14 +34,14 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/admin-redesign.css') }}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
-<body>
+<body class="font-sans antialiased text-slate-800 bg-slate-100">
     <div class="admin-layout">
         <aside class="admin-sidebar">
             <div class="brand">
                 <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="Svems Logo" class="logo">
-                <span class="brand-name">Svems Admin</span>
+                <span class="brand-name font-display">Svems Admin</span>
             </div>
-            <ul class="nav-links">
+            <ul class="nav-links text-sm">
                 <li><a href="{{ url_for('admin_dashboard') }}" class="{% if request.endpoint == 'admin_dashboard' %}active{% endif %}">
                     <i class="fas fa-tachometer-alt"></i> Dashboard
                 </a></li>
@@ -39,19 +61,19 @@
         </aside>
         
         <main class="admin-main">
-            <header class="admin-header">
-                <h1>{% block page_title %}Admin Panel{% endblock %}</h1>
-                <div class="admin-user">
+            <header class="admin-header px-6 py-5">
+                <h1 class="font-display text-xl md:text-2xl">{% block page_title %}Admin Panel{% endblock %}</h1>
+                <div class="admin-user text-slate-600">
                     <span>Welcome, {{ current_user.username }}</span>
                 </div>
             </header>
             
-            <div class="admin-content">
+            <div class="admin-content p-6">
                 {% with messages = get_flashed_messages(with_categories=true) %}
                     {% if messages %}
-                        <div class="flash-messages">
+                        <div class="flash-messages space-y-2">
                             {% for category, message in messages %}
-                                <div class="flash-message {{ category }}">{{ message }}</div>
+                                <div class="flash-message {{ category }} rounded-lg px-4 py-3">{{ message }}</div>
                             {% endfor %}
                         </div>
                     {% endif %}

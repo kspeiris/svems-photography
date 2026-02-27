@@ -1,100 +1,98 @@
 {% extends "base.html" %}
 
-{% block extra_css %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/contact-redesign.css') }}">
-{% endblock %}
-
 {% block content %}
-<section class="contact-pro-hero pro-hero" aria-labelledby="contact-pro-title">
-    <div class="container contact-pro-hero-inner pro-hero-inner">
-        <p class="contact-pro-eyebrow pro-eyebrow">Let's Work Together</p>
-        <h1 class="contact-pro-title pro-title" id="contact-pro-title">Start your next shoot with a clear creative direction and a smooth process.</h1>
-        <p class="contact-pro-subtitle pro-subtitle">Tell me what you're planning, and I'll help shape it into meaningful visuals you'll be proud to share.</p>
+<section class="contact-pro-hero pro-hero relative overflow-hidden bg-slate-950 py-20 text-white md:py-24" aria-labelledby="contact-pro-title">
+    <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(6,182,212,0.35),transparent_46%)]"></div>
+    <div class="container contact-pro-hero-inner pro-hero-inner mx-auto max-w-6xl px-4 md:px-6">
+        <p class="contact-pro-eyebrow pro-eyebrow text-sm font-semibold uppercase tracking-[0.22em] text-cyan-200">Let's Work Together</p>
+        <h1 class="contact-pro-title pro-title mt-4 max-w-4xl font-display text-4xl font-bold leading-tight md:text-5xl" id="contact-pro-title">Start your next shoot with a clear creative direction and a smooth process.</h1>
+        <p class="contact-pro-subtitle pro-subtitle mt-5 max-w-3xl text-lg text-slate-200">Tell me what you're planning, and I'll help shape it into meaningful visuals you'll be proud to share.</p>
     </div>
 </section>
 
-<section class="contact-pro-content pro-content" id="contact-content" aria-labelledby="contact-info-title">
-    <div class="container">
-        <div class="contact-pro-grid">
-            <aside class="contact-pro-info">
-                <h2 id="contact-info-title">Get In Touch</h2>
-                <p>Whether you're planning portraits, events, or branded visuals, I'd love to hear your ideas and goals.</p>
+<section class="contact-pro-content pro-content py-14 md:py-16" id="contact-content" aria-labelledby="contact-info-title">
+    <div class="container mx-auto max-w-6xl px-4 md:px-6">
+        <div class="contact-pro-grid grid gap-6 md:grid-cols-2">
+            <aside class="contact-pro-info rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+                <h2 id="contact-info-title" class="font-display text-3xl font-bold text-slate-900">Get In Touch</h2>
+                <p class="mt-3 text-slate-600">Whether you're planning portraits, events, or branded visuals, I'd love to hear your ideas and goals.</p>
                 
-                <div class="contact-pro-details">
-                    <div class="contact-pro-item">
-                        <i class="fas fa-envelope" aria-hidden="true"></i>
+                <div class="contact-pro-details mt-5 space-y-3">
+                    <div class="contact-pro-item flex items-start gap-3 rounded-xl border border-slate-200 bg-slate-50 p-4">
+                        <i class="fas fa-envelope text-cyan-700" aria-hidden="true"></i>
                         <div>
-                            <h3>Email</h3>
-                            <p><a href="mailto:pulindu@svems.com">pulindu@svems.com</a></p>
+                            <h3 class="font-semibold text-slate-900">Email</h3>
+                            <p class="text-slate-600"><a href="mailto:pulindu@svems.com">pulindu@svems.com</a></p>
                         </div>
                     </div>
-                    <div class="contact-pro-item">
-                        <i class="fas fa-phone" aria-hidden="true"></i>
+                    <div class="contact-pro-item flex items-start gap-3 rounded-xl border border-slate-200 bg-slate-50 p-4">
+                        <i class="fas fa-phone text-cyan-700" aria-hidden="true"></i>
                         <div>
-                            <h3>Phone</h3>
-                            <p><a href="tel:+94771234567">+94 77 123 4567</a></p>
+                            <h3 class="font-semibold text-slate-900">Phone</h3>
+                            <p class="text-slate-600"><a href="tel:+94771234567">+94 77 123 4567</a></p>
                         </div>
                     </div>
-                    <div class="contact-pro-item">
-                        <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                    <div class="contact-pro-item flex items-start gap-3 rounded-xl border border-slate-200 bg-slate-50 p-4">
+                        <i class="fas fa-map-marker-alt text-cyan-700" aria-hidden="true"></i>
                         <div>
-                            <h3>Location</h3>
-                            <p>Colombo, Sri Lanka</p>
+                            <h3 class="font-semibold text-slate-900">Location</h3>
+                            <p class="text-slate-600">Colombo, Sri Lanka</p>
                         </div>
                     </div>
                 </div>
                 
-                <div class="social-links contact-pro-social">
-                    <a href="#" class="social-link" aria-label="Instagram">
+                <div class="social-links contact-pro-social mt-5 flex gap-3">
+                    <a href="#" class="social-link inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 transition hover:border-cyan-700 hover:text-cyan-700" aria-label="Instagram">
                         <i class="fab fa-instagram" aria-hidden="true"></i>
                     </a>
-                    <a href="#" class="social-link" aria-label="Facebook">
+                    <a href="#" class="social-link inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 transition hover:border-cyan-700 hover:text-cyan-700" aria-label="Facebook">
                         <i class="fab fa-facebook" aria-hidden="true"></i>
                     </a>
-                    <a href="#" class="social-link" aria-label="Twitter">
+                    <a href="#" class="social-link inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 transition hover:border-cyan-700 hover:text-cyan-700" aria-label="Twitter">
                         <i class="fab fa-twitter" aria-hidden="true"></i>
                     </a>
-                    <a href="#" class="social-link" aria-label="LinkedIn">
+                    <a href="#" class="social-link inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 transition hover:border-cyan-700 hover:text-cyan-700" aria-label="LinkedIn">
                         <i class="fab fa-linkedin" aria-hidden="true"></i>
                     </a>
                 </div>
             </aside>
             
-            <div class="contact-pro-form-wrap">
-                <h2 id="contact-form-title">Send a Message</h2>
-                <p class="contact-pro-form-note">Share a few details below. I typically reply within 24 hours.</p>
-                <form action="{{ url_for('contact') }}" method="POST" id="contactForm" class="contact-pro-form" aria-labelledby="contact-form-title">
+            <div class="contact-pro-form-wrap rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+                <h2 id="contact-form-title" class="font-display text-3xl font-bold text-slate-900">Send a Message</h2>
+                <p class="contact-pro-form-note mt-3 text-slate-600">Share a few details below. I typically reply within 24 hours.</p>
+                <form action="{{ url_for('contact') }}" method="POST" id="contactForm" class="contact-pro-form mt-5 space-y-4" aria-labelledby="contact-form-title">
                     <div class="form-group contact-pro-group">
-                        <label for="name">Your Name</label>
-                        <input type="text" id="name" name="name" required aria-required="true" placeholder="John Doe">
+                        <label for="name" class="mb-1 block text-sm font-semibold text-slate-700">Your Name</label>
+                        <input type="text" id="name" name="name" required aria-required="true" placeholder="John Doe" class="w-full rounded-xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 placeholder:text-slate-400 focus:border-cyan-600 focus:outline-none focus:ring-2 focus:ring-cyan-200">
                     </div>
                     
                     <div class="form-group contact-pro-group">
-                        <label for="email">Your Email</label>
-                        <input type="email" id="email" name="email" required aria-required="true" placeholder="john@email.com">
+                        <label for="email" class="mb-1 block text-sm font-semibold text-slate-700">Your Email</label>
+                        <input type="email" id="email" name="email" required aria-required="true" placeholder="john@email.com" class="w-full rounded-xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 placeholder:text-slate-400 focus:border-cyan-600 focus:outline-none focus:ring-2 focus:ring-cyan-200">
                     </div>
                     
                     <div class="form-group contact-pro-group">
-                        <label for="message">Your Message</label>
-                        <textarea id="message" name="message" required aria-required="true" placeholder="Tell me about your project, location, timeline, and preferred style..."></textarea>
+                        <label for="message" class="mb-1 block text-sm font-semibold text-slate-700">Your Message</label>
+                        <textarea id="message" name="message" required aria-required="true" placeholder="Tell me about your project, location, timeline, and preferred style..." class="min-h-40 w-full rounded-xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 placeholder:text-slate-400 focus:border-cyan-600 focus:outline-none focus:ring-2 focus:ring-cyan-200"></textarea>
                     </div>
                     
-                    <button type="submit" class="btn btn-primary contact-pro-submit">Send Message</button>
+                    <button type="submit" class="btn btn-primary contact-pro-submit inline-flex w-full items-center justify-center rounded-xl px-6 py-3 font-semibold">Send Message</button>
                 </form>
             </div>
         </div>
     </div>
 </section>
 
-<section class="contact-pro-cta" aria-labelledby="contact-cta-title">
-    <div class="container pro-cta-block">
-        <h2 id="contact-cta-title">Prefer To Explore First?</h2>
-        <p>View recent work and learn more about my process before booking.</p>
-        <div class="pro-cta-actions">
-            <a href="{{ url_for('portfolio') }}" class="btn btn-primary">Browse Portfolio</a>
-            <a href="{{ url_for('about') }}" class="btn btn-outline">Read About Me</a>
+<section class="contact-pro-cta py-14 md:py-16" aria-labelledby="contact-cta-title">
+    <div class="container mx-auto max-w-6xl px-4 md:px-6">
+    <div class="pro-cta-block rounded-3xl bg-slate-900 px-6 py-10 text-center text-white shadow-xl md:px-10">
+        <h2 id="contact-cta-title" class="font-display text-3xl font-bold md:text-4xl">Prefer To Explore First?</h2>
+        <p class="mx-auto mt-3 max-w-2xl text-slate-200">View recent work and learn more about my process before booking.</p>
+        <div class="pro-cta-actions mt-6 flex flex-wrap items-center justify-center gap-3">
+            <a href="{{ url_for('portfolio') }}" class="btn btn-primary rounded-xl px-6 py-3 font-semibold">Browse Portfolio</a>
+            <a href="{{ url_for('about') }}" class="btn btn-outline rounded-xl border border-white/40 px-6 py-3 font-semibold text-white hover:bg-white/10">Read About Me</a>
         </div>
-    </div>
+    </div></div>
 </section>
 {% endblock %}
 

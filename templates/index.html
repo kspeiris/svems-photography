@@ -1,29 +1,30 @@
 {% extends "base.html" %}
 
 {% block content %}
-<section class="hero home-hero">
-    <div class="hero-content home-hero-content">
-        <h1 class="hero-title animate-fade-in">Welcome to <span class="highlight">Svems</span> Photography</h1>
-        <p class="hero-subtitle">Capturing Magic in Every Frame</p>
-        <div class="hero-buttons">
-            <a href="{{ url_for('portfolio') }}" class="btn btn-primary" role="button" aria-label="View Portfolio">View Portfolio</a>
-            <a href="{{ url_for('contact') }}" class="btn btn-secondary" role="button" aria-label="Book a Session">Book a Session</a>
+<section class="hero home-hero relative min-h-[92vh] overflow-hidden">
+    <div class="hero-content home-hero-content relative z-10 mx-auto grid max-w-6xl place-items-center px-4 text-center md:px-6">
+        <h1 class="hero-title animate-fade-in font-display text-4xl font-bold leading-tight text-white drop-shadow md:text-6xl">Welcome to <span class="text-cyan-300">Svems</span> Photography</h1>
+        <p class="hero-subtitle mt-4 max-w-2xl text-base text-slate-100 md:text-xl">Capturing Magic in Every Frame</p>
+        <div class="hero-buttons mt-8 flex flex-col gap-3 sm:flex-row">
+            <a href="{{ url_for('portfolio') }}" class="btn btn-primary inline-flex items-center justify-center rounded-xl px-6 py-3 text-sm font-semibold md:text-base" role="button" aria-label="View Portfolio">View Portfolio</a>
+            <a href="{{ url_for('contact') }}" class="btn btn-secondary inline-flex items-center justify-center rounded-xl px-6 py-3 text-sm font-semibold md:text-base" role="button" aria-label="Book a Session">Book a Session</a>
         </div>
     </div>
-    <div class="hero-image home-hero-image">
-        <img src="{{ url_for('static', filename='images/hero-bg.jpg') }}" alt="Photography of nature and people" class="hero-img" fetchpriority="high" decoding="async">
+    <div class="hero-image home-hero-image absolute inset-0">
+        <img src="{{ url_for('static', filename='images/hero-bg.jpg') }}" alt="Photography of nature and people" class="hero-img h-full w-full object-cover" fetchpriority="high" decoding="async">
+        <div class="absolute inset-0 bg-gradient-to-br from-slate-950/80 via-slate-900/50 to-cyan-900/40"></div>
     </div>
 </section>
 
-<section class="featured-gallery home-section">
-    <div class="container">
-        <h2 class="section-title home-section-title" id="featured-gallery-section">Featured Work</h2>
+<section class="featured-gallery home-section py-16 md:py-20">
+    <div class="container mx-auto max-w-6xl px-4 md:px-6">
+        <h2 class="section-title home-section-title mb-10 text-center font-display text-3xl font-bold text-slate-900 md:text-4xl" id="featured-gallery-section">Featured Work</h2>
 
-        <div class="gallery-grid home-gallery-grid">
+        <div class="gallery-grid home-gallery-grid grid gap-5 md:grid-cols-2 lg:grid-cols-3">
             {% for image in images %}
-            <div class="gallery-item home-gallery-item" data-category="{{ image.category }}">
-                <img src="{{ url_for('static', filename='uploads/' + image.filename) }}" alt="{{ image.title }}" class="gallery-image" loading="lazy" decoding="async">
-                <div class="gallery-overlay home-gallery-overlay">
+            <div class="gallery-item home-gallery-item group relative overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-xl" data-category="{{ image.category }}">
+                <img src="{{ url_for('static', filename='uploads/' + image.filename) }}" alt="{{ image.title }}" class="gallery-image h-72 w-full object-cover transition duration-500 group-hover:scale-105" loading="lazy" decoding="async">
+                <div class="gallery-overlay home-gallery-overlay absolute inset-0 flex items-end bg-gradient-to-t from-slate-950/90 via-slate-900/20 to-transparent p-4 text-white">
                     <h3>{{ image.title }}</h3>
                     <p>{{ image.category }}</p>
                 </div>
@@ -31,46 +32,46 @@
             {% endfor %}
         </div>
 
-        <div class="home-cta-wrap">
-            <a href="{{ url_for('portfolio') }}" class="btn btn-outline home-outline-btn">View All Work</a>
+        <div class="home-cta-wrap mt-8 text-center">
+            <a href="{{ url_for('portfolio') }}" class="btn btn-outline home-outline-btn inline-flex rounded-xl px-6 py-3 font-semibold">View All Work</a>
         </div>
     </div>
 </section>
 
-<section class="about-preview home-section">
-    <div class="container">
-        <div class="home-about-content">
-            <div class="home-about-image">
-                <img src="{{ url_for('static', filename='images/pulindu.jpg') }}" alt="Pulindu Peiris, the photographer" loading="lazy" decoding="async">
+<section class="about-preview home-section py-16 md:py-20">
+    <div class="container mx-auto max-w-6xl px-4 md:px-6">
+        <div class="home-about-content grid items-center gap-8 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm md:grid-cols-2 md:p-8">
+            <div class="home-about-image overflow-hidden rounded-xl">
+                <img src="{{ url_for('static', filename='images/pulindu.jpg') }}" alt="Pulindu Peiris, the photographer" class="h-full w-full object-cover" loading="lazy" decoding="async">
             </div>
             <div class="home-about-text">
-                <h2>Hi, I'm Pulindu Peiris</h2>
-                <p>Professional photographer with a passion for capturing authentic moments and telling stories through imagery.</p>
-                <p>With years of experience in portrait, landscape, and event photography, I strive to create timeless images that you'll cherish forever.</p>
-                <a href="{{ url_for('about') }}" class="btn btn-primary">My Story</a>
+                <h2 class="font-display text-3xl font-bold text-slate-900">Hi, I'm Pulindu Peiris</h2>
+                <p class="mt-3 text-slate-600">Professional photographer with a passion for capturing authentic moments and telling stories through imagery.</p>
+                <p class="mt-2 text-slate-600">With years of experience in portrait, landscape, and event photography, I strive to create timeless images that you'll cherish forever.</p>
+                <a href="{{ url_for('about') }}" class="btn btn-primary mt-5 inline-flex rounded-xl px-6 py-3 font-semibold">My Story</a>
             </div>
         </div>
     </div>
 </section>
 
-<section class="services home-section">
-    <div class="container">
-        <h2 class="section-title home-section-title">What I Offer</h2>
-        <div class="home-services-grid">
-            <article class="home-service-card">
-                <i class="fas fa-camera" aria-hidden="true"></i>
-                <h3>Portrait Photography</h3>
-                <p>Beautiful individual and family portraits that capture personality and emotion.</p>
+<section class="services home-section py-16 md:py-20">
+    <div class="container mx-auto max-w-6xl px-4 md:px-6">
+        <h2 class="section-title home-section-title mb-10 text-center font-display text-3xl font-bold text-slate-900 md:text-4xl">What I Offer</h2>
+        <div class="home-services-grid grid gap-5 md:grid-cols-3">
+            <article class="home-service-card rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-xl">
+                <i class="fas fa-camera text-3xl text-cyan-700" aria-hidden="true"></i>
+                <h3 class="mt-4 font-display text-xl font-semibold text-slate-900">Portrait Photography</h3>
+                <p class="mt-2 text-slate-600">Beautiful individual and family portraits that capture personality and emotion.</p>
             </article>
-            <article class="home-service-card">
-                <i class="fas fa-mountain" aria-hidden="true"></i>
-                <h3>Landscape Photography</h3>
-                <p>Breathtaking landscape images that showcase the beauty of nature.</p>
+            <article class="home-service-card rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-xl">
+                <i class="fas fa-mountain text-3xl text-cyan-700" aria-hidden="true"></i>
+                <h3 class="mt-4 font-display text-xl font-semibold text-slate-900">Landscape Photography</h3>
+                <p class="mt-2 text-slate-600">Breathtaking landscape images that showcase the beauty of nature.</p>
             </article>
-            <article class="home-service-card">
-                <i class="fas fa-ring" aria-hidden="true"></i>
-                <h3>Event Photography</h3>
-                <p>Comprehensive coverage of your special events and celebrations.</p>
+            <article class="home-service-card rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-xl">
+                <i class="fas fa-ring text-3xl text-cyan-700" aria-hidden="true"></i>
+                <h3 class="mt-4 font-display text-xl font-semibold text-slate-900">Event Photography</h3>
+                <p class="mt-2 text-slate-600">Comprehensive coverage of your special events and celebrations.</p>
             </article>
         </div>
     </div>
