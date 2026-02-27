@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const portfolioItems = document.querySelectorAll('.portfolio-item');
     const portfolioGrid = document.getElementById('portfolioGrid');
     const filterContainer = document.querySelector('.category-filter');
+    const portfolioCount = document.getElementById('portfolioCount');
 
     if (!portfolioGrid) {
         return;
@@ -16,16 +17,23 @@ document.addEventListener('DOMContentLoaded', function() {
 
         filterButtons.forEach(button => button.classList.remove('active'));
         clickedButton.classList.add('active');
+        filterButtons.forEach(button => button.setAttribute('aria-pressed', button === clickedButton ? 'true' : 'false'));
 
         const filterValue = clickedButton.getAttribute('data-filter');
+        let visibleCount = 0;
 
         portfolioItems.forEach(item => {
             if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
                 showItem(item);
+                visibleCount += 1;
             } else {
                 hideItem(item);
             }
         });
+
+        if (portfolioCount) {
+            portfolioCount.textContent = `${visibleCount} image${visibleCount === 1 ? '' : 's'}`;
+        }
     });
 
     function showItem(item) {
@@ -94,6 +102,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     portfolioItems.forEach((item, index) => {
         item.addEventListener('click', () => openLightbox(index));
+        item.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                openLightbox(index);
+            }
+        });
     });
 
     lightboxClose?.addEventListener('click', closeLightbox);

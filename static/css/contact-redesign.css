@@ -1,0 +1,162 @@
+.contact-pro-hero {
+    background:
+        radial-gradient(circle at 8% 20%, rgba(14, 116, 144, 0.26), transparent 38%),
+        radial-gradient(circle at 90% 8%, rgba(245, 158, 11, 0.25), transparent 34%),
+        linear-gradient(135deg, #0f172a, #1e293b);
+}
+
+.contact-pro-hero-inner {
+    max-width: 900px;
+}
+
+.contact-pro-content {
+    padding-bottom: 3.5rem;
+}
+
+.contact-pro-grid {
+    display: grid;
+    grid-template-columns: 0.95fr 1.25fr;
+    gap: 1.2rem;
+    align-items: start;
+}
+
+.contact-pro-info,
+.contact-pro-form-wrap {
+    background: #fff;
+    border: 1px solid #dbe4ee;
+    border-radius: 16px;
+    box-shadow: 0 12px 30px rgba(16, 24, 40, 0.08);
+    padding: 1.35rem;
+}
+
+.contact-pro-info h2,
+.contact-pro-form-wrap h2 {
+    font-family: "Sora", "Manrope", sans-serif;
+    margin-top: 0;
+    margin-bottom: 0.6rem;
+    font-size: clamp(1.4rem, 2.2vw, 1.9rem);
+}
+
+.contact-pro-info > p {
+    color: #526172;
+    margin-bottom: 1rem;
+}
+
+.contact-pro-details {
+    display: grid;
+    gap: 0.7rem;
+}
+
+.contact-pro-item {
+    display: flex;
+    gap: 0.7rem;
+    align-items: flex-start;
+    border: 1px solid #e6ecf3;
+    border-radius: 12px;
+    background: #f8fafc;
+    padding: 0.8rem;
+}
+
+.contact-pro-item i {
+    width: 34px;
+    height: 34px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    background: rgba(14, 116, 144, 0.12);
+    color: #0e7490;
+}
+
+.contact-pro-item h3 {
+    margin: 0 0 0.25rem;
+    font-size: 0.95rem;
+}
+
+.contact-pro-item p {
+    margin: 0;
+    color: #526172;
+}
+
+.contact-pro-item a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.contact-pro-item a:hover {
+    color: #0e7490;
+}
+
+.contact-pro-social {
+    margin-top: 1rem;
+}
+
+.contact-pro-social .social-link {
+    border: 1px solid #dbe4ee;
+    background: #fff;
+}
+
+.contact-pro-social .social-link:hover {
+    border-color: #0e7490;
+    color: #0e7490;
+}
+
+.contact-pro-form-note {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: #64748b;
+}
+
+.contact-pro-form {
+    display: grid;
+    gap: 0.8rem;
+}
+
+.contact-pro-group {
+    margin-bottom: 0;
+}
+
+.contact-pro-group label {
+    margin-bottom: 0.3rem;
+    color: #1f2937;
+}
+
+.contact-pro-group input,
+.contact-pro-group textarea {
+    width: 100%;
+    border: 1px solid #d5deea;
+    border-radius: 10px;
+    background: #f8fafc;
+    color: #1f2937;
+    padding: 0.75rem 0.9rem;
+}
+
+.contact-pro-group textarea {
+    min-height: 155px;
+    resize: vertical;
+}
+
+.contact-pro-group input:focus,
+.contact-pro-group textarea:focus {
+    outline: 2px solid rgba(14, 116, 144, 0.2);
+    border-color: #0e7490;
+    background: #fff;
+}
+
+.contact-pro-submit {
+    width: 100%;
+    justify-content: center;
+    margin-top: 0.2rem;
+}
+
+@media (max-width: 980px) {
+    .contact-pro-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 640px) {
+    .contact-pro-content {
+        padding-bottom: 2.7rem;
+    }
+}

@@ -1,36 +1,41 @@
 {% extends "base.html" %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/contact-redesign.css') }}">
+{% endblock %}
+
 {% block content %}
-<section class="portfolio-hero" aria-labelledby="contact-section">
-    <div class="container">
-        <h1 class="page-title" id="contact-section">Contact Me</h1>
-        <p class="page-subtitle">Let's create something amazing together</p>
+<section class="contact-pro-hero pro-hero" aria-labelledby="contact-pro-title">
+    <div class="container contact-pro-hero-inner pro-hero-inner">
+        <p class="contact-pro-eyebrow pro-eyebrow">Let's Work Together</p>
+        <h1 class="contact-pro-title pro-title" id="contact-pro-title">Start your next shoot with a clear creative direction and a smooth process.</h1>
+        <p class="contact-pro-subtitle pro-subtitle">Tell me what you're planning, and I'll help shape it into meaningful visuals you'll be proud to share.</p>
     </div>
 </section>
 
-<section class="contact-content" id="contact-content" aria-labelledby="contact-info-title">
+<section class="contact-pro-content pro-content" id="contact-content" aria-labelledby="contact-info-title">
     <div class="container">
-        <div class="contact-grid">
-            <div class="contact-info">
+        <div class="contact-pro-grid">
+            <aside class="contact-pro-info">
                 <h2 id="contact-info-title">Get In Touch</h2>
-                <p>I'd love to hear from you! Whether you're interested in a photoshoot, have questions about my services, or just want to say hello, feel free to reach out.</p>
+                <p>Whether you're planning portraits, events, or branded visuals, I'd love to hear your ideas and goals.</p>
                 
-                <div class="contact-details">
-                    <div class="contact-item">
+                <div class="contact-pro-details">
+                    <div class="contact-pro-item">
                         <i class="fas fa-envelope" aria-hidden="true"></i>
                         <div>
                             <h3>Email</h3>
                             <p><a href="mailto:pulindu@svems.com">pulindu@svems.com</a></p>
                         </div>
                     </div>
-                    <div class="contact-item">
+                    <div class="contact-pro-item">
                         <i class="fas fa-phone" aria-hidden="true"></i>
                         <div>
                             <h3>Phone</h3>
                             <p><a href="tel:+94771234567">+94 77 123 4567</a></p>
                         </div>
                     </div>
-                    <div class="contact-item">
+                    <div class="contact-pro-item">
                         <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
                         <div>
                             <h3>Location</h3>
@@ -39,7 +44,7 @@
                     </div>
                 </div>
                 
-                <div class="social-links">
+                <div class="social-links contact-pro-social">
                     <a href="#" class="social-link" aria-label="Instagram">
                         <i class="fab fa-instagram" aria-hidden="true"></i>
                     </a>
@@ -53,29 +58,41 @@
                         <i class="fab fa-linkedin" aria-hidden="true"></i>
                     </a>
                 </div>
-            </div>
+            </aside>
             
-            <div class="contact-form">
+            <div class="contact-pro-form-wrap">
                 <h2 id="contact-form-title">Send a Message</h2>
-                <form action="{{ url_for('contact') }}" method="POST" id="contactForm" aria-labelledby="contact-form-title">
-                    <div class="form-group">
+                <p class="contact-pro-form-note">Share a few details below. I typically reply within 24 hours.</p>
+                <form action="{{ url_for('contact') }}" method="POST" id="contactForm" class="contact-pro-form" aria-labelledby="contact-form-title">
+                    <div class="form-group contact-pro-group">
                         <label for="name">Your Name</label>
-                        <input type="text" id="name" name="name" required aria-required="true">
+                        <input type="text" id="name" name="name" required aria-required="true" placeholder="John Doe">
                     </div>
                     
-                    <div class="form-group">
+                    <div class="form-group contact-pro-group">
                         <label for="email">Your Email</label>
-                        <input type="email" id="email" name="email" required aria-required="true">
+                        <input type="email" id="email" name="email" required aria-required="true" placeholder="john@email.com">
                     </div>
                     
-                    <div class="form-group">
+                    <div class="form-group contact-pro-group">
                         <label for="message">Your Message</label>
-                        <textarea id="message" name="message" required aria-required="true"></textarea>
+                        <textarea id="message" name="message" required aria-required="true" placeholder="Tell me about your project, location, timeline, and preferred style..."></textarea>
                     </div>
                     
-                    <button type="submit" class="btn btn-primary">Send Message</button>
+                    <button type="submit" class="btn btn-primary contact-pro-submit">Send Message</button>
                 </form>
             </div>
+        </div>
+    </div>
+</section>
+
+<section class="contact-pro-cta" aria-labelledby="contact-cta-title">
+    <div class="container pro-cta-block">
+        <h2 id="contact-cta-title">Prefer To Explore First?</h2>
+        <p>View recent work and learn more about my process before booking.</p>
+        <div class="pro-cta-actions">
+            <a href="{{ url_for('portfolio') }}" class="btn btn-primary">Browse Portfolio</a>
+            <a href="{{ url_for('about') }}" class="btn btn-outline">Read About Me</a>
         </div>
     </div>
 </section>
@@ -84,4 +101,5 @@
 {% block scripts %}
 <script src="{{ url_for('static', filename='js/contact.js') }}"></script>
 {% endblock %}
+
 
