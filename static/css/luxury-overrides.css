@@ -1,4 +1,3 @@
-
 .luxury-container {
     max-width: 1400px;
     margin-left: auto;
@@ -6,8 +5,20 @@
     padding-left: 4rem;
     padding-right: 4rem;
 }
-@media (max-width: 1024px) { .luxury-container { padding-left: 2rem; padding-right: 2rem; } }
-@media (max-width: 768px) { .luxury-container { padding-left: 1.5rem; padding-right: 1.5rem; } }
+
+@media (max-width: 1024px) {
+    .luxury-container {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .luxury-container {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+}
 
 .navbar {
     height: 80px !important;
@@ -19,9 +30,9 @@
     left: 0 !important;
     width: 100% !important;
     z-index: 1000 !important;
-    background: rgba(5,5,5,0.95) !important;
+    background: rgba(5, 5, 5, 0.95) !important;
     backdrop-filter: blur(20px) !important;
-    border-bottom: 1px solid rgba(255,255,255,0.03) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03) !important;
 }
 
 .brand-name {
@@ -35,23 +46,203 @@
     font-size: 1.1rem !important;
 }
 
-main { padding-top: 80px !important; }
+/* Remove global padding — each section handles its own navbar clearance */
+main {
+    padding-top: 0 !important;
+}
 
-.luxury-page-header { padding-top: 8rem !important; padding-bottom: 6rem !important; background: #050505; }
+/* Public page headers: just clear the 80px navbar + comfortable breathing room */
+.luxury-page-header {
+    padding-top: calc(80px + 3rem) !important;
+    padding-bottom: 5rem !important;
+    background: #050505;
+}
 
-.luxury-eyebrow { display: block; text-transform: uppercase; letter-spacing: 0.5em; font-size: 0.65rem; font-weight: 800; color: #d4af37; margin-bottom: 1.5rem; }
+/* Home full-bleed hero — slides under navbar, fills full viewport */
+.full-hero {
+    margin-top: -80px;
+    height: calc(100vh + 80px);
+    min-height: 600px;
+}
 
-.split-text-image { display: grid; grid-template-columns: 1fr 1fr; gap: 8rem; align-items: start; }
-@media (max-width: 1024px) { .split-text-image { grid-template-columns: 1fr; gap: 4rem; } }
+/* ============================================================
+   INNER PAGE HERO — Consistent across About / Portfolio / Contact
+   ============================================================ */
 
-.footer-nav-link { display: block; color: rgba(255,255,255,0.3); font-size: 0.8rem; font-weight: 600; padding: 0.3rem 0; transition: all 0.4s ease; }
-.footer-nav-link:hover { color: #d4af37; padding-left: 0.5rem; }
+.inner-page-hero {
+    background: #050505;
+    padding-top: calc(80px + 5rem);
+    /* navbar clearance + breathing room */
+    padding-bottom: 5rem;
+    position: relative;
+    overflow: hidden;
+}
 
-.btn-primary-luxury { display: inline-flex; align-items: center; background: #ffffff; color: #050505; padding: 1.1rem 2.8rem; font-weight: 800; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.25em; border: 1px solid #ffffff; transition: all 0.5s ease; cursor: pointer; }
-.btn-primary-luxury:hover { background: transparent; color: #ffffff; transform: translateY(-4px); }
+/* Subtle large background text watermark */
+.inner-page-hero::before {
+    content: 'SVEMS';
+    position: absolute;
+    right: -2rem;
+    bottom: -2rem;
+    font-family: 'Playfair Display', serif;
+    font-size: 18rem;
+    font-weight: 800;
+    color: rgba(255, 255, 255, 0.015);
+    pointer-events: none;
+    user-select: none;
+    line-height: 1;
+}
 
-.filter-btn-luxury { padding: 0.5rem 1.5rem; border: 1px solid rgba(255,255,255,0.08); color: rgba(255,255,255,0.3); font-size: 0.65rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.3em; transition: all 0.4s ease; background: transparent; cursor: pointer; }
-.filter-btn-luxury:hover, .filter-btn-luxury.active { border-color: #d4af37; color: #d4af37; background: rgba(212,175,55,0.05); }
+.inner-page-hero__content {
+    position: relative;
+    z-index: 1;
+}
 
-.luxury-input { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); width: 100%; padding: 1rem 1.25rem; color: #fff; font-size: 0.9rem; transition: border-color 0.4s ease; }
-.luxury-input:focus { outline: none; border-color: rgba(212,175,55,0.4); background: rgba(212,175,55,0.02); }
+.inner-page-hero__title {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    line-height: 1.05;
+    color: #ffffff;
+    margin-bottom: 2rem;
+    letter-spacing: -0.01em;
+}
+
+.inner-page-hero__title--light {
+    font-family: 'Manrope', sans-serif;
+    font-style: normal;
+    font-weight: 200;
+    color: rgba(255, 255, 255, 0.35);
+    display: block;
+}
+
+.inner-page-hero__subtitle {
+    font-size: 1.1rem;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.45);
+    line-height: 1.9;
+    max-width: 560px;
+}
+
+/* Bottom separator line with gold accent */
+.inner-page-hero__line {
+    margin-top: 5rem;
+    height: 1px;
+    background: linear-gradient(to right, rgba(212, 175, 55, 0.3) 0%, rgba(255, 255, 255, 0.05) 40%, transparent 100%);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .inner-page-hero {
+        padding-top: calc(80px + 3rem);
+        padding-bottom: 3rem;
+    }
+
+    .inner-page-hero__title {
+        font-size: clamp(2.8rem, 10vw, 4rem);
+    }
+
+    .inner-page-hero__subtitle {
+        font-size: 1rem;
+    }
+
+    .inner-page-hero::before {
+        font-size: 8rem;
+    }
+}
+
+
+.luxury-eyebrow {
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 0.5em;
+    font-size: 0.65rem;
+    font-weight: 800;
+    color: #d4af37;
+    margin-bottom: 1.5rem;
+}
+
+.split-text-image {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8rem;
+    align-items: start;
+}
+
+@media (max-width: 1024px) {
+    .split-text-image {
+        grid-template-columns: 1fr;
+        gap: 4rem;
+    }
+}
+
+.footer-nav-link {
+    display: block;
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 0.3rem 0;
+    transition: all 0.4s ease;
+}
+
+.footer-nav-link:hover {
+    color: #d4af37;
+    padding-left: 0.5rem;
+}
+
+.btn-primary-luxury {
+    display: inline-flex;
+    align-items: center;
+    background: #ffffff;
+    color: #050505;
+    padding: 1.1rem 2.8rem;
+    font-weight: 800;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    border: 1px solid #ffffff;
+    transition: all 0.5s ease;
+    cursor: pointer;
+}
+
+.btn-primary-luxury:hover {
+    background: transparent;
+    color: #ffffff;
+    transform: translateY(-4px);
+}
+
+.filter-btn-luxury {
+    padding: 0.5rem 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 0.65rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    transition: all 0.4s ease;
+    background: transparent;
+    cursor: pointer;
+}
+
+.filter-btn-luxury:hover,
+.filter-btn-luxury.active {
+    border-color: #d4af37;
+    color: #d4af37;
+    background: rgba(212, 175, 55, 0.05);
+}
+
+.luxury-input {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    width: 100%;
+    padding: 1rem 1.25rem;
+    color: #fff;
+    font-size: 0.9rem;
+    transition: border-color 0.4s ease;
+}
+
+.luxury-input:focus {
+    outline: none;
+    border-color: rgba(212, 175, 55, 0.4);
+    background: rgba(212, 175, 55, 0.02);
+}

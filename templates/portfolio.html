@@ -2,37 +2,19 @@
 
 {% block content %}
 
-<!-- Page Header -->
-<section class="luxury-page-header relative overflow-hidden">
-    <div class="luxury-container relative z-10">
-        <div class="grid gap-12 lg:grid-cols-2 lg:items-end">
-            <div class="max-w-3xl">
-                <span class="luxury-eyebrow scroll-reveal">Selected Work</span>
-                <h1
-                    class="font-display italic text-6xl md:text-7xl lg:text-8xl text-white leading-none mb-8 scroll-reveal reveal-delay-1">
-                    A curated <br><span class="font-sans not-italic font-extralight text-white/55">collection.</span>
-                </h1>
-                <p
-                    class="text-white/60 text-lg md:text-xl font-light leading-loose max-w-xl scroll-reveal reveal-delay-2">
-                    Each image reflects a balance of composition, natural light, and emotional detail drawn from life
-                    itself.
-                </p>
-            </div>
-
-            <aside class="scroll-reveal reveal-delay-2 lg:justify-self-end w-full max-w-md">
-                <div class="overflow-hidden border border-white/10 bg-white/[0.02]">
-                    <img src="{{ url_for('static', filename='images/service-portrait.jpg') }}"
-                        alt="Portrait session example" class="h-[24rem] w-full object-cover grayscale-[0.18]">
-                    <div class="border-t border-white/10 p-6">
-                        <p class="text-[0.62rem] uppercase tracking-[0.35em] text-amber-500 font-bold">Portfolio
-                            Scope</p>
-                        <p class="mt-3 text-white/55 text-sm leading-loose">Portraits, events, and editorial stories
-                            curated with consistent color, atmosphere, and narrative flow.</p>
-                    </div>
-                </div>
-            </aside>
-        </div>
+<!-- Page Hero -->
+<section class="inner-page-hero" aria-label="Portfolio page header">
+    <div class="luxury-container inner-page-hero__content">
+        <span class="luxury-eyebrow scroll-reveal">Selected Work</span>
+        <h1 class="inner-page-hero__title scroll-reveal reveal-delay-1">
+            A curated<br>
+            <span class="inner-page-hero__title--light">collection.</span>
+        </h1>
+        <p class="inner-page-hero__subtitle scroll-reveal reveal-delay-2">
+            Each image reflects a balance of composition, natural light, and emotional detail drawn from life itself.
+        </p>
     </div>
+    <div class="inner-page-hero__line" aria-hidden="true"></div>
 </section>
 
 <!-- Portfolio Section -->
