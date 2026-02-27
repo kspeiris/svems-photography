@@ -1,35 +1,48 @@
 {% extends "base.html" %}
 
 {% block content %}
-<section class="about-pro-hero relative overflow-hidden bg-slate-950 py-20 text-white md:py-24" aria-labelledby="about-pro-title">
-    <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(6,182,212,0.35),transparent_45%)]"></div>
-    <div class="container about-pro-hero-inner mx-auto max-w-6xl px-4 md:px-6">
-        <p class="about-pro-eyebrow text-sm font-semibold uppercase tracking-[0.22em] text-cyan-200">About Svems</p>
-        <h1 class="about-pro-title mt-4 max-w-4xl font-display text-4xl font-bold leading-tight md:text-5xl" id="about-pro-title">I create elegant, story-first photography for people who care about meaning, not just images.</h1>
-        <p class="about-pro-subtitle mt-5 max-w-3xl text-lg text-slate-200">From portraits to live events, my approach blends editorial composition with natural emotion so every frame feels intentional and timeless.</p>
+<header class="page-header px-4 md:px-6">
+    <div class="container mx-auto max-w-6xl">
+        <span class="eyebrow scroll-reveal">About Svems</span>
+        <h1 class="font-display scroll-reveal reveal-delay-1">I create elegant, story-first photography for people who
+            care about meaning.</h1>
+        <p class="subtitle scroll-reveal reveal-delay-2">From portraits to live events, my approach blends editorial
+            composition with natural emotion.</p>
     </div>
-</section>
+</header>
 
 <section class="about-pro-profile py-14 md:py-16" aria-labelledby="about-profile-title">
-    <div class="container mx-auto max-w-6xl px-4 md:px-6">
+    <div class="container mx-auto max-w-6xl px-4 md:px-6 scroll-reveal">
         <div class="about-pro-profile-grid grid gap-8 md:grid-cols-2">
             <div class="about-pro-images">
-                <div class="about-pro-main-image overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
-                    <img src="{{ url_for('static', filename='images/pulindu-about.jpg') }}" alt="Portrait of Pulindu Peiris" loading="lazy" decoding="async">
+                <div class="about-pro-main-image overflow-hidden rounded-2xl border border-white/5 shadow-2xl">
+                    <img src="{{ url_for('static', filename='images/pulindu-about.jpg') }}"
+                        alt="Portrait of Pulindu Peiris" class="w-full h-full object-cover">
                 </div>
-                <div class="about-pro-image-stack mt-4 grid gap-4 sm:grid-cols-2">
-                    <img src="{{ url_for('static', filename='images/about-1.jpg') }}" alt="Photography composition scene" loading="lazy" decoding="async">
-                    <img src="{{ url_for('static', filename='images/about-2.jpg') }}" alt="Camera and photography equipment" loading="lazy" decoding="async">
+                <div class="about-pro-image-stack mt-6 grid gap-6 sm:grid-cols-2">
+                    <div class="overflow-hidden rounded-xl border border-white/5 shadow-lg">
+                        <img src="{{ url_for('static', filename='images/about-1.jpg') }}"
+                            alt="Photography composition scene" class="w-full h-full object-cover aspect-video">
+                    </div>
+                    <div class="overflow-hidden rounded-xl border border-white/5 shadow-lg">
+                        <img src="{{ url_for('static', filename='images/about-2.jpg') }}"
+                            alt="Camera and photography equipment" class="w-full h-full object-cover aspect-video">
+                    </div>
                 </div>
             </div>
 
-            <div class="about-pro-copy rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-                <h2 id="about-profile-title" class="font-display text-3xl font-bold text-slate-900">Pulindu Peiris</h2>
-                <p class="about-pro-role mt-2 text-sm font-semibold uppercase tracking-wide text-cyan-700">Professional Photographer and Visual Storyteller</p>
-                <div class="about-pro-story">
-                    <p class="mt-4 text-slate-600">I build photographs around people first. Comfort, trust, and timing are the foundation of every strong image.</p>
-                    <p class="mt-3 text-slate-600">Over the last eight years, I've developed a style focused on clean light, rich tones, and emotional clarity that still feels natural.</p>
-                    <p class="mt-3 text-slate-600">My goal is simple: deliver work that still feels powerful years later, not just the day it's captured.</p>
+            <div
+                class="about-pro-copy rounded-2xl border border-white/5 bg-slate-900/50 p-8 md:p-10 shadow-2xl backdrop-blur-md">
+                <h2 id="about-profile-title" class="font-display text-4xl font-bold text-white">Pulindu Peiris</h2>
+                <p class="about-pro-role mt-3 text-sm font-bold uppercase tracking-widest text-teal-400">Professional
+                    Photographer and Visual Storyteller</p>
+                <div class="about-pro-story space-y-4 mt-8">
+                    <p class="text-slate-300 text-lg leading-relaxed">I build photographs around people first. Comfort,
+                        trust, and timing are the foundation of every strong image.</p>
+                    <p class="text-slate-300 text-lg leading-relaxed">Over the last eight years, I've developed a style
+                        focused on clean light, rich tones, and emotional clarity that still feels natural.</p>
+                    <p class="text-slate-300 text-lg leading-relaxed">My goal is simple: deliver work that still feels
+                        powerful years later, not just the day it's captured.</p>
                 </div>
             </div>
         </div>
@@ -38,80 +51,93 @@
 
 <section class="about-pro-values premium-section py-14 md:py-16" aria-labelledby="values-title">
     <div class="container mx-auto max-w-6xl px-4 md:px-6">
-        <div class="about-pro-section-head">
-            <h2 id="values-title" class="font-display text-3xl font-bold text-slate-900">What Defines My Work</h2>
-            <p class="mt-2 text-slate-600">The principles behind every shoot, edit, and final delivery.</p>
+        <div class="about-pro-section-head mb-12">
+            <h2 id="values-title" class="font-display text-4xl font-bold text-white">What Defines My Work</h2>
+            <p class="mt-4 text-slate-400 text-xl">The principles behind every shoot, edit, and final delivery.</p>
         </div>
-        <div class="about-pro-values-grid grid gap-5 sm:grid-cols-2">
-            <article class="about-pro-value-card hover-lift-glow rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-                <span class="icon-badge"><i class="fas fa-book-open" aria-hidden="true"></i></span>
-                <h3 class="font-display text-lg font-semibold text-slate-900">Story Before Style</h3>
-                <p class="mt-2 text-slate-600">Every frame starts with context and emotion, then visual polish follows.</p>
+        <div class="about-pro-values-grid grid gap-5 sm:grid-cols-2 stagger-container">
+            <article
+                class="about-pro-value-card hover-lift-glow stagger-item rounded-2xl border border-white/5 bg-slate-900/40 p-8 shadow-xl">
+                <span class="icon-badge bg-teal-500/10 text-teal-400"><i class="fas fa-book-open"
+                        aria-hidden="true"></i></span>
+                <h3 class="font-display text-2xl font-bold text-white mt-6">Story Before Style</h3>
+                <p class="mt-4 text-slate-400 text-lg">Every frame starts with context and emotion, then visual polish
+                    follows.
+                </p>
             </article>
-            <article class="about-pro-value-card hover-lift-glow rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+            <article
+                class="about-pro-value-card hover-lift-glow stagger-item rounded-2xl border border-white/5 bg-slate-900/40 p-8 shadow-xl">
                 <span class="icon-badge"><i class="fas fa-hand-sparkles" aria-hidden="true"></i></span>
-                <h3 class="font-display text-lg font-semibold text-slate-900">Direction With Ease</h3>
-                <p class="mt-2 text-slate-600">I guide posing and flow clearly while keeping sessions relaxed and natural.</p>
+                <h3 class="font-display text-2xl font-bold text-white mt-6">Direction With Ease</h3>
+                <p class="mt-4 text-slate-400 text-lg">I guide posing and flow clearly while keeping sessions relaxed and
+                    natural.</p>
             </article>
-            <article class="about-pro-value-card hover-lift-glow rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+            <article
+                class="about-pro-value-card hover-lift-glow stagger-item rounded-2xl border border-white/5 bg-slate-900/40 p-8 shadow-xl">
                 <span class="icon-badge"><i class="fas fa-sliders-h" aria-hidden="true"></i></span>
-                <h3 class="font-display text-lg font-semibold text-slate-900">Consistent Quality</h3>
-                <p class="mt-2 text-slate-600">From shooting to editing, color and tone remain cohesive across the whole gallery.</p>
+                <h3 class="font-display text-2xl font-bold text-white mt-6">Consistent Quality</h3>
+                <p class="mt-4 text-slate-400 text-lg">From shooting to editing, color and tone remain cohesive across the whole
+                    gallery.</p>
             </article>
-            <article class="about-pro-value-card hover-lift-glow rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-                <span class="icon-badge"><i class="fas fa-shield-alt" aria-hidden="true"></i></span>
-                <h3 class="font-display text-lg font-semibold text-slate-900">Reliable Process</h3>
-                <p class="mt-2 text-slate-600">Clear planning, on-time delivery, and transparent communication at every stage.</p>
+            <article
+                class="about-pro-value-card hover-lift-glow stagger-item rounded-2xl border border-white/5 bg-slate-900/40 p-8 shadow-xl">
+                <span class="icon-badge bg-teal-500/10 text-teal-400"><i class="fas fa-shield-alt"
+                        aria-hidden="true"></i></span>
+                <h3 class="font-display text-2xl font-bold text-white mt-6">Reliable Process</h3>
+                <p class="mt-4 text-slate-400 text-lg">Clear planning, on-time delivery, and transparent communication
+                    at every stage.
+                </p>
             </article>
         </div>
     </div>
 </section>
 
-<section class="about-pro-expertise py-14 md:py-16" aria-labelledby="expertise-title">
+<section class="about-pro-expertise py-24 bg-slate-950" aria-labelledby="expertise-title">
     <div class="container mx-auto max-w-6xl px-4 md:px-6">
-        <div class="about-pro-section-head">
-            <h2 id="expertise-title" class="font-display text-3xl font-bold text-slate-900">Core Expertise</h2>
-            <p class="mt-2 text-slate-600">A balanced mix of technical craft and artistic vision across multiple photography disciplines.</p>
+        <div class="about-pro-section-head mb-12">
+            <h2 id="expertise-title" class="font-display text-4xl font-bold text-white">Core Expertise</h2>
+            <p class="mt-4 text-slate-400 text-xl">A balanced mix of technical craft and artistic vision across multiple
+                disciplines.</p>
         </div>
 
-        <div class="about-pro-skills-grid grid gap-4 md:grid-cols-2">
-            <article class="about-pro-skill-card rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
-                <div class="about-pro-skill-head flex items-center justify-between text-sm font-semibold text-slate-900">
+        <div class="about-pro-skills-grid grid gap-6 md:grid-cols-2">
+            <article class="about-pro-skill-card rounded-xl border border-white/5 bg-slate-900 p-6 shadow-xl">
+                <div class="about-pro-skill-head flex items-center justify-between text-base font-bold text-white">
                     <span>Portrait Photography</span>
-                    <strong>95%</strong>
+                    <span class="text-teal-400">95%</span>
                 </div>
-                <div class="about-pro-skill-track mt-3 h-2 rounded-full bg-slate-200">
-                    <div class="about-pro-skill-fill h-2 rounded-full bg-cyan-600" data-level="95"></div>
+                <div class="about-pro-skill-track mt-4 h-1.5 rounded-full bg-slate-800">
+                    <div class="about-pro-skill-fill h-1.5 rounded-full bg-teal-500" data-level="95"></div>
                 </div>
             </article>
 
-            <article class="about-pro-skill-card rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
-                <div class="about-pro-skill-head flex items-center justify-between text-sm font-semibold text-slate-900">
+            <article class="about-pro-skill-card rounded-xl border border-white/5 bg-slate-900 p-6 shadow-xl">
+                <div class="about-pro-skill-head flex items-center justify-between text-base font-bold text-white">
                     <span>Landscape Photography</span>
-                    <strong>90%</strong>
+                    <span class="text-teal-400">90%</span>
                 </div>
-                <div class="about-pro-skill-track mt-3 h-2 rounded-full bg-slate-200">
-                    <div class="about-pro-skill-fill h-2 rounded-full bg-cyan-600" data-level="90"></div>
+                <div class="about-pro-skill-track mt-4 h-1.5 rounded-full bg-slate-800">
+                    <div class="about-pro-skill-fill h-1.5 rounded-full bg-teal-500" data-level="90"></div>
                 </div>
             </article>
 
-            <article class="about-pro-skill-card rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
-                <div class="about-pro-skill-head flex items-center justify-between text-sm font-semibold text-slate-900">
+            <article class="about-pro-skill-card rounded-xl border border-white/5 bg-slate-900 p-6 shadow-xl">
+                <div class="about-pro-skill-head flex items-center justify-between text-base font-bold text-white">
                     <span>Event Photography</span>
-                    <strong>88%</strong>
+                    <span class="text-teal-400">88%</span>
                 </div>
-                <div class="about-pro-skill-track mt-3 h-2 rounded-full bg-slate-200">
-                    <div class="about-pro-skill-fill h-2 rounded-full bg-cyan-600" data-level="88"></div>
+                <div class="about-pro-skill-track mt-4 h-1.5 rounded-full bg-slate-800">
+                    <div class="about-pro-skill-fill h-1.5 rounded-full bg-teal-500" data-level="88"></div>
                 </div>
             </article>
 
-            <article class="about-pro-skill-card rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
-                <div class="about-pro-skill-head flex items-center justify-between text-sm font-semibold text-slate-900">
+            <article class="about-pro-skill-card rounded-xl border border-white/5 bg-slate-900 p-6 shadow-xl">
+                <div class="about-pro-skill-head flex items-center justify-between text-base font-bold text-white">
                     <span>Photo Editing</span>
-                    <strong>92%</strong>
+                    <span class="text-teal-400">92%</span>
                 </div>
-                <div class="about-pro-skill-track mt-3 h-2 rounded-full bg-slate-200">
-                    <div class="about-pro-skill-fill h-2 rounded-full bg-cyan-600" data-level="92"></div>
+                <div class="about-pro-skill-track mt-4 h-1.5 rounded-full bg-slate-800">
+                    <div class="about-pro-skill-fill h-1.5 rounded-full bg-teal-500" data-level="92"></div>
                 </div>
             </article>
         </div>
@@ -136,36 +162,45 @@
 <section class="about-pro-process premium-section py-14 md:py-16" aria-labelledby="process-title">
     <div class="container mx-auto max-w-6xl px-4 md:px-6">
         <div class="about-pro-section-head">
-            <h2 id="process-title" class="font-display text-3xl font-bold text-slate-900">How I Work</h2>
-            <p class="mt-2 text-slate-600">A structured workflow designed to keep quality high and collaboration easy.</p>
+            <h2 id="process-title" class="font-display text-3xl font-bold text-white">How I Work</h2>
+            <p class="mt-2 text-slate-400">A structured workflow designed to keep quality high and collaboration easy.
+            </p>
         </div>
         <div class="about-pro-timeline grid gap-4 md:grid-cols-2">
-            <article class="about-pro-step hover-lift-glow rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+            <article class="about-pro-step hover-lift-glow rounded-2xl border border-white/5 bg-slate-900/40 p-6 shadow-xl">
                 <span class="about-pro-step-index text-xs font-bold uppercase tracking-[0.2em] text-cyan-700">01</span>
                 <div>
-                    <h3 class="mt-2 font-display text-xl font-semibold text-slate-900"><i class="fas fa-compass mr-2 text-cyan-600" aria-hidden="true"></i>Discovery</h3>
-                    <p class="mt-2 text-slate-600">We define your vision, style preferences, timeline, and deliverables.</p>
+                    <h3 class="mt-2 font-display text-xl font-semibold text-white"><i
+                            class="fas fa-compass mr-2 text-cyan-600" aria-hidden="true"></i>Discovery</h3>
+                    <p class="mt-2 text-slate-400">We define your vision, style preferences, timeline, and deliverables.
+                    </p>
                 </div>
             </article>
-            <article class="about-pro-step hover-lift-glow rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+            <article class="about-pro-step hover-lift-glow rounded-2xl border border-white/5 bg-slate-900/40 p-6 shadow-xl">
                 <span class="about-pro-step-index text-xs font-bold uppercase tracking-[0.2em] text-cyan-700">02</span>
                 <div>
-                    <h3 class="mt-2 font-display text-xl font-semibold text-slate-900"><i class="fas fa-map mr-2 text-cyan-600" aria-hidden="true"></i>Planning</h3>
-                    <p class="mt-2 text-slate-600">Location, mood, timing, and shot priorities are organized before shoot day.</p>
+                    <h3 class="mt-2 font-display text-xl font-semibold text-white"><i
+                            class="fas fa-map mr-2 text-cyan-600" aria-hidden="true"></i>Planning</h3>
+                    <p class="mt-2 text-slate-400">Location, mood, timing, and shot priorities are organized before
+                        shoot day.</p>
                 </div>
             </article>
-            <article class="about-pro-step hover-lift-glow rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+            <article class="about-pro-step hover-lift-glow rounded-2xl border border-white/5 bg-slate-900/40 p-6 shadow-xl">
                 <span class="about-pro-step-index text-xs font-bold uppercase tracking-[0.2em] text-cyan-700">03</span>
                 <div>
-                    <h3 class="mt-2 font-display text-xl font-semibold text-slate-900"><i class="fas fa-camera-retro mr-2 text-cyan-600" aria-hidden="true"></i>Capture</h3>
-                    <p class="mt-2 text-slate-600">I direct the session with calm pacing to capture expressive and polished frames.</p>
+                    <h3 class="mt-2 font-display text-xl font-semibold text-white"><i
+                            class="fas fa-camera-retro mr-2 text-cyan-600" aria-hidden="true"></i>Capture</h3>
+                    <p class="mt-2 text-slate-400">I direct the session with calm pacing to capture expressive and
+                        polished frames.</p>
                 </div>
             </article>
-            <article class="about-pro-step hover-lift-glow rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+            <article class="about-pro-step hover-lift-glow rounded-2xl border border-white/5 bg-slate-900/40 p-6 shadow-xl">
                 <span class="about-pro-step-index text-xs font-bold uppercase tracking-[0.2em] text-cyan-700">04</span>
                 <div>
-                    <h3 class="mt-2 font-display text-xl font-semibold text-slate-900"><i class="fas fa-magic mr-2 text-cyan-600" aria-hidden="true"></i>Refinement</h3>
-                    <p class="mt-2 text-slate-600">Final edits are curated for consistent color, detail, and narrative flow.</p>
+                    <h3 class="mt-2 font-display text-xl font-semibold text-white"><i
+                            class="fas fa-magic mr-2 text-cyan-600" aria-hidden="true"></i>Refinement</h3>
+                    <p class="mt-2 text-slate-400">Final edits are curated for consistent color, detail, and narrative
+                        flow.</p>
                 </div>
             </article>
         </div>
@@ -175,29 +210,37 @@
 <section class="about-pro-testimonials premium-section py-14 md:py-16" aria-labelledby="testimonials-section">
     <div class="container mx-auto max-w-6xl px-4 md:px-6">
         <div class="about-pro-section-head">
-            <h2 id="testimonials-section" class="font-display text-3xl font-bold text-slate-900">Client Testimonials</h2>
-            <p class="mt-2 text-slate-600">What clients value most: comfort during shoots, strong creative direction, and reliable results.</p>
+            <h2 id="testimonials-section" class="font-display text-3xl font-bold text-white">Client Testimonials
+            </h2>
+            <p class="mt-2 text-slate-400">What clients value most: comfort during shoots, strong creative direction,
+                and reliable results.</p>
         </div>
         <div class="about-pro-testimonials-grid grid gap-5 md:grid-cols-3">
-            <article class="about-pro-testimonial-card hover-lift-glow rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+            <article
+                class="about-pro-testimonial-card hover-lift-glow rounded-2xl border border-white/5 bg-slate-900/40 p-6 shadow-xl">
                 <i class="fas fa-quote-left text-cyan-600" aria-hidden="true"></i>
-                <p class="text-slate-600">"Pulindu captured our wedding day perfectly. Every image feels emotional, natural, and beautifully composed."</p>
+                <p class="mt-4 text-slate-400">"Pulindu captured our wedding day perfectly. Every image feels emotional,
+                    natural, and beautifully composed."</p>
                 <div class="about-pro-testimonial-author">
                     <strong>Sarah & James</strong>
                     <span>Wedding Clients</span>
                 </div>
             </article>
-            <article class="about-pro-testimonial-card hover-lift-glow rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+            <article
+                class="about-pro-testimonial-card hover-lift-glow rounded-2xl border border-white/5 bg-slate-900/40 p-6 shadow-xl">
                 <i class="fas fa-quote-left text-cyan-600" aria-hidden="true"></i>
-                <p class="text-slate-600">"The family portraits are incredible. We felt comfortable throughout, and the final gallery exceeded expectations."</p>
+                <p class="mt-4 text-slate-400">"The family portraits are incredible. We felt comfortable throughout, and the
+                    final gallery exceeded expectations."</p>
                 <div class="about-pro-testimonial-author">
                     <strong>The Johnson Family</strong>
                     <span>Family Portrait</span>
                 </div>
             </article>
-            <article class="about-pro-testimonial-card hover-lift-glow rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+            <article
+                class="about-pro-testimonial-card hover-lift-glow rounded-2xl border border-white/5 bg-slate-900/40 p-6 shadow-xl">
                 <i class="fas fa-quote-left text-cyan-600" aria-hidden="true"></i>
-                <p class="text-slate-600">"Professional, detail-oriented, and easy to work with. Our corporate photos now look polished and consistent."</p>
+                <p class="mt-4 text-slate-400">"Professional, detail-oriented, and easy to work with. Our corporate photos
+                    now look polished and consistent."</p>
                 <div class="about-pro-testimonial-author">
                     <strong>TechCorp Inc.</strong>
                     <span>Corporate Client</span>
@@ -209,13 +252,19 @@
 
 <section class="about-pro-cta py-14 md:py-16" aria-labelledby="about-cta-title">
     <div class="container mx-auto max-w-6xl px-4 md:px-6">
-    <div class="about-pro-cta-inner rounded-3xl bg-slate-900 px-6 py-10 text-center text-white shadow-xl md:px-10">
-        <h2 id="about-cta-title" class="font-display text-3xl font-bold md:text-4xl">Ready to Create Something Memorable?</h2>
-        <p class="mx-auto mt-3 max-w-2xl text-slate-200">Let's turn your vision into a focused, beautifully executed photo story.</p>
-        <div class="about-pro-cta-actions mt-6 flex flex-wrap items-center justify-center gap-3">
-            <a href="{{ url_for('contact') }}" class="btn btn-primary rounded-xl px-6 py-3 font-semibold">Book a Session</a>
-            <a href="{{ url_for('portfolio') }}" class="btn btn-outline rounded-xl border border-white/40 px-6 py-3 font-semibold text-white hover:bg-white/10">View Portfolio</a>
-        </div></div>
+        <div class="about-pro-cta-inner rounded-3xl bg-slate-900 px-6 py-10 text-center text-white shadow-xl md:px-10">
+            <h2 id="about-cta-title" class="font-display text-3xl font-bold md:text-4xl">Ready to Create Something
+                Memorable?</h2>
+            <p class="mx-auto mt-3 max-w-2xl text-slate-200">Let's turn your vision into a focused, beautifully executed
+                photo story.</p>
+            <div class="about-pro-cta-actions mt-6 flex flex-wrap items-center justify-center gap-3">
+                <a href="{{ url_for('contact') }}" class="btn btn-primary rounded-xl px-6 py-3 font-semibold">Book a
+                    Session</a>
+                <a href="{{ url_for('portfolio') }}"
+                    class="btn btn-outline rounded-xl border border-white/40 px-6 py-3 font-semibold text-white hover:bg-white/10">View
+                    Portfolio</a>
+            </div>
+        </div>
     </div>
 </section>
 {% endblock %}
@@ -223,5 +272,3 @@
 {% block scripts %}
 <script src="{{ url_for('static', filename='js/about.js') }}"></script>
 {% endblock %}
-
-

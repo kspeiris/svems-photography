@@ -54,9 +54,14 @@
                 <li><a href="{{ url_for('home') }}" target="_blank">
                     <i class="fas fa-external-link-alt"></i> View Site
                 </a></li>
-                <li><a href="{{ url_for('admin_logout') }}">
-                    <i class="fas fa-sign-out-alt"></i> Logout
-                </a></li>
+                <li>
+                    <form action="{{ url_for('admin_logout') }}" method="POST" class="admin-inline-form">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                        <button type="submit" class="w-full cursor-pointer border-0 bg-transparent p-0 text-left text-inherit">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </button>
+                    </form>
+                </li>
             </ul>
         </aside>
         

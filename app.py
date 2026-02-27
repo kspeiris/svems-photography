@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify, redirect, url_for, flash, abort
+from flask import Flask, render_template, request, jsonify, redirect, url_for, flash, abort, session
 from flask_pymongo import PyMongo
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user, UserMixin
 from werkzeug.security import check_password_hash, generate_password_hash
@@ -6,6 +6,9 @@ from werkzeug.utils import secure_filename
 from flask.json.provider import DefaultJSONProvider
 from PIL import Image
 import os
+import secrets
+import hmac
+import uuid
 from datetime import datetime, timezone
 from bson import ObjectId
 from config import Config
@@ -17,6 +20,7 @@ mongo = PyMongo(app)
 login_manager = LoginManager(app)
 login_manager.login_view = 'admin_login'
 login_manager.login_message_category = 'info'
+ALLOWED_IMAGE_CATEGORIES = {'portraits', 'landscapes', 'events', 'weddings', 'commercial'}
 
 class User(UserMixin):
     def __init__(self, user_data):
@@ -50,18 +54,23 @@ def allowed_file(filename):
 
 def save_image(file, category='general'):
     if file and allowed_file(file.filename):
-        filename = secure_filename(file.filename)
-        category_folder = category.lower()
+        original_filename = secure_filename(file.filename)
+        if not original_filename:
+            return None
+
+        file_ext = os.path.splitext(original_filename)[1].lower()
+        unique_filename = f"{uuid.uuid4().hex}{file_ext}"
+        category_folder = secure_filename((category or 'general').lower()) or 'general'
         upload_path = os.path.join('static/uploads', category_folder)
         
         os.makedirs(upload_path, exist_ok=True)
-        filepath = os.path.join(upload_path, filename)
+        filepath = os.path.join(upload_path, unique_filename)
         
         try:
             img = Image.open(file)
             img.thumbnail((1200, 1200))
             img.save(filepath, optimize=True, quality=85)
-            return f"{category_folder}/{filename}"
+            return f"{category_folder}/{unique_filename}"
         except Exception as exc:
             print(f"Error processing image: {exc}")
             return None
@@ -85,6 +94,19 @@ def validate_contact_form(name, email, message):
     if not message or len(message.strip()) < 10:
         return False, "Please enter a message with at least 10 characters"
     return True, ""
+
+def generate_csrf_token():
+    token = session.get('_csrf_token')
+    if not token:
+        token = secrets.token_urlsafe(32)
+        session['_csrf_token'] = token
+    return token
+
+def validate_csrf():
+    token = request.form.get('csrf_token')
+    session_token = session.get('_csrf_token')
+    if not token or not session_token or not hmac.compare_digest(token, session_token):
+        abort(400)
 
 class MongoJSONProvider(DefaultJSONProvider):
     """Serialize Mongo ObjectId and datetime in Flask JSON responses."""
@@ -153,6 +175,7 @@ def admin_login():
         return redirect(url_for('admin_dashboard'))
     
     if request.method == 'POST':
+        validate_csrf()
         username = request.form.get('username')
         password = request.form.get('password')
         
@@ -168,9 +191,9 @@ def admin_login():
                     flash('Login successful!', 'success')
                     return redirect(url_for('admin_dashboard'))
                 else:
-                    flash('Invalid password', 'error')
+                    flash('Invalid username or password', 'error')
             else:
-                flash('User not found', 'error')
+                flash('Invalid username or password', 'error')
                 
         except Exception as exc:
             print(f"Login error: {exc}")
@@ -201,11 +224,19 @@ def admin_dashboard():
 @login_required
 def admin_gallery():
     if request.method == 'POST':
+        validate_csrf()
         title = request.form.get('title')
-        category = request.form.get('category')
+        category = (request.form.get('category') or '').strip().lower()
         description = request.form.get('description')
         image_file = request.files.get('image')
         featured = bool(request.form.get('featured'))
+
+        if not title or len(title.strip()) < 2:
+            flash('Please provide a valid image title', 'error')
+            return redirect(url_for('admin_gallery'))
+        if category not in ALLOWED_IMAGE_CATEGORIES:
+            flash('Please select a valid category', 'error')
+            return redirect(url_for('admin_gallery'))
         
         if not image_file or not allowed_file(image_file.filename):
             flash('Please select a valid image file (PNG, JPG, JPEG, GIF, WEBP)', 'error')
@@ -240,6 +271,7 @@ def admin_gallery():
 @app.route('/admin/delete-image/<image_id>', methods=['POST'])
 @login_required
 def delete_image(image_id):
+    validate_csrf()
     try:
         image = mongo.db.gallery.find_one({'_id': ObjectId(image_id)})
         if image:
@@ -265,12 +297,16 @@ def admin_messages():
 @app.route('/admin/mark-read/<message_id>', methods=['POST'])
 @login_required
 def mark_message_read(message_id):
+    validate_csrf()
     try:
-        mongo.db.contacts.update_one(
+        result = mongo.db.contacts.update_one(
             {'_id': ObjectId(message_id)},
             {'$set': {'read': True}}
         )
-        flash('Message marked as read', 'success')
+        if result.matched_count:
+            flash('Message marked as read', 'success')
+        else:
+            flash('Message not found', 'error')
     except Exception:
         flash('Error marking message as read', 'error')
     return redirect(url_for('admin_messages'))
@@ -278,16 +314,21 @@ def mark_message_read(message_id):
 @app.route('/admin/delete-message/<message_id>', methods=['POST'])
 @login_required
 def delete_message(message_id):
+    validate_csrf()
     try:
-        mongo.db.contacts.delete_one({'_id': ObjectId(message_id)})
-        flash('Message deleted successfully', 'success')
+        result = mongo.db.contacts.delete_one({'_id': ObjectId(message_id)})
+        if result.deleted_count:
+            flash('Message deleted successfully', 'success')
+        else:
+            flash('Message not found', 'error')
     except Exception:
         flash('Error deleting message', 'error')
     return redirect(url_for('admin_messages'))
 
-@app.route('/admin/logout')
+@app.route('/admin/logout', methods=['POST'])
 @login_required
 def admin_logout():
+    validate_csrf()
     logout_user()
     flash('You have been logged out successfully', 'success')
     return redirect(url_for('home'))
@@ -405,7 +446,10 @@ def internal_error(error):
 
 @app.context_processor
 def inject_current_year():
-    return {'current_year': datetime.now(timezone.utc).year}
+    return {
+        'current_year': datetime.now(timezone.utc).year,
+        'csrf_token': generate_csrf_token
+    }
 
 if __name__ == '__main__':
     # Create necessary directories

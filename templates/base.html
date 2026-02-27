@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Svems Photography - Professional Photography by Pulindu Peiris{% endblock %}</title>
-    <meta name="description" content="Professional photography services by Pulindu Peiris. Specializing in portraits, landscapes, events, and commercial photography.">
+    <meta name="description"
+        content="Professional photography services by Pulindu Peiris. Specializing in portraits, landscapes, events, and commercial photography.">
     <meta name="theme-color" content="#006400">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -34,48 +36,58 @@
         };
     </script>
     <script src="https://cdn.tailwindcss.com"></script>
-    
+
     <!-- Preload Essential Assets -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@600;700&display=swap" as="style">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@600;700&display=swap">
+    <link rel="preload"
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@600;700&family=Playfair+Display:ital,wght@0,700;0,800;1,700&display=swap"
+        as="style">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@600;700&family=Playfair+Display:ital,wght@0,700;0,800;1,700&display=swap">
     <link rel="preload" href="{{ url_for('static', filename='images/logo.svg') }}" as="image">
-    
+
     <!-- CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/redesign.css') }}">
-    
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}">
+
     <!-- Fonts & Icons -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    
+
     <!-- Favicon -->
     <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
-    
+
     {% block extra_css %}{% endblock %}
-    
+
     <!-- Smooth Scroll and Animations -->
     <style>
         /* Smooth scrolling */
         html {
             scroll-behavior: smooth;
         }
-        
+
         /* Animation for fade-in */
         .fade-in {
             animation: fadeIn 1s ease-out;
         }
-        
+
         @keyframes fadeIn {
-            0% { opacity: 0; }
-            100% { opacity: 1; }
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
         }
-        
+
         /* Transition for smooth loading screen */
         #loading-screen {
             transition: opacity 0.5s ease-out;
         }
     </style>
 </head>
+
 <body class="dark-theme fade-in font-sans antialiased text-slate-100 bg-slate-950">
     <a href="#main-content" class="skip-link">Skip to content</a>
 
@@ -93,7 +105,7 @@
 
     <!-- Header Include -->
     {% include 'includes/header.html' %}
-    
+
     <!-- Flash Messages -->
     {% include 'includes/flash_messages.html' %}
 
@@ -108,9 +120,11 @@
     <!-- Scripts -->
     <script src="{{ url_for('static', filename='js/main.js') }}" defer></script>
     <script src="{{ url_for('static', filename='js/enhanced.js') }}" defer></script>
-    
+    <script src="{{ url_for('static', filename='js/modern-interactions.js') }}" defer></script>
+
     <!-- Page Specific Scripts -->
     {% block scripts %}{% endblock %}
 
 </body>
+
 </html>

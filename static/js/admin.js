@@ -61,29 +61,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Mark Message as Read
-    const markReadButtons = document.querySelectorAll('.mark-read-btn');
-    markReadButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const messageId = this.dataset.messageId;
-            fetch(`/admin/mark-read/${messageId}`, { method: 'POST' })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        this.closest('.message-item').classList.remove('unread'); // Remove unread class
-                        this.remove(); // Remove the "mark read" button
-                        alert("Message marked as read!");
-                    } else {
-                        alert("Failed to mark as read. Please try again.");
-                    }
-                })
-                .catch(error => {
-                    console.error("Error marking message as read:", error);
-                    alert("An error occurred. Please try again.");
-                });
-        });
-    });
-
     // Accessibility Enhancements
     const imagePreview = document.querySelector('.preview-img');
     if (imagePreview) {

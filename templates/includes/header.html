@@ -1,21 +1,30 @@
-<nav class="navbar backdrop-blur supports-[backdrop-filter]:bg-white/75 border-b border-slate-200">
+<nav class="navbar">
     <div class="nav-container max-w-6xl mx-auto px-4 md:px-6">
         <a href="{{ url_for('home') }}" class="nav-logo flex items-center gap-3" aria-label="Svems home">
             <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="Svems Logo" class="logo">
-            <span class="brand-name font-display font-bold tracking-tight text-slate-900">Svems</span>
+            <span class="brand-name font-display font-bold tracking-tight">Svems</span>
         </a>
         <div class="nav-menu" id="navMenu">
-            <a href="{{ url_for('home') }}" class="nav-link text-sm md:text-base {% if request.endpoint == 'home' %}active{% endif %}" {% if request.endpoint == 'home' %}aria-current="page"{% endif %}>Home</a>
-            <a href="{{ url_for('portfolio') }}" class="nav-link text-sm md:text-base {% if request.endpoint == 'portfolio' %}active{% endif %}" {% if request.endpoint == 'portfolio' %}aria-current="page"{% endif %}>Portfolio</a>
-            <a href="{{ url_for('about') }}" class="nav-link text-sm md:text-base {% if request.endpoint == 'about' %}active{% endif %}" {% if request.endpoint == 'about' %}aria-current="page"{% endif %}>About</a>
-            <a href="{{ url_for('contact') }}" class="nav-link text-sm md:text-base {% if request.endpoint == 'contact' %}active{% endif %}" {% if request.endpoint == 'contact' %}aria-current="page"{% endif %}>Contact</a>
+            <a href="{{ url_for('home') }}"
+                class="nav-link text-sm md:text-base {% if request.endpoint == 'home' %}active{% endif %}" {% if
+                request.endpoint=='home' %}aria-current="page" {% endif %}>Home</a>
+            <a href="{{ url_for('portfolio') }}"
+                class="nav-link text-sm md:text-base {% if request.endpoint == 'portfolio' %}active{% endif %}" {% if
+                request.endpoint=='portfolio' %}aria-current="page" {% endif %}>Portfolio</a>
+            <a href="{{ url_for('about') }}"
+                class="nav-link text-sm md:text-base {% if request.endpoint == 'about' %}active{% endif %}" {% if
+                request.endpoint=='about' %}aria-current="page" {% endif %}>About</a>
+            <a href="{{ url_for('contact') }}"
+                class="nav-link text-sm md:text-base {% if request.endpoint == 'contact' %}active{% endif %}" {% if
+                request.endpoint=='contact' %}aria-current="page" {% endif %}>Contact</a>
             {% if current_user.is_authenticated %}
-            <a href="{{ url_for('admin_dashboard') }}" class="nav-link admin-link text-sm md:text-base {% if request.endpoint == 'admin_dashboard' %}active{% endif %}" {% if request.endpoint == 'admin_dashboard' %}aria-current="page"{% endif %}>Admin</a>
-            {% else %}
-            <a href="{{ url_for('admin_login') }}" class="btn btn-outline inline-flex items-center justify-center rounded-lg px-4 py-2 text-xs font-semibold md:text-sm">Admin Login</a>
+            <a href="{{ url_for('admin_dashboard') }}"
+                class="nav-link admin-link {% if request.endpoint == 'admin_dashboard' %}active{% endif %}" {% if
+                request.endpoint=='admin_dashboard' %}aria-current="page" {% endif %}>Admin</a>
             {% endif %}
         </div>
-        <button type="button" class="nav-toggle md:hidden" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navMenu">
+        <button type="button" class="nav-toggle md:hidden" id="navToggle" aria-label="Toggle navigation menu"
+            aria-expanded="false" aria-controls="navMenu">
             <span class="bar"></span>
             <span class="bar"></span>
             <span class="bar"></span>
