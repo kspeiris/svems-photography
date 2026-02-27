@@ -50,3 +50,34 @@
         gap: 3rem;
     }
 }
+
+/* Global UI fixes (loaded after redesign.css) */
+main {
+    padding-top: 0 !important;
+}
+
+.luxury-page-header {
+    padding-top: clamp(1.5rem, 4vw, 2.75rem) !important;
+    padding-bottom: clamp(2.5rem, 6vw, 4rem) !important;
+}
+
+.navbar .nav-logo {
+    flex-shrink: 0;
+    margin-right: clamp(1.5rem, 4vw, 3rem);
+}
+
+.navbar .nav-menu {
+    margin-left: auto;
+    gap: clamp(1.6rem, 3vw, 3rem) !important;
+}
+
+.navbar .nav-link {
+    display: inline-block;
+    white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+    .luxury-page-header {
+        padding-top: 1.25rem !important;
+    }
+}

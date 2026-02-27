@@ -1,133 +1,181 @@
 {% extends "base.html" %}
 
 {% block content %}
-<header class="page-header px-4 md:px-6">
-    <div class="container mx-auto max-w-6xl">
-        <span class="eyebrow scroll-reveal">Get In Touch</span>
-        <h1 class="font-display scroll-reveal reveal-delay-1">Start your next shoot with a clear creative direction.
-        </h1>
-        <p class="subtitle scroll-reveal reveal-delay-2">Tell me what you're planning, and I'll help shape it into
-            meaningful visuals.</p>
-    </div>
-</header>
 
-<section class="contact-pro-content premium-section py-14 md:py-16" id="contact-content"
-    aria-labelledby="contact-info-title">
-    <div class="container mx-auto max-w-6xl px-4 md:px-6">
-        <div class="mb-6 flex flex-wrap gap-3 scroll-reveal">
-            <span class="section-kicker"><i class="fas fa-bolt" aria-hidden="true"></i> Fast Reply</span>
-            <span class="section-kicker"><i class="fas fa-magic" aria-hidden="true"></i> Free Creative
-                Consultation</span>
-            <span class="section-kicker"><i class="fas fa-crown" aria-hidden="true"></i> Luxury Experience</span>
+<!-- Page Header -->
+<section class="luxury-page-header relative overflow-hidden">
+    <div class="luxury-container relative z-10">
+        <div class="grid gap-12 lg:grid-cols-2 lg:items-end">
+            <div class="max-w-3xl">
+                <span class="luxury-eyebrow scroll-reveal">Get In Touch</span>
+                <h1
+                    class="font-display italic text-6xl md:text-7xl lg:text-8xl text-white leading-none mb-8 scroll-reveal reveal-delay-1">
+                    Let's create <br><span class="font-sans not-italic font-extralight text-white/55">together.</span>
+                </h1>
+                <p
+                    class="text-white/60 text-lg md:text-xl font-light leading-loose max-w-xl scroll-reveal reveal-delay-2">
+                    Tell me what you're planning and I'll help shape it into meaningful, lasting visuals.
+                </p>
+            </div>
+
+            <aside class="scroll-reveal reveal-delay-2 lg:justify-self-end w-full max-w-md">
+                <div class="overflow-hidden border border-white/10 bg-white/[0.02]">
+                    <img src="{{ url_for('static', filename='images/pulindu-working.jpg') }}"
+                        alt="Pulindu at work during a photo session" class="h-[24rem] w-full object-cover grayscale-[0.1]">
+                    <div class="border-t border-white/10 p-6">
+                        <p class="text-[0.62rem] uppercase tracking-[0.35em] text-amber-500 font-bold">Quick Response
+                        </p>
+                        <p class="mt-3 text-white/55 text-sm leading-loose">Share your vision, preferred timeline, and
+                            style. Initial replies are typically sent within 24 hours.</p>
+                    </div>
+                </div>
+            </aside>
         </div>
-        <div class="contact-pro-grid grid gap-10 md:grid-cols-2 stagger-container">
-            <aside
-                class="contact-pro-info hover-lift-glow stagger-item rounded-2xl border border-white/5 bg-slate-900/50 p-8 shadow-2xl backdrop-blur-md">
-                <h2 id="contact-info-title" class="font-display text-4xl font-bold text-white">Get In Touch</h2>
-                <p class="mt-4 text-slate-400 text-lg">Whether you're planning portraits, events, or branded visuals,
-                    I'd love to hear your ideas and goals.</p>
+    </div>
+</section>
 
-                <div class="contact-pro-details mt-8 space-y-4">
-                    <div
-                        class="contact-pro-item flex items-start gap-4 rounded-xl border border-white/5 bg-slate-950 p-6 transition-all hover:border-teal-500/30">
-                        <i class="fas fa-envelope text-teal-400 text-xl" aria-hidden="true"></i>
-                        <div>
-                            <h3 class="font-bold text-white">Email</h3>
-                            <p class="text-slate-400 mt-1"><a href="mailto:pulindu@svems.com"
-                                    class="hover:text-teal-400 transition-colors">pulindu@svems.com</a></p>
+<!-- Contact Content -->
+<section class="py-24 bg-[#050505]">
+    <div class="luxury-container">
+        <div class="grid lg:grid-cols-2 gap-24 stagger-container">
+
+            <!-- Info Side -->
+            <aside class="stagger-item scroll-reveal">
+                <span class="luxury-eyebrow">Studio Details</span>
+                <h2 class="font-display italic text-4xl text-white mb-12">Direct Line</h2>
+
+                <div class="space-y-0 mb-16">
+                    <a href="mailto:pulindu@svems.com"
+                        class="contact-item-luxury group flex items-start gap-6 py-8 border-b border-white/5 hover:border-amber-500/20 transition-all">
+                        <div class="w-10 flex-shrink-0 mt-1">
+                            <i
+                                class="fas fa-envelope text-amber-500/50 group-hover:text-amber-500 transition-colors"></i>
                         </div>
-                    </div>
-                    <div
-                        class="contact-pro-item flex items-start gap-4 rounded-xl border border-white/5 bg-slate-950 p-6 transition-all hover:border-teal-500/30">
-                        <i class="fas fa-phone text-teal-400 text-xl" aria-hidden="true"></i>
                         <div>
-                            <h3 class="font-bold text-white">Phone</h3>
-                            <p class="text-slate-400 mt-1"><a href="tel:+94771234567"
-                                    class="hover:text-teal-400 transition-colors">+94 77 123 4567</a></p>
+                            <span
+                                class="block text-[0.6rem] uppercase tracking-[0.4em] text-white/25 font-bold mb-2">Email</span>
+                            <span
+                                class="text-white/60 group-hover:text-white transition-colors">pulindu@svems.com</span>
                         </div>
-                    </div>
-                    <div
-                        class="contact-pro-item flex items-start gap-4 rounded-xl border border-white/5 bg-slate-950 p-6 transition-all hover:border-teal-500/30">
-                        <i class="fas fa-map-marker-alt text-teal-400 text-xl" aria-hidden="true"></i>
+                        <i
+                            class="fas fa-arrow-right ml-auto text-white/10 group-hover:text-amber-500 transition-all group-hover:translate-x-2"></i>
+                    </a>
+                    <a href="tel:+94771234567"
+                        class="contact-item-luxury group flex items-start gap-6 py-8 border-b border-white/5 hover:border-amber-500/20 transition-all">
+                        <div class="w-10 flex-shrink-0 mt-1">
+                            <i class="fas fa-phone text-amber-500/50 group-hover:text-amber-500 transition-colors"></i>
+                        </div>
                         <div>
-                            <h3 class="font-bold text-white">Location</h3>
-                            <p class="text-slate-400 mt-1">Colombo, Sri Lanka</p>
+                            <span
+                                class="block text-[0.6rem] uppercase tracking-[0.4em] text-white/25 font-bold mb-2">Phone</span>
+                            <span class="text-white/60 group-hover:text-white transition-colors">+94 77 123 4567</span>
+                        </div>
+                        <i
+                            class="fas fa-arrow-right ml-auto text-white/10 group-hover:text-amber-500 transition-all group-hover:translate-x-2"></i>
+                    </a>
+                    <div class="contact-item-luxury group flex items-start gap-6 py-8 border-b border-white/5">
+                        <div class="w-10 flex-shrink-0 mt-1">
+                            <i class="fas fa-map-marker-alt text-amber-500/50"></i>
+                        </div>
+                        <div>
+                            <span
+                                class="block text-[0.6rem] uppercase tracking-[0.4em] text-white/25 font-bold mb-2">Location</span>
+                            <span class="text-white/60">Colombo, Sri Lanka</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="social-links contact-pro-social mt-10 flex gap-4">
-                    <a href="#" class="social-icon magnetic-element" aria-label="Instagram"><i class="fab fa-instagram"
-                            aria-hidden="true"></i></a>
-                    <a href="#" class="social-icon magnetic-element" aria-label="Facebook"><i class="fab fa-facebook"
-                            aria-hidden="true"></i></a>
-                    <a href="#" class="social-icon magnetic-element" aria-label="Twitter"><i class="fab fa-twitter"
-                            aria-hidden="true"></i></a>
-                    <a href="#" class="social-icon magnetic-element" aria-label="LinkedIn"><i class="fab fa-linkedin"
-                            aria-hidden="true"></i></a>
+                <div class="flex gap-5">
+                    <a href="#"
+                        class="social-icon-luxury group p-3 border border-white/5 hover:border-amber-500/30 transition-all"
+                        aria-label="Instagram">
+                        <i class="fab fa-instagram text-white/30 group-hover:text-amber-500 transition-colors"></i>
+                    </a>
+                    <a href="#"
+                        class="social-icon-luxury group p-3 border border-white/5 hover:border-amber-500/30 transition-all"
+                        aria-label="Facebook">
+                        <i class="fab fa-facebook text-white/30 group-hover:text-amber-500 transition-colors"></i>
+                    </a>
+                    <a href="#"
+                        class="social-icon-luxury group p-3 border border-white/5 hover:border-amber-500/30 transition-all"
+                        aria-label="Twitter">
+                        <i class="fab fa-twitter text-white/30 group-hover:text-amber-500 transition-colors"></i>
+                    </a>
+                </div>
+
+                <div class="mt-16 p-8 border border-amber-500/10 bg-amber-500/[0.03]">
+                    <div class="flex gap-4 items-start">
+                        <i class="fas fa-bolt text-amber-500/50 text-xs mt-1"></i>
+                        <div>
+                            <span class="block text-white text-sm font-bold mb-1">Fast Response</span>
+                            <span class="text-white/30 text-sm">I typically reply within 24 hours. Free creative
+                                consultation on first contact.</span>
+                        </div>
+                    </div>
                 </div>
             </aside>
 
-            <div
-                class="contact-pro-form-wrap hover-lift-glow stagger-item rounded-2xl border border-white/5 bg-slate-900/50 p-8 md:p-10 shadow-2xl backdrop-blur-md">
-                <h2 id="contact-form-title" class="font-display text-4xl font-bold text-white">Send a Message</h2>
-                <p class="contact-pro-form-note mt-4 text-slate-400 text-lg">Share your details. I typically reply
-                    within 24 hours.</p>
-                <form action="{{ url_for('contact') }}" method="POST" id="contactForm"
-                    class="contact-pro-form mt-8 space-y-6" aria-labelledby="contact-form-title">
-                    <div class="form-group contact-pro-group">
+            <!-- Form Side -->
+            <div class="stagger-item scroll-reveal reveal-delay-2">
+                <span class="luxury-eyebrow">Send a Message</span>
+                <h2 class="font-display italic text-4xl text-white mb-12">Start a Conversation</h2>
+
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                {% for category, message in messages %}
+                <div class="mb-8 p-5 border border-amber-500/30 bg-amber-500/5 text-amber-500 text-sm">
+                    {{ message }}
+                </div>
+                {% endfor %}
+                {% endif %}
+                {% endwith %}
+
+                <form action="{{ url_for('contact') }}" method="POST" id="contactForm" class="space-y-8">
+                    <div>
                         <label for="name"
-                            class="mb-2 block text-sm font-bold uppercase tracking-wider text-slate-400">Your
+                            class="block text-[0.6rem] uppercase tracking-[0.4em] text-white/25 font-bold mb-3">Your
                             Name</label>
-                        <input type="text" id="name" name="name" required aria-required="true" placeholder="John Doe"
-                            class="w-full rounded-xl border border-white/10 bg-slate-800/50 px-5 py-4 text-white placeholder:text-slate-600 focus:border-teal-500/50 focus:outline-none focus:ring-4 focus:ring-teal-500/10 transition-all">
+                        <input type="text" id="name" name="name" required placeholder="John Doe"
+                            class="luxury-input w-full bg-transparent border border-white/8 px-5 py-4 text-white placeholder:text-white/15 focus:outline-none focus:border-amber-500/40 transition-colors text-sm">
                     </div>
-
-                    <div class="form-group contact-pro-group">
+                    <div>
                         <label for="email"
-                            class="mb-2 block text-sm font-bold uppercase tracking-wider text-slate-400">Your
+                            class="block text-[0.6rem] uppercase tracking-[0.4em] text-white/25 font-bold mb-3">Your
                             Email</label>
-                        <input type="email" id="email" name="email" required aria-required="true"
-                            placeholder="john@email.com"
-                            class="w-full rounded-xl border border-white/10 bg-slate-800/50 px-5 py-4 text-white placeholder:text-slate-600 focus:border-teal-500/50 focus:outline-none focus:ring-4 focus:ring-teal-500/10 transition-all">
+                        <input type="email" id="email" name="email" required placeholder="john@email.com"
+                            class="luxury-input w-full bg-transparent border border-white/8 px-5 py-4 text-white placeholder:text-white/15 focus:outline-none focus:border-amber-500/40 transition-colors text-sm">
                     </div>
-
-                    <div class="form-group contact-pro-group">
+                    <div>
                         <label for="message"
-                            class="mb-2 block text-sm font-bold uppercase tracking-wider text-slate-400">Project
+                            class="block text-[0.6rem] uppercase tracking-[0.4em] text-white/25 font-bold mb-3">Project
                             Details</label>
-                        <textarea id="message" name="message" required aria-required="true"
+                        <textarea id="message" name="message" required rows="6"
                             placeholder="Tell me about your vision, timeline, and goals..."
-                            class="min-h-48 w-full rounded-xl border border-white/10 bg-slate-800/50 px-5 py-4 text-white placeholder:text-slate-600 focus:border-teal-500/50 focus:outline-none focus:ring-4 focus:ring-teal-500/10 transition-all"></textarea>
+                            class="luxury-input w-full bg-transparent border border-white/8 px-5 py-4 text-white placeholder:text-white/15 focus:outline-none focus:border-amber-500/40 transition-colors text-sm resize-none"></textarea>
                     </div>
-
-                    <button type="submit"
-                        class="btn btn-primary contact-pro-submit inline-flex w-full items-center justify-center rounded-xl px-6 py-3 font-semibold">Send
-                        Message</button>
+                    <button type="submit" class="btn-primary-luxury w-full text-center justify-center group">
+                        Send Message <i
+                            class="fas fa-arrow-right-long ml-3 transition-transform group-hover:translate-x-2"></i>
+                    </button>
                 </form>
             </div>
         </div>
     </div>
 </section>
 
-<section class="contact-pro-cta py-14 md:py-16" aria-labelledby="contact-cta-title">
-    <div class="container mx-auto max-w-6xl px-4 md:px-6">
-        <div class="rounded-3xl bg-slate-900 px-6 py-10 text-center text-white shadow-xl md:px-10">
-            <h2 id="contact-cta-title" class="font-display text-3xl font-bold md:text-4xl">Prefer To Explore First?</h2>
-            <p class="mx-auto mt-3 max-w-2xl text-slate-200">View recent work and learn more about my process before
-                booking.</p>
-            <div class="mt-6 flex flex-wrap items-center justify-center gap-3">
-                <a href="{{ url_for('portfolio') }}" class="btn btn-primary rounded-xl px-6 py-3 font-semibold">Browse
-                    Portfolio</a>
-                <a href="{{ url_for('about') }}"
-                    class="btn btn-outline rounded-xl border border-white/40 px-6 py-3 font-semibold text-white hover:bg-white/10">Read
-                    About Me</a>
-            </div>
-        </div>
-    </div>
-</section>
 {% endblock %}
 
 {% block scripts %}
 <script src="{{ url_for('static', filename='js/contact.js') }}"></script>
+<style>
+    .luxury-input {
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .luxury-input:focus {
+        border-color: rgba(212, 175, 55, 0.4);
+        background: rgba(212, 175, 55, 0.02);
+    }
+</style>
 {% endblock %}
