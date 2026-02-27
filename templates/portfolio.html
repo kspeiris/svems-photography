@@ -10,13 +10,14 @@
     </div>
 </section>
 
-<section class="portfolio-pro-content py-14 md:py-16" aria-labelledby="portfolio-pro-title">
+<section class="portfolio-pro-content premium-section py-14 md:py-16" aria-labelledby="portfolio-pro-title">
     <div class="container mx-auto max-w-6xl px-4 md:px-6">
+        <p class="section-kicker mb-4"><i class="fas fa-star" aria-hidden="true"></i> Crafted Collections</p>
         <div class="portfolio-pro-toolbar mb-6 flex flex-wrap items-center justify-between gap-3">
             <div class="category-filter portfolio-pro-filter flex flex-wrap gap-2" role="tablist" aria-label="Portfolio categories">
-                <button class="filter-btn active rounded-xl border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-cyan-600 hover:text-cyan-700" data-filter="all" aria-label="Show all projects" aria-pressed="true">All</button>
+                <button class="filter-btn active rounded-xl border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-cyan-600 hover:text-cyan-700" data-filter="all" aria-label="Show all projects" aria-pressed="true"><i class="fas fa-th mr-2" aria-hidden="true"></i>All</button>
                 {% for category in categories %}
-                <button class="filter-btn rounded-xl border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-cyan-600 hover:text-cyan-700" data-filter="{{ category }}" aria-label="Filter by {{ category.title() }}" aria-pressed="false">{{ category.title() }}</button>
+                <button class="filter-btn rounded-xl border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-cyan-600 hover:text-cyan-700" data-filter="{{ category }}" aria-label="Filter by {{ category.title() }}" aria-pressed="false"><i class="fas fa-image mr-2" aria-hidden="true"></i>{{ category.title() }}</button>
                 {% endfor %}
             </div>
             <p class="portfolio-pro-count text-sm font-semibold text-slate-500" id="portfolioCount">{{ images|length }} images</p>
@@ -24,11 +25,12 @@
 
         <div class="portfolio-grid portfolio-pro-grid grid gap-5 md:grid-cols-2 lg:grid-cols-3" id="portfolioGrid" role="grid" aria-labelledby="portfolio-pro-title">
             {% for image in images %}
-            <article class="portfolio-item portfolio-pro-item group overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-xl" data-category="{{ image.category }}" role="gridcell" tabindex="0">
+            <article class="portfolio-item portfolio-pro-item hover-lift-glow group overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-xl" data-category="{{ image.category }}" role="gridcell" tabindex="0">
                 <div class="portfolio-card portfolio-pro-card relative">
                     <img src="{{ url_for('static', filename='uploads/' + image.filename) }}" 
                          alt="{{ image.title }}" 
                          class="portfolio-image h-72 w-full object-cover transition duration-500 group-hover:scale-105" loading="lazy" decoding="async">
+                    <span class="icon-badge absolute right-3 top-3 z-10"><i class="fas fa-expand" aria-hidden="true"></i></span>
                     <div class="portfolio-overlay portfolio-pro-overlay absolute inset-0 flex items-end bg-gradient-to-t from-slate-950/90 via-slate-900/20 to-transparent p-4" role="presentation">
                         <div class="portfolio-info portfolio-pro-info">
                             <h3 class="text-lg font-semibold text-white">{{ image.title }}</h3>

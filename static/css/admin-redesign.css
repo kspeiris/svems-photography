@@ -262,7 +262,7 @@ body.admin-dark {
 }
 
 .admin-dark .login-form input {
-    background: #0f172a;
+    background: #1e293b;
     border-color: #334155;
     color: #f8fafc;
 }
@@ -271,6 +271,7 @@ body.admin-dark {
 .admin-dark input:focus,
 .admin-dark textarea:focus,
 .admin-dark select:focus {
+    background: #1e293b;
     border-color: #22d3ee !important;
     outline: 2px solid rgba(34, 211, 238, 0.35) !important;
     outline-offset: 1px;
