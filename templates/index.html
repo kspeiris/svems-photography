@@ -1,32 +1,29 @@
 {% extends "base.html" %}
 
 {% block content %}
-<!-- Hero Section -->
-<section class="hero" style="position: relative; min-height: 100vh; display: flex; align-items: center; justify-content: center; background: linear-gradient(rgba(99, 102, 241, 0.15), rgba(236, 72, 153, 0.1));">
-    <div class="hero-content" style="position: relative; z-index: 2; text-align: center;">
-        <h1 class="hero-title animate-fade-in" style="font-size: clamp(2.5rem, 5vw, 5rem);color: aliceblue;font-family: Arial, Helvetica, sans-serif; line-height: 1.1;">Welcome to <span class="highlight">Svems</span> Photography</h1>
-        <p class="hero-subtitle animate-fade-in-delay" style="font-size: clamp(1.125rem, 2vw, 1.5rem);font-weight: bold;font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; color: rgb(1, 20, 1);">Capturing Magic in Every Frame</p>
-        <div class="hero-buttons animate-fade-in-delay-2">
-            <a href="{{ url_for('portfolio') }}" class="btn btn-primary" role="button" aria-label="View Portfolio" style="padding: 1rem 2rem; border-radius: 8px; background: rgba(0, 100, 0, 1); color: white;">View Portfolio</a>
-            <a href="{{ url_for('contact') }}" class="btn btn-secondary" role="button" aria-label="Book a Session" style="padding: 1rem 2rem; border-radius: 8px; background: transparent; color: rgba(0, 100, 0, 1);">Book a Session</a>
+<section class="hero home-hero">
+    <div class="hero-content home-hero-content">
+        <h1 class="hero-title animate-fade-in">Welcome to <span class="highlight">Svems</span> Photography</h1>
+        <p class="hero-subtitle">Capturing Magic in Every Frame</p>
+        <div class="hero-buttons">
+            <a href="{{ url_for('portfolio') }}" class="btn btn-primary" role="button" aria-label="View Portfolio">View Portfolio</a>
+            <a href="{{ url_for('contact') }}" class="btn btn-secondary" role="button" aria-label="Book a Session">Book a Session</a>
         </div>
     </div>
-    <div class="hero-image" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;">
-        <img src="{{ url_for('static', filename='images/hero-bg.jpg') }}" alt="Photography of nature and people" class="hero-img" style="width: 100%; height: 100%; object-fit: cover; transition: transform 1s ease;">
+    <div class="hero-image home-hero-image">
+        <img src="{{ url_for('static', filename='images/hero-bg.jpg') }}" alt="Photography of nature and people" class="hero-img" fetchpriority="high" decoding="async">
     </div>
 </section>
 
-<!-- Featured Gallery Section -->
-<section class="featured-gallery" style="padding: 3rem 0; background: rgba(255, 253, 208, 1);">
+<section class="featured-gallery home-section">
     <div class="container">
-        <h2 class="section-title" id="featured-gallery-section" style="font-size: 2rem; text-align: center;">Featured Work</h2>
+        <h2 class="section-title home-section-title" id="featured-gallery-section">Featured Work</h2>
 
-        <!-- Gallery Grid -->
-        <div class="gallery-grid" style="display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+        <div class="gallery-grid home-gallery-grid">
             {% for image in images %}
-            <div class="gallery-item" data-category="{{ image.category }}" style="position: relative; border-radius: 8px; overflow: hidden; opacity: 0; transform: translateY(20px); transition: opacity 1s ease, transform 1s ease;">
-                <img src="{{ url_for('static', filename='uploads/' + image.filename) }}" alt="{{ image.title }}" class="gallery-image" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease, opacity 0.3s ease;">
-                <div class="gallery-overlay" style="position: absolute; top: 0; left: 0; background: rgba(0, 0, 0, 0.5); width: 100%; height: 100%; color: white; display: flex; justify-content: center; align-items: center; opacity: 0; transition: opacity 0.3s ease;">
+            <div class="gallery-item home-gallery-item" data-category="{{ image.category }}">
+                <img src="{{ url_for('static', filename='uploads/' + image.filename) }}" alt="{{ image.title }}" class="gallery-image" loading="lazy" decoding="async">
+                <div class="gallery-overlay home-gallery-overlay">
                     <h3>{{ image.title }}</h3>
                     <p>{{ image.category }}</p>
                 </div>
@@ -34,86 +31,53 @@
             {% endfor %}
         </div>
 
-        <!-- View All Work Button -->
-        <div class="text-center">
-            <a href="{{ url_for('portfolio') }}" class="btn btn-outline" style="padding: 1rem 2rem; border-radius: 8px; background: transparent; color: rgba(0, 100, 0, 1);">View All Work</a>
+        <div class="home-cta-wrap">
+            <a href="{{ url_for('portfolio') }}" class="btn btn-outline home-outline-btn">View All Work</a>
         </div>
     </div>
 </section>
 
-<!-- About Preview Section -->
-<section class="about-preview" style="background: rgba(255, 253, 208, 1); padding: 3rem 0;">
+<section class="about-preview home-section">
     <div class="container">
-        <div class="about-content" style="display: flex; align-items: center; justify-content: space-between;">
-            <div class="about-image" style="flex: 1;">
-                <img src="{{ url_for('static', filename='images/pulindu.jpg') }}" alt="Pulindu Peiris, the photographer" style="width: 100%; border-radius: 8px; transition: transform 0.3s ease;">
+        <div class="home-about-content">
+            <div class="home-about-image">
+                <img src="{{ url_for('static', filename='images/pulindu.jpg') }}" alt="Pulindu Peiris, the photographer" loading="lazy" decoding="async">
             </div>
-            <div class="about-text" style="flex: 2; padding-left: 2rem;">
+            <div class="home-about-text">
                 <h2>Hi, I'm Pulindu Peiris</h2>
                 <p>Professional photographer with a passion for capturing authentic moments and telling stories through imagery.</p>
                 <p>With years of experience in portrait, landscape, and event photography, I strive to create timeless images that you'll cherish forever.</p>
-                <a href="{{ url_for('about') }}" class="btn btn-primary" style="padding: 1rem 2rem; border-radius: 8px; background: rgba(0, 100, 0, 1); color: white;">My Story</a>
+                <a href="{{ url_for('about') }}" class="btn btn-primary">My Story</a>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Services Section -->
-<section class="services" style="padding: 3rem 0; background: rgba(255, 253, 208, 1);">
+<section class="services home-section">
     <div class="container">
-        <h2 class="section-title" style="font-size: 2rem; text-align: center;">What I Offer</h2>
-        <div class="services-grid" style="display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
-            <div class="service-card" style="background: rgba(0, 100, 0, 0.1); padding: 2rem; border-radius: 8px; transition: transform 0.3s ease;">
-                <i class="fas fa-camera" style="font-size: 3rem; color: rgba(0, 100, 0, 1);"></i>
+        <h2 class="section-title home-section-title">What I Offer</h2>
+        <div class="home-services-grid">
+            <article class="home-service-card">
+                <i class="fas fa-camera" aria-hidden="true"></i>
                 <h3>Portrait Photography</h3>
                 <p>Beautiful individual and family portraits that capture personality and emotion.</p>
-            </div>
-            <div class="service-card" style="background: rgba(0, 100, 0, 0.1); padding: 2rem; border-radius: 8px; transition: transform 0.3s ease;">
-                <i class="fas fa-mountain" style="font-size: 3rem; color: rgba(0, 100, 0, 1);"></i>
+            </article>
+            <article class="home-service-card">
+                <i class="fas fa-mountain" aria-hidden="true"></i>
                 <h3>Landscape Photography</h3>
                 <p>Breathtaking landscape images that showcase the beauty of nature.</p>
-            </div>
-            <div class="service-card" style="background: rgba(0, 100, 0, 0.1); padding: 2rem; border-radius: 8px; transition: transform 0.3s ease;">
-                <i class="fas fa-ring" style="font-size: 3rem; color: rgba(0, 100, 0, 1);"></i>
+            </article>
+            <article class="home-service-card">
+                <i class="fas fa-ring" aria-hidden="true"></i>
                 <h3>Event Photography</h3>
                 <p>Comprehensive coverage of your special events and celebrations.</p>
-            </div>
+            </article>
         </div>
     </div>
 </section>
 
 {% endblock %}
 
-<script>
-    // Fade in gallery items on load
-    window.addEventListener('load', function() {
-        document.querySelectorAll('.gallery-item').forEach(function(item, index) {
-            setTimeout(function() {
-                item.style.opacity = '1';
-                item.style.transform = 'translateY(0)';
-            }, 300 * index);
-        });
-    });
-
-    // Gallery item hover effect
-    document.querySelectorAll('.gallery-item').forEach(item => {
-        item.addEventListener('mouseover', function() {
-            this.querySelector('.gallery-overlay').style.opacity = '1';
-            this.style.transform = 'scale(1.05)';
-        });
-        item.addEventListener('mouseout', function() {
-            this.querySelector('.gallery-overlay').style.opacity = '0';
-            this.style.transform = 'scale(1)';
-        });
-    });
-
-    // About Image Hover Effect
-    document.querySelectorAll('.about-image img').forEach(img => {
-        img.addEventListener('mouseover', function() {
-            this.style.transform = 'scale(1.05)';
-        });
-        img.addEventListener('mouseout', function() {
-            this.style.transform = 'scale(1)';
-        });
-    });
-</script>
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/home.js') }}"></script>
+{% endblock %}

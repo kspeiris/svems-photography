@@ -1,6 +1,5 @@
 from app import app, mongo
 from models import User
-import os
 
 def init_database():
     with app.app_context():

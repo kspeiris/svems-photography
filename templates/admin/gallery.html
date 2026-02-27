@@ -86,7 +86,9 @@
                         <td style="padding: 1rem;">{{ image.category }}</td>
                         <td style="padding: 1rem;">{{ image.uploaded_at.strftime('%Y-%m-%d') }}</td>
                         <td style="padding: 1rem;">
-                            <a href="{{ url_for('delete_image', image_id=image._id) }}" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this image?')" style="background-color: #f44336; color: white; padding: 0.5rem 1rem; border-radius: 5px; text-decoration: none;">Delete</a>
+                            <form action="{{ url_for('delete_image', image_id=image._id) }}" method="POST" style="display: inline;">
+                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this image?')" style="background-color: #f44336; color: white; padding: 0.5rem 1rem; border-radius: 5px; text-decoration: none; border: none; cursor: pointer;">Delete</button>
+                            </form>
                         </td>
                     </tr>
                     {% endfor %}

@@ -3,9 +3,14 @@ document.addEventListener('DOMContentLoaded', function() {
     const filterButtons = document.querySelectorAll('.filter-btn');
     const portfolioItems = document.querySelectorAll('.portfolio-item');
     const portfolioGrid = document.getElementById('portfolioGrid');
+    const filterContainer = document.querySelector('.category-filter');
+
+    if (!portfolioGrid) {
+        return;
+    }
 
     // Delegate filter button clicks for performance
-    portfolioGrid.addEventListener('click', function(e) {
+    filterContainer?.addEventListener('click', function(e) {
         const clickedButton = e.target.closest('.filter-btn');
         if (!clickedButton) return;
 
@@ -52,8 +57,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const images = Array.from(portfolioItems);
 
     function openLightbox(index) {
+        if (!lightbox || !lightboxImage || !lightboxTitle || !lightboxDescription) return;
         const item = images[index];
+        if (!item) return;
         const img = item.querySelector('img');
+        if (!img) return;
         const title = item.querySelector('h3').textContent;
         const description = item.querySelector('p').textContent;
 
@@ -63,11 +71,14 @@ document.addEventListener('DOMContentLoaded', function() {
         currentImageIndex = index;
 
         lightbox.style.display = 'flex';
+        lightbox.setAttribute('aria-hidden', 'false');
         document.body.style.overflow = 'hidden';
     }
 
     function closeLightbox() {
+        if (!lightbox) return;
         lightbox.style.display = 'none';
+        lightbox.setAttribute('aria-hidden', 'true');
         document.body.style.overflow = 'auto';
     }
 
@@ -85,9 +96,9 @@ document.addEventListener('DOMContentLoaded', function() {
         item.addEventListener('click', () => openLightbox(index));
     });
 
-    lightboxClose.addEventListener('click', closeLightbox);
-    lightboxNext.addEventListener('click', showNextImage);
-    lightboxPrev.addEventListener('click', showPrevImage);
+    lightboxClose?.addEventListener('click', closeLightbox);
+    lightboxNext?.addEventListener('click', showNextImage);
+    lightboxPrev?.addEventListener('click', showPrevImage);
 
     document.addEventListener('keydown', function(e) {
         if (lightbox.style.display === 'flex') {
@@ -97,27 +108,29 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    lightbox.addEventListener('click', function(e) {
+    lightbox?.addEventListener('click', function(e) {
         if (e.target === lightbox) {
             closeLightbox();
         }
     });
 
     // ===== IMAGE LAZY LOADING WITH INTERSECTION OBSERVER =====
-    const imageObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const img = entry.target;
-                img.src = img.dataset.src;
-                img.classList.remove('lazy');
-                observer.unobserve(img);
-            }
+    if ('IntersectionObserver' in window) {
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.src = img.dataset.src;
+                    img.classList.remove('lazy');
+                    observer.unobserve(img);
+                }
+            });
         });
-    });
 
-    document.querySelectorAll('img[data-src]').forEach(img => {
-        imageObserver.observe(img);
-    });
+        document.querySelectorAll('img[data-src]').forEach(img => {
+            imageObserver.observe(img);
+        });
+    }
 
     // ===== TOUCH EVENTS FOR GALLERY ITEMS =====
     const galleryItems = document.querySelectorAll('.gallery-item, .portfolio-item');

@@ -14,11 +14,11 @@
             <!-- About Image Section -->
             <div class="about-image-section" aria-labelledby="about-image-section">
                 <div class="main-image">
-                    <img src="{{ url_for('static', filename='images/pulindu-about.jpg') }}" alt="Pulindu Peiris Portrait" loading="lazy">
+                    <img src="{{ url_for('static', filename='images/pulindu-about.jpg') }}" alt="Pulindu Peiris Portrait" loading="lazy" decoding="async">
                 </div>
                 <div class="image-stack">
-                    <img src="{{ url_for('static', filename='images/about-1.jpg') }}" alt="Photography Image" loading="lazy">
-                    <img src="{{ url_for('static', filename='images/about-2.jpg') }}" alt="Camera Equipment" loading="lazy">
+                    <img src="{{ url_for('static', filename='images/about-1.jpg') }}" alt="Photography Image" loading="lazy" decoding="async">
+                    <img src="{{ url_for('static', filename='images/about-2.jpg') }}" alt="Camera Equipment" loading="lazy" decoding="async">
                 </div>
             </div>
             
@@ -122,3 +122,4 @@
     </div>
 </section>
 {% endblock %}
+
