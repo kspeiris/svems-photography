@@ -8,12 +8,12 @@
     </div>
 </section>
 
-<section class="contact-content" aria-labelledby="contact-content">
+<section class="contact-content" id="contact-content" aria-labelledby="contact-info-title">
     <div class="container">
         <div class="contact-grid">
             <div class="contact-info">
                 <h2 id="contact-info-title">Get In Touch</h2>
-                <p>I’d love to hear from you! Whether you're interested in a photoshoot, have questions about my services, or just want to say hello, feel free to reach out.</p>
+                <p>I'd love to hear from you! Whether you're interested in a photoshoot, have questions about my services, or just want to say hello, feel free to reach out.</p>
                 
                 <div class="contact-details">
                     <div class="contact-item">
@@ -56,7 +56,7 @@
             </div>
             
             <div class="contact-form">
-                <h2>Send a Message</h2>
+                <h2 id="contact-form-title">Send a Message</h2>
                 <form action="{{ url_for('contact') }}" method="POST" id="contactForm" aria-labelledby="contact-form-title">
                     <div class="form-group">
                         <label for="name">Your Name</label>
@@ -84,3 +84,4 @@
 {% block scripts %}
 <script src="{{ url_for('static', filename='js/contact.js') }}"></script>
 {% endblock %}
+

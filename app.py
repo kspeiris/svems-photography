@@ -1,19 +1,17 @@
-from flask import Flask, render_template, request, jsonify, redirect, url_for, flash
+from flask import Flask, render_template, request, jsonify, redirect, url_for, flash, abort
 from flask_pymongo import PyMongo
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user, UserMixin
 from werkzeug.security import check_password_hash, generate_password_hash
 from werkzeug.utils import secure_filename
+from flask.json.provider import DefaultJSONProvider
 from PIL import Image
 import os
 from datetime import datetime, timezone
 from bson import ObjectId
-import json
+from config import Config
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'svems-photography-super-secret-key-2024'
-
-# MongoDB configuration
-app.config["MONGO_URI"] = "mongodb://localhost:27017/svems_photography"
+app.config.from_object(Config)
 mongo = PyMongo(app)
 
 login_manager = LoginManager(app)
@@ -29,6 +27,9 @@ class User(UserMixin):
             self.password_hash = user_data['password_hash']
         else:
             self.id = None
+            self.username = None
+            self.email = None
+            self.password_hash = None
 
     def check_password(self, password):
         if not self.password_hash:
@@ -40,7 +41,7 @@ def load_user(user_id):
     try:
         user_data = mongo.db.users.find_one({'_id': ObjectId(user_id)})
         return User(user_data) if user_data else None
-    except:
+    except Exception:
         return None
 
 def allowed_file(filename):
@@ -61,8 +62,8 @@ def save_image(file, category='general'):
             img.thumbnail((1200, 1200))
             img.save(filepath, optimize=True, quality=85)
             return f"{category_folder}/{filename}"
-        except Exception as e:
-            print(f"Error processing image: {str(e)}")
+        except Exception as exc:
+            print(f"Error processing image: {exc}")
             return None
     return None
 
@@ -72,8 +73,8 @@ def delete_image_file(filename):
         if os.path.exists(file_path):
             os.remove(file_path)
             return True
-    except Exception as e:
-        print(f"Error deleting image: {str(e)}")
+    except Exception as exc:
+        print(f"Error deleting image: {exc}")
     return False
 
 def validate_contact_form(name, email, message):
@@ -85,23 +86,23 @@ def validate_contact_form(name, email, message):
         return False, "Please enter a message with at least 10 characters"
     return True, ""
 
-# Custom JSON encoder to handle ObjectId
-class JSONEncoder(json.JSONEncoder):
-    def default(self, o):
-        if isinstance(o, ObjectId):
-            return str(o)
-        if isinstance(o, datetime):
-            return o.isoformat()
-        return json.JSONEncoder.default(self, o)
+class MongoJSONProvider(DefaultJSONProvider):
+    """Serialize Mongo ObjectId and datetime in Flask JSON responses."""
+    def default(self, obj):
+        if isinstance(obj, ObjectId):
+            return str(obj)
+        if isinstance(obj, datetime):
+            return obj.isoformat()
+        return super().default(obj)
 
-app.json_encoder = JSONEncoder
+app.json = MongoJSONProvider(app)
 
 # ===== MAIN ROUTES =====
 @app.route('/')
 def home():
     try:
         featured_images = list(mongo.db.gallery.find().sort('uploaded_at', -1).limit(6))
-    except:
+    except Exception:
         featured_images = []
     return render_template('index.html', images=featured_images)
 
@@ -110,7 +111,7 @@ def portfolio():
     try:
         images = list(mongo.db.gallery.find().sort('uploaded_at', -1))
         categories = mongo.db.gallery.distinct('category')
-    except:
+    except Exception:
         images = []
         categories = []
     return render_template('portfolio.html', images=images, categories=categories)
@@ -155,29 +156,25 @@ def admin_login():
         username = request.form.get('username')
         password = request.form.get('password')
         
-        print(f"🔐 Login attempt for: {username}")
-        
         try:
             user_data = mongo.db.users.find_one({'username': username})
-            print(f"📊 User found in database: {user_data is not None}")
             
             if user_data:
                 user_obj = User(user_data)
                 password_valid = check_password_hash(user_obj.password_hash, password)
-                print(f"🔑 Password valid: {password_valid}")
                 
                 if password_valid:
                     login_user(user_obj, remember=True)
-                    flash('✅ Login successful!', 'success')
+                    flash('Login successful!', 'success')
                     return redirect(url_for('admin_dashboard'))
                 else:
-                    flash('❌ Invalid password', 'error')
+                    flash('Invalid password', 'error')
             else:
-                flash('❌ User not found', 'error')
+                flash('User not found', 'error')
                 
-        except Exception as e:
-            print(f"💥 Login error: {str(e)}")
-            flash('❌ Login error. Please try again.', 'error')
+        except Exception as exc:
+            print(f"Login error: {exc}")
+            flash('Login error. Please try again.', 'error')
     
     return render_template('admin/login.html')
 
@@ -191,7 +188,7 @@ def admin_dashboard():
             'total_contacts': mongo.db.contacts.count_documents({}),
             'recent_messages': list(mongo.db.contacts.find().sort('submitted_at', -1).limit(5))
         }
-    except:
+    except Exception:
         stats = {
             'total_images': 0,
             'unread_messages': 0,
@@ -234,13 +231,13 @@ def admin_gallery():
     try:
         images = list(mongo.db.gallery.find().sort('uploaded_at', -1))
         categories = mongo.db.gallery.distinct('category')
-    except:
+    except Exception:
         images = []
         categories = []
     
     return render_template('admin/gallery.html', images=images, categories=categories)
 
-@app.route('/admin/delete-image/<image_id>')
+@app.route('/admin/delete-image/<image_id>', methods=['POST'])
 @login_required
 def delete_image(image_id):
     try:
@@ -251,7 +248,7 @@ def delete_image(image_id):
             flash('Image deleted successfully!', 'success')
         else:
             flash('Image not found', 'error')
-    except Exception as e:
+    except Exception:
         flash('Error deleting image', 'error')
     
     return redirect(url_for('admin_gallery'))
@@ -261,11 +258,11 @@ def delete_image(image_id):
 def admin_messages():
     try:
         messages = list(mongo.db.contacts.find().sort('submitted_at', -1))
-    except:
+    except Exception:
         messages = []
     return render_template('admin/messages.html', messages=messages)
 
-@app.route('/admin/mark-read/<message_id>')
+@app.route('/admin/mark-read/<message_id>', methods=['POST'])
 @login_required
 def mark_message_read(message_id):
     try:
@@ -274,17 +271,17 @@ def mark_message_read(message_id):
             {'$set': {'read': True}}
         )
         flash('Message marked as read', 'success')
-    except:
+    except Exception:
         flash('Error marking message as read', 'error')
     return redirect(url_for('admin_messages'))
 
-@app.route('/admin/delete-message/<message_id>')
+@app.route('/admin/delete-message/<message_id>', methods=['POST'])
 @login_required
 def delete_message(message_id):
     try:
         mongo.db.contacts.delete_one({'_id': ObjectId(message_id)})
         flash('Message deleted successfully', 'success')
-    except:
+    except Exception:
         flash('Error deleting message', 'error')
     return redirect(url_for('admin_messages'))
 
@@ -299,6 +296,9 @@ def admin_logout():
 @app.route('/debug')
 def debug_info():
     """Debug route to check database status"""
+    if not app.debug and not app.testing:
+        abort(404)
+
     info = {
         'mongo_connected': False,
         'users_count': 0,
@@ -321,18 +321,21 @@ def debug_info():
         info['users'] = users_data
         info['collections'] = mongo.db.list_collection_names()
         info['status'] = 'success'
-        print(f"✅ Database check: {info['users_count']} users found")
+        print(f"Database check: {info['users_count']} users found")
         
-    except Exception as e:
-        info['error'] = str(e)
+    except Exception as exc:
+        info['error'] = str(exc)
         info['status'] = 'error'
-        print(f"❌ Database error: {str(e)}")
+        print(f"Database error: {exc}")
     
     return jsonify(info)
 
 @app.route('/create-test-user')
 def create_test_user():
     """Route to create a test user if needed"""
+    if not app.debug and not app.testing:
+        abort(404)
+
     try:
         mongo.db.users.delete_one({'username': 'pulindu'})
         
@@ -354,15 +357,18 @@ def create_test_user():
             'user_id': str(result.inserted_id)
         })
         
-    except Exception as e:
+    except Exception as exc:
         return jsonify({
             'success': False,
-            'error': str(e)
+            'error': str(exc)
         })
 
 @app.route('/fix-password-hash')
 def fix_password_hash():
     """Fix the password hash to use scrypt method"""
+    if not app.debug and not app.testing:
+        abort(404)
+
     try:
         user = mongo.db.users.find_one({'username': 'pulindu'})
         if user:
@@ -382,10 +388,10 @@ def fix_password_hash():
                 'success': False,
                 'message': 'User not found'
             })
-    except Exception as e:
+    except Exception as exc:
         return jsonify({
             'success': False,
-            'error': str(e)
+            'error': str(exc)
         })
 
 # ===== ERROR HANDLERS =====
@@ -408,11 +414,11 @@ if __name__ == '__main__':
     os.makedirs('static/uploads/events', exist_ok=True)
     
     print("=" * 60)
-    print("🚀 Svems Photography Application Starting...")
-    print("🔧 Check database: http://localhost:5000/debug")
-    print("🔑 Fix password hash: http://localhost:5000/fix-password-hash")
-    print("👤 Create test user: http://localhost:5000/create-test-user") 
-    print("🔐 Admin login: http://localhost:5000/admin/login")
+    print("Svems Photography Application Starting...")
+    print("Debug route (dev only): http://localhost:5000/debug")
+    print("Fix password hash (dev only): http://localhost:5000/fix-password-hash")
+    print("Create test user (dev only): http://localhost:5000/create-test-user")
+    print("Admin login: http://localhost:5000/admin/login")
     print("   Username: pulindu")
     print("   Password: admin123")
     print("=" * 60)

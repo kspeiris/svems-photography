@@ -1,7 +1,7 @@
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 from bson import ObjectId
-from datetime import datetime
+from datetime import datetime, timezone
 
 class User(UserMixin):
     def __init__(self, user_data):
@@ -26,22 +26,36 @@ class User(UserMixin):
         try:
             user_data = db.users.find_one({'username': username})
             return User(user_data) if user_data else None
-        except:
+        except Exception:
             return None
+
+    @staticmethod
+    def create_user(db, username, email, password):
+        """Create a new user and return the inserted id."""
+        password_hash = generate_password_hash(password, method='scrypt')
+        user_data = {
+            'username': username,
+            'email': email,
+            'password_hash': password_hash,
+            'created_at': datetime.now(timezone.utc),
+            'is_active': True
+        }
+        result = db.users.insert_one(user_data)
+        return result.inserted_id
 
 class Gallery:
     @staticmethod
     def get_all_images(db):
         try:
             return list(db.gallery.find().sort('uploaded_at', -1))
-        except:
+        except Exception:
             return []
 
     @staticmethod
     def get_categories(db):
         try:
             return db.gallery.distinct('category')
-        except:
+        except Exception:
             return []
 
 class Contact:

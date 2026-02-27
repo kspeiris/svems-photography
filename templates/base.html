@@ -5,9 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Svems Photography - Professional Photography by Pulindu Peiris{% endblock %}</title>
     <meta name="description" content="Professional photography services by Pulindu Peiris. Specializing in portraits, landscapes, events, and commercial photography.">
+    <meta name="theme-color" content="#006400">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
     
     <!-- Preload Essential Assets -->
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" as="style">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap">
     <link rel="preload" href="{{ url_for('static', filename='images/logo.svg') }}" as="image">
     
     <!-- CSS -->
@@ -46,6 +51,8 @@
     </style>
 </head>
 <body class="fade-in">
+    <a href="#main-content" class="skip-link">Skip to content</a>
+
     <!-- Loading Screen -->
     <div id="loading-screen" class="loading-screen" aria-live="polite">
         <div class="loading-content">
@@ -65,7 +72,7 @@
     {% include 'includes/flash_messages.html' %}
 
     <!-- Main Content -->
-    <main>
+    <main id="main-content">
         {% block content %}{% endblock %}
     </main>
 
@@ -73,50 +80,11 @@
     {% include 'includes/footer.html' %}
 
     <!-- Scripts -->
-    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/enhanced.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='js/enhanced.js') }}" defer></script>
     
     <!-- Page Specific Scripts -->
     {% block scripts %}{% endblock %}
 
-    <script>
-        // Enhanced loading screen removal with transition
-        window.addEventListener('load', function() {
-            setTimeout(function() {
-                const loadingScreen = document.getElementById('loading-screen');
-                if (loadingScreen) {
-                    loadingScreen.style.transition = 'opacity 0.5s ease-out';
-                    loadingScreen.style.opacity = '0';
-                    setTimeout(function() {
-                        loadingScreen.style.display = 'none';
-                    }, 500);
-                }
-            }, 1000);
-        });
-    </script>
-    
-    <!-- Accessibility Enhancements -->
-    <script>
-        // Adding focus trap for accessibility
-        document.addEventListener('keydown', function(e) {
-            const focusableElements = document.querySelectorAll('a, button, input, select, textarea');
-            const firstFocusableElement = focusableElements[0];  
-            const lastFocusableElement = focusableElements[focusableElements.length - 1];
-            
-            if (e.key === 'Tab') {
-                if (e.shiftKey) { // Shift + Tab
-                    if (document.activeElement === firstFocusableElement) {
-                        lastFocusableElement.focus();
-                        e.preventDefault();
-                    }
-                } else { // Tab
-                    if (document.activeElement === lastFocusableElement) {
-                        firstFocusableElement.focus();
-                        e.preventDefault();
-                    }
-                }
-            }
-        });
-    </script>
 </body>
 </html>

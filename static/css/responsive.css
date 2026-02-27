@@ -132,6 +132,37 @@
     .nav-container {
         padding: 0 15px;
     }
+
+    .nav-menu {
+        position: fixed;
+        top: 76px;
+        left: -100%;
+        background: var(--white);
+        width: 100%;
+        max-height: calc(100vh - 76px);
+        overflow-y: auto;
+        flex-direction: column;
+        padding: 1.5rem;
+        box-shadow: var(--shadow);
+        transition: var(--transition);
+        gap: 1rem;
+    }
+
+    .nav-menu.active {
+        left: 0;
+    }
+
+    .nav-toggle {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .nav-link {
+        width: 100%;
+        text-align: center;
+        border-bottom: 1px solid #f0f0f0;
+    }
     
     .brand-name {
         font-size: 1.5rem;
@@ -234,6 +265,15 @@
     .booking-form {
         padding: 2rem;
     }
+
+    .home-about-content {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .home-section {
+        padding: 3.5rem 0;
+    }
     
     .form-grid {
         grid-template-columns: 1fr;
@@ -249,10 +289,12 @@
     
     .nav-menu {
         position: fixed;
-        top: 70px;
+        top: 76px;
         left: -100%;
         background: var(--white);
         width: 100%;
+        max-height: calc(100vh - 76px);
+        overflow-y: auto;
         flex-direction: column;
         padding: 2rem;
         box-shadow: var(--shadow);
@@ -266,6 +308,8 @@
     
     .nav-toggle {
         display: flex;
+        flex-direction: column;
+        justify-content: center;
     }
     
     .nav-link {
@@ -421,6 +465,15 @@
     .booking-form {
         padding: 1.5rem;
     }
+
+    .home-about-content {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+    }
+
+    .home-section {
+        padding: 3rem 0;
+    }
     
     .form-group input,
     .form-group textarea,
@@ -447,6 +500,38 @@
         height: 30px;
     }
     
+    .nav-menu {
+        position: fixed;
+        top: 72px;
+        left: -100%;
+        background: var(--white);
+        width: 100%;
+        max-height: calc(100vh - 72px);
+        overflow-y: auto;
+        flex-direction: column;
+        padding: 1.25rem;
+        box-shadow: var(--shadow);
+        transition: var(--transition);
+        gap: 0.75rem;
+    }
+
+    .nav-menu.active {
+        left: 0;
+    }
+
+    .nav-toggle {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .nav-link {
+        width: 100%;
+        text-align: center;
+        padding: 0.75rem 0;
+        border-bottom: 1px solid #f0f0f0;
+    }
+
     .hero-title {
         font-size: 2rem;
     }
@@ -517,6 +602,15 @@
     .contact-form,
     .booking-form {
         padding: 1.25rem;
+    }
+
+    .home-about-content {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .home-section {
+        padding: 2.5rem 0;
     }
     
     .form-group {
