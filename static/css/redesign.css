@@ -1,0 +1,328 @@
+:root {
+    --ui-bg: #f3f6f9;
+    --ui-surface: #ffffff;
+    --ui-surface-2: #f8fafc;
+    --ui-text: #182230;
+    --ui-muted: #526172;
+    --ui-primary: #0e7490;
+    --ui-primary-strong: #155e75;
+    --ui-accent: #f59e0b;
+    --ui-border: #dbe4ee;
+    --ui-shadow: 0 18px 40px rgba(16, 24, 40, 0.08);
+    --ui-shadow-soft: 0 8px 24px rgba(16, 24, 40, 0.06);
+    --pro-hero-pad: 8rem 0 5rem;
+    --pro-content-pad: 3rem 0;
+    --pro-title-size: clamp(2rem, 4.6vw, 3.4rem);
+    --pro-subtitle-size: 1.06rem;
+    --pro-eyebrow-size: 0.75rem;
+}
+
+body {
+    font-family: "Manrope", "Segoe UI", sans-serif;
+    color: var(--ui-text);
+    background:
+        radial-gradient(circle at 0% 0%, rgba(14, 116, 144, 0.08), transparent 40%),
+        radial-gradient(circle at 100% 0%, rgba(245, 158, 11, 0.08), transparent 35%),
+        var(--ui-bg);
+}
+
+main {
+    padding-top: 88px;
+}
+
+.navbar {
+    background: rgba(255, 255, 255, 0.9);
+    border-bottom: 1px solid var(--ui-border);
+    box-shadow: var(--ui-shadow-soft);
+}
+
+.nav-container {
+    max-width: 1180px;
+    padding: 0 24px;
+}
+
+.brand-name {
+    font-family: "Sora", "Manrope", sans-serif;
+    color: var(--ui-text);
+}
+
+.nav-link {
+    color: var(--ui-muted);
+    font-weight: 600;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: var(--ui-primary);
+}
+
+.btn {
+    border-radius: 10px;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--ui-primary), var(--ui-primary-strong));
+    color: #fff;
+    border: 1px solid transparent;
+}
+
+.btn-primary:hover {
+    color: #fff;
+}
+
+.btn-secondary {
+    background: rgba(14, 116, 144, 0.08);
+    border-color: rgba(14, 116, 144, 0.2);
+    color: var(--ui-primary);
+}
+
+.btn-outline {
+    border-color: var(--ui-primary);
+    color: var(--ui-primary);
+}
+
+.home-hero {
+    min-height: calc(100vh - 88px);
+    border-bottom-left-radius: 24px;
+    border-bottom-right-radius: 24px;
+    overflow: hidden;
+}
+
+.home-hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, rgba(3, 7, 18, 0.72), rgba(14, 116, 144, 0.25));
+    z-index: 1;
+}
+
+.home-hero .hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.home-hero .hero-title,
+.home-hero .hero-subtitle {
+    color: #fff;
+    text-shadow: none;
+}
+
+.home-hero .hero-subtitle {
+    max-width: 720px;
+    margin-inline: auto;
+    opacity: 0.94;
+}
+
+.home-section {
+    padding: 5rem 0;
+}
+
+.home-services-grid,
+.home-gallery-grid,
+.portfolio-grid,
+.testimonials-grid {
+    gap: 1.25rem;
+}
+
+.home-service-card,
+.portfolio-item,
+.gallery-item,
+.testimonial-card,
+.stat-item,
+.contact-form,
+.admin-content {
+    border: 1px solid var(--ui-border);
+    box-shadow: var(--ui-shadow-soft);
+}
+
+.portfolio-hero,
+.about-hero {
+    border-radius: 20px;
+    margin: 1rem 1rem 0;
+    padding: 8rem 0 5rem;
+}
+
+.page-title {
+    font-family: "Sora", "Manrope", sans-serif;
+}
+
+.category-filter {
+    margin-top: 1rem;
+}
+
+.filter-btn {
+    border-radius: 10px;
+    border-color: var(--ui-border);
+    color: var(--ui-muted);
+    background: #fff;
+}
+
+.filter-btn.active,
+.filter-btn:hover {
+    background: var(--ui-primary);
+    border-color: var(--ui-primary);
+}
+
+.about-content,
+.portfolio-content {
+    padding: 1rem 0 2rem;
+}
+
+.about-grid,
+.contact-grid {
+    gap: 2rem;
+}
+
+.about-text-section h2,
+.contact-info h2,
+.contact-form h2 {
+    font-family: "Sora", "Manrope", sans-serif;
+}
+
+.contact-content {
+    background: transparent;
+    color: inherit;
+}
+
+.contact-info p,
+.contact-item p {
+    color: var(--ui-muted);
+}
+
+.contact-item {
+    background: #fff;
+    border: 1px solid var(--ui-border);
+}
+
+.contact-form {
+    background: var(--ui-surface);
+    border-radius: 16px;
+    padding: 2rem;
+}
+
+.contact-form .form-group label {
+    color: var(--ui-text);
+}
+
+.contact-form .form-group input,
+.contact-form .form-group textarea {
+    color: var(--ui-text);
+    background: var(--ui-surface-2);
+    border-color: var(--ui-border);
+}
+
+.footer {
+    margin-top: 2rem;
+    background: linear-gradient(135deg, #0f172a, #1e293b);
+}
+
+.footer-section a {
+    color: rgba(255, 255, 255, 0.86);
+}
+
+.footer-section a:hover {
+    color: #fff;
+}
+
+@media (max-width: 900px) {
+    .portfolio-hero,
+    .about-hero {
+        margin: 0;
+        border-radius: 0;
+    }
+
+    .home-hero {
+        border-radius: 0;
+    }
+
+    .home-section {
+        padding: 3.5rem 0;
+    }
+}
+
+/* Shared premium page micro-system */
+.pro-hero {
+    padding: var(--pro-hero-pad);
+    margin: 1rem 1rem 0;
+    border-radius: 22px;
+    color: #fff;
+}
+
+.pro-hero-inner {
+    max-width: 900px;
+}
+
+.pro-eyebrow {
+    display: inline-block;
+    margin-bottom: 1rem;
+    padding: 0.35rem 0.65rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.12);
+    font-size: var(--pro-eyebrow-size);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.pro-title {
+    margin: 0;
+    font-family: "Sora", "Manrope", sans-serif;
+    font-size: var(--pro-title-size);
+    line-height: 1.1;
+}
+
+.pro-subtitle {
+    margin-top: 1rem;
+    max-width: 760px;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: var(--pro-subtitle-size);
+}
+
+.pro-content {
+    padding: var(--pro-content-pad);
+}
+
+.pro-cta-block {
+    background: linear-gradient(135deg, #0f172a, #1e293b);
+    color: #fff;
+    border-radius: 18px;
+    padding: 2rem;
+    text-align: center;
+}
+
+.pro-cta-block h2 {
+    margin: 0 0 0.5rem;
+    font-family: "Sora", "Manrope", sans-serif;
+}
+
+.pro-cta-block p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.pro-cta-actions {
+    margin-top: 1rem;
+    display: inline-flex;
+    gap: 0.7rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.pro-cta-block .btn-outline {
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.6);
+}
+
+.pro-cta-block .btn-outline:hover {
+    background: #fff;
+    color: #0f172a;
+}
+
+@media (max-width: 900px) {
+    .pro-hero {
+        margin: 0;
+        border-radius: 0;
+    }
+}

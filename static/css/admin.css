@@ -182,6 +182,258 @@
     background: rgba(102, 126, 234, 0.1);
 }
 
+/* Admin page utility styles for dashboard/gallery/messages */
+.admin-page-header {
+    margin-top: 1rem;
+    background: #4caf50;
+    color: #fff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.admin-page-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.admin-page-subtitle {
+    margin-top: 0.5rem;
+    font-size: 1.05rem;
+    font-weight: 400;
+}
+
+.admin-page-grid {
+    margin-top: 2rem;
+}
+
+.admin-page-stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.25rem;
+    margin-top: 2rem;
+}
+
+.admin-page-stat-card {
+    background: #fff;
+    padding: 1.75rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+}
+
+.admin-page-stat-number {
+    display: block;
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: #333;
+}
+
+.admin-page-stat-label {
+    display: block;
+    margin-top: 0.3rem;
+    color: #666;
+}
+
+.admin-page-section {
+    margin-top: 3rem;
+}
+
+.admin-page-section-title {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin: 0 0 1rem;
+}
+
+.admin-table-wrap {
+    margin-top: 1rem;
+}
+
+.admin-table-panel {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+}
+
+.admin-table-compact th,
+.admin-table-compact td {
+    padding: 0.9rem;
+}
+
+.admin-row-hover {
+    transition: background-color 0.2s ease;
+}
+
+.admin-row-hover:hover {
+    background: #f8fafc;
+}
+
+.admin-actions-cell {
+    white-space: nowrap;
+}
+
+.admin-inline-form {
+    display: inline;
+}
+
+.admin-inline-form-spaced {
+    margin-left: 0.75rem;
+}
+
+.admin-btn-mark,
+.admin-btn-delete {
+    border: 0;
+    border-radius: 6px;
+    padding: 0.45rem 0.85rem;
+    cursor: pointer;
+}
+
+.admin-btn-mark {
+    background: #4caf50;
+    color: #fff;
+}
+
+.admin-btn-delete {
+    background: #f44336;
+    color: #fff;
+}
+
+.admin-empty-state {
+    text-align: center;
+    padding: 2rem;
+    border-radius: 8px;
+    background: #f9f9f9;
+}
+
+.admin-empty-state p {
+    font-size: 1.1rem;
+    color: #888;
+}
+
+.admin-quick-actions {
+    margin-top: 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
+.admin-action-buttons {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.admin-action-btn {
+    padding: 0.7rem 1.2rem;
+    border-radius: 8px;
+    text-decoration: none;
+}
+
+.admin-action-btn-outline {
+    background: transparent;
+    border: 2px solid #f44336;
+    color: #f44336;
+}
+
+.admin-upload-section {
+    background: #302626;
+    color: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.admin-gallery-list {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.admin-form-group {
+    margin-bottom: 1rem;
+}
+
+.admin-label {
+    display: block;
+    font-weight: 700;
+    margin-bottom: 0.35rem;
+}
+
+.admin-input {
+    width: 100%;
+    padding: 0.75rem;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-size: 1rem;
+}
+
+.admin-textarea {
+    height: 150px;
+    resize: vertical;
+}
+
+.admin-checkbox-label {
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.admin-upload-field {
+    margin-bottom: 1.5rem;
+}
+
+.admin-upload-area {
+    border-color: #4caf50;
+    padding: 2rem;
+    border-radius: 8px;
+}
+
+.admin-upload-icon {
+    font-size: 2rem;
+    color: #4caf50;
+}
+
+.admin-upload-hint {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.admin-file-input {
+    display: none;
+}
+
+.admin-submit-btn {
+    width: 100%;
+    padding: 0.9rem 1.2rem;
+    border-radius: 8px;
+    border: 0;
+    font-size: 1rem;
+}
+
+.admin-thumb-cell {
+    width: 60px;
+}
+
+.admin-thumb {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.status-read {
+    color: #4caf50;
+    font-weight: 700;
+}
+
+.status-unread {
+    color: #f44336;
+    font-weight: 700;
+}
+
 /* Mobile Enhancements */
 @media (max-width: 768px) {
     .admin-sidebar {
@@ -199,5 +451,18 @@
 
     .form-grid {
         grid-template-columns: 1fr;
+    }
+
+    .admin-page-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-quick-actions {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .admin-action-buttons {
+        flex-wrap: wrap;
     }
 }

@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
+            const submitButton = contactForm.querySelector('button[type="submit"]');
             const name = document.getElementById('name').value.trim();
             const email = document.getElementById('email').value.trim();
             const message = document.getElementById('message').value.trim();
@@ -34,6 +35,15 @@ document.addEventListener('DOMContentLoaded', function() {
             if (!isValid) {
                 e.preventDefault();
                 showFormErrors(errorMessages);
+                if (submitButton) {
+                    submitButton.disabled = false;
+                    submitButton.classList.remove('loading');
+                    submitButton.textContent = 'Send Message';
+                }
+            } else if (submitButton) {
+                submitButton.disabled = true;
+                submitButton.classList.add('loading');
+                submitButton.textContent = 'Sending...';
             }
         });
         
@@ -68,6 +78,7 @@ document.addEventListener('DOMContentLoaded', function() {
             errorDiv = document.createElement('div');
             errorDiv.id = 'formError';
             errorDiv.className = 'form-error';
+            errorDiv.setAttribute('role', 'alert');
             contactForm.prepend(errorDiv);
         }
         

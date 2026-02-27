@@ -1,52 +1,69 @@
 {% extends "base.html" %}
 
 {% block content %}
-<section class="portfolio-hero" aria-labelledby="portfolio-hero">
-    <div class="container">
-        <h1 class="page-title" id="portfolio-hero">Portfolio</h1>
-        <p class="page-subtitle">A collection of my favorite moments and projects</p>
+<section class="portfolio-pro-hero pro-hero relative overflow-hidden bg-slate-950 py-20 text-white md:py-24" aria-labelledby="portfolio-pro-title">
+    <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(14,116,144,0.5),transparent_50%)]"></div>
+    <div class="container portfolio-pro-hero-inner pro-hero-inner mx-auto max-w-6xl px-4 md:px-6">
+        <p class="portfolio-pro-eyebrow pro-eyebrow text-sm font-semibold uppercase tracking-[0.22em] text-cyan-200">Selected Work</p>
+        <h1 class="portfolio-pro-title pro-title mt-4 max-w-4xl font-display text-4xl font-bold leading-tight md:text-5xl" id="portfolio-pro-title">A curated collection of portraits, landscapes, and story-driven moments.</h1>
+        <p class="portfolio-pro-subtitle pro-subtitle mt-5 max-w-3xl text-lg text-slate-200">Each image reflects a balance of composition, natural light, and emotional detail.</p>
     </div>
 </section>
 
-<section class="portfolio-content">
-    <div class="container">
-        <div class="category-filter">
-            <button class="filter-btn active" data-filter="all" aria-label="Show all projects">All</button>
-            {% for category in categories %}
-            <button class="filter-btn" data-filter="{{ category }}" aria-label="Filter by {{ category.title() }}">{{ category.title() }}</button>
-            {% endfor %}
+<section class="portfolio-pro-content pro-content py-14 md:py-16" aria-labelledby="portfolio-pro-title">
+    <div class="container mx-auto max-w-6xl px-4 md:px-6">
+        <div class="portfolio-pro-toolbar mb-6 flex flex-wrap items-center justify-between gap-3">
+            <div class="category-filter portfolio-pro-filter flex flex-wrap gap-2" role="tablist" aria-label="Portfolio categories">
+                <button class="filter-btn active rounded-xl border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-cyan-600 hover:text-cyan-700" data-filter="all" aria-label="Show all projects" aria-pressed="true">All</button>
+                {% for category in categories %}
+                <button class="filter-btn rounded-xl border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-cyan-600 hover:text-cyan-700" data-filter="{{ category }}" aria-label="Filter by {{ category.title() }}" aria-pressed="false">{{ category.title() }}</button>
+                {% endfor %}
+            </div>
+            <p class="portfolio-pro-count text-sm font-semibold text-slate-500" id="portfolioCount">{{ images|length }} images</p>
         </div>
 
-        <div class="portfolio-grid" id="portfolioGrid" role="grid" aria-labelledby="portfolio-hero">
+        <div class="portfolio-grid portfolio-pro-grid grid gap-5 md:grid-cols-2 lg:grid-cols-3" id="portfolioGrid" role="grid" aria-labelledby="portfolio-pro-title">
             {% for image in images %}
-            <div class="portfolio-item" data-category="{{ image.category }}" role="gridcell">
-                <div class="portfolio-card">
+            <article class="portfolio-item portfolio-pro-item group overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-xl" data-category="{{ image.category }}" role="gridcell" tabindex="0">
+                <div class="portfolio-card portfolio-pro-card relative">
                     <img src="{{ url_for('static', filename='uploads/' + image.filename) }}" 
                          alt="{{ image.title }}" 
-                         class="portfolio-image" loading="lazy" decoding="async">
-                    <div class="portfolio-overlay" role="presentation">
-                        <div class="portfolio-info">
-                            <h3>{{ image.title }}</h3>
-                            <p>{{ image.description }}</p>
-                            <span class="portfolio-category">{{ image.category }}</span>
+                         class="portfolio-image h-72 w-full object-cover transition duration-500 group-hover:scale-105" loading="lazy" decoding="async">
+                    <div class="portfolio-overlay portfolio-pro-overlay absolute inset-0 flex items-end bg-gradient-to-t from-slate-950/90 via-slate-900/20 to-transparent p-4" role="presentation">
+                        <div class="portfolio-info portfolio-pro-info">
+                            <h3 class="text-lg font-semibold text-white">{{ image.title }}</h3>
+                            <p class="mt-1 text-sm text-slate-200">{{ image.description or 'A crafted visual moment from the Svems collection.' }}</p>
+                            <span class="portfolio-category portfolio-pro-category mt-2 inline-flex rounded-full border border-white/30 bg-white/10 px-3 py-1 text-xs font-semibold capitalize text-white">{{ image.category }}</span>
                         </div>
                     </div>
                 </div>
-            </div>
+            </article>
             {% endfor %}
         </div>
 
         {% if not images %}
-        <div class="empty-state" role="alert">
-            <i class="fas fa-images"></i>
-            <h3>No images yet</h3>
-            <p>Check back soon for amazing photography work!</p>
+        <div class="empty-state portfolio-pro-empty rounded-2xl border border-slate-200 bg-white p-8 text-center shadow-sm" role="alert">
+            <i class="fas fa-images text-3xl text-slate-400"></i>
+            <h3 class="mt-4 text-xl font-semibold text-slate-900">No images yet</h3>
+            <p class="mt-2 text-slate-600">Check back soon for amazing photography work!</p>
         </div>
         {% endif %}
     </div>
 </section>
 
-<div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-hidden="true">
+<section class="portfolio-pro-cta py-14 md:py-16" aria-labelledby="portfolio-cta-title">
+    <div class="container mx-auto max-w-6xl px-4 md:px-6">
+    <div class="pro-cta-block rounded-3xl bg-slate-900 px-6 py-10 text-center text-white shadow-xl md:px-10">
+        <h2 id="portfolio-cta-title" class="font-display text-3xl font-bold md:text-4xl">Interested In A Session Like These?</h2>
+        <p class="mx-auto mt-3 max-w-2xl text-slate-200">Let's plan a shoot that fits your style, timeline, and story.</p>
+        <div class="pro-cta-actions mt-6 flex flex-wrap items-center justify-center gap-3">
+            <a href="{{ url_for('contact') }}" class="btn btn-primary rounded-xl px-6 py-3 font-semibold">Start A Project</a>
+            <a href="{{ url_for('about') }}" class="btn btn-outline rounded-xl border border-white/40 px-6 py-3 font-semibold text-white hover:bg-white/10">About The Photographer</a>
+        </div>
+    </div></div>
+</section>
+
+<div id="lightbox" class="lightbox portfolio-pro-lightbox" role="dialog" aria-modal="true" aria-hidden="true">
     <button type="button" class="lightbox-close" aria-label="Close lightbox">&times;</button>
     <div class="lightbox-content">
         <img src="" alt="" id="lightbox-image" class="lightbox-image">

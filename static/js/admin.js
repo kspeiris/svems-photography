@@ -111,12 +111,18 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Optional: Add smooth transition to file upload area and buttons
-    uploadArea.classList.add('transition-all');
-    fileInput.classList.add('transition-all');
+    if (uploadArea) {
+        uploadArea.classList.add('transition-all');
+    }
+    if (fileInput) {
+        fileInput.classList.add('transition-all');
+    }
     document.querySelectorAll('.delete-btn, .mark-read-btn').forEach(button => {
         button.classList.add('transition-all');
     });
 
     // Make sure preview area fades in smoothly
-    preview.classList.add('fade-in');
+    if (preview) {
+        preview.classList.add('fade-in');
+    }
 });

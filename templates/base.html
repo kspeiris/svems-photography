@@ -9,15 +9,41 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <script>
+        tailwind = {
+            config: {
+                theme: {
+                    extend: {
+                        fontFamily: {
+                            sans: ['Manrope', 'Segoe UI', 'sans-serif'],
+                            display: ['Sora', 'Manrope', 'sans-serif']
+                        },
+                        colors: {
+                            brand: {
+                                50: '#ecfeff',
+                                100: '#cffafe',
+                                500: '#06b6d4',
+                                600: '#0891b2',
+                                700: '#0e7490',
+                                900: '#164e63'
+                            }
+                        }
+                    }
+                }
+            }
+        };
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
     
     <!-- Preload Essential Assets -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" as="style">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@600;700&display=swap" as="style">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@600;700&display=swap">
     <link rel="preload" href="{{ url_for('static', filename='images/logo.svg') }}" as="image">
     
     <!-- CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/redesign.css') }}">
     
     <!-- Fonts & Icons -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
@@ -50,7 +76,7 @@
         }
     </style>
 </head>
-<body class="fade-in">
+<body class="fade-in font-sans antialiased text-slate-800 bg-slate-100">
     <a href="#main-content" class="skip-link">Skip to content</a>
 
     <!-- Loading Screen -->
@@ -72,7 +98,7 @@
     {% include 'includes/flash_messages.html' %}
 
     <!-- Main Content -->
-    <main id="main-content">
+    <main id="main-content" class="min-h-screen">
         {% block content %}{% endblock %}
     </main>
 
