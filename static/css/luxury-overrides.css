@@ -71,83 +71,165 @@ main {
 
 .inner-page-hero {
     background: #050505;
-    padding-top: calc(80px + 5rem);
-    /* navbar clearance + breathing room */
-    padding-bottom: 5rem;
+    padding-top: calc(80px + 4rem);
+    padding-bottom: 4rem;
     position: relative;
     overflow: hidden;
 }
 
-/* Subtle large background text watermark */
+/* Subtle background watermark */
 .inner-page-hero::before {
     content: 'SVEMS';
     position: absolute;
-    right: -2rem;
-    bottom: -2rem;
+    right: -1rem;
+    bottom: -3rem;
     font-family: 'Playfair Display', serif;
-    font-size: 18rem;
+    font-size: 22rem;
     font-weight: 800;
-    color: rgba(255, 255, 255, 0.015);
+    color: rgba(255, 255, 255, 0.018);
     pointer-events: none;
     user-select: none;
     line-height: 1;
+    letter-spacing: -0.05em;
 }
 
+/* Full-width 2-column grid: headline left, meta right */
 .inner-page-hero__content {
     position: relative;
     z-index: 1;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto;
+    column-gap: 6rem;
+    align-items: end;
+}
+
+/* Eyebrow spans only left column */
+.inner-page-hero__content>.luxury-eyebrow {
+    grid-column: 1 / 2;
 }
 
 .inner-page-hero__title {
     font-family: 'Playfair Display', serif;
     font-style: italic;
-    font-size: clamp(3.5rem, 8vw, 7rem);
-    line-height: 1.05;
+    font-size: clamp(4rem, 9vw, 8rem);
+    line-height: 1.0;
     color: #ffffff;
-    margin-bottom: 2rem;
-    letter-spacing: -0.01em;
+    margin-bottom: 2.5rem;
+    letter-spacing: -0.02em;
+    grid-column: 1 / 2;
 }
 
 .inner-page-hero__title--light {
     font-family: 'Manrope', sans-serif;
     font-style: normal;
     font-weight: 200;
-    color: rgba(255, 255, 255, 0.35);
+    color: rgba(255, 255, 255, 0.3);
     display: block;
 }
 
 .inner-page-hero__subtitle {
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 300;
-    color: rgba(255, 255, 255, 0.45);
+    color: rgba(255, 255, 255, 0.4);
     line-height: 1.9;
-    max-width: 560px;
+    max-width: 480px;
+    grid-column: 1 / 2;
 }
 
-/* Bottom separator line with gold accent */
+/* Right meta panel — sits in right column, spans all rows */
+.inner-page-hero__meta {
+    grid-column: 2 / 3;
+    grid-row: 1 / 4;
+    align-self: end;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2rem;
+    padding-bottom: 0.5rem;
+    min-width: 200px;
+}
+
+.inner-page-hero__meta-stat {
+    text-align: right;
+}
+
+.inner-page-hero__meta-stat strong {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 2.5rem;
+    color: #ffffff;
+    line-height: 1;
+    font-weight: 400;
+}
+
+.inner-page-hero__meta-stat span {
+    display: block;
+    font-size: 0.55rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.4em;
+    color: rgba(255, 255, 255, 0.2);
+    margin-top: 0.4rem;
+}
+
+.inner-page-hero__meta-divider {
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(to bottom, rgba(212, 175, 55, 0.4), transparent);
+}
+
+/* Bottom separator line */
 .inner-page-hero__line {
-    margin-top: 5rem;
+    margin-top: 4rem;
     height: 1px;
-    background: linear-gradient(to right, rgba(212, 175, 55, 0.3) 0%, rgba(255, 255, 255, 0.05) 40%, transparent 100%);
+    background: linear-gradient(to right, rgba(212, 175, 55, 0.3) 0%, rgba(255, 255, 255, 0.05) 50%, transparent 100%);
 }
 
 /* Responsive */
-@media (max-width: 768px) {
-    .inner-page-hero {
-        padding-top: calc(80px + 3rem);
-        padding-bottom: 3rem;
+@media (max-width: 900px) {
+    .inner-page-hero__content {
+        grid-template-columns: 1fr;
+    }
+
+    .inner-page-hero__meta {
+        grid-column: 1;
+        grid-row: auto;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: flex-start;
+        margin-top: 3rem;
+    }
+
+    .inner-page-hero__meta-stat {
+        text-align: left;
+    }
+
+    .inner-page-hero__meta-divider {
+        width: 40px;
+        height: 1px;
+        background: linear-gradient(to right, rgba(212, 175, 55, 0.4), transparent);
+        align-self: center;
     }
 
     .inner-page-hero__title {
-        font-size: clamp(2.8rem, 10vw, 4rem);
-    }
-
-    .inner-page-hero__subtitle {
-        font-size: 1rem;
+        font-size: clamp(3rem, 10vw, 5rem);
     }
 
     .inner-page-hero::before {
-        font-size: 8rem;
+        font-size: 10rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .inner-page-hero {
+        padding-top: calc(80px + 2.5rem);
+        padding-bottom: 2.5rem;
+    }
+
+    .inner-page-hero__title {
+        font-size: clamp(2.5rem, 12vw, 3.5rem);
     }
 }
 
@@ -246,3 +328,104 @@ main {
     border-color: rgba(212, 175, 55, 0.4);
     background: rgba(212, 175, 55, 0.02);
 }
+/* Ensure meta divider shows properly */
+.inner-page-hero__meta-divider {
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(to bottom, rgba(212,175,55,0.4), transparent);
+}
+@media (max-width: 900px) {
+    .inner-page-hero__meta-divider {
+        width: 40px;
+        height: 1px;
+        background: linear-gradient(to right, rgba(212,175,55,0.4), transparent);
+        align-self: center;
+    }
+}
+
+/* ============================================================
+   LIGHTBOX FIX
+   ============================================================ */
+.portfolio-pro-lightbox {
+    display: none; /* Hidden by default */
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(5, 5, 5, 0.98) !important;
+    backdrop-filter: blur(10px);
+    z-index: 9999 !important;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.portfolio-pro-lightbox .lightbox-content {
+    position: relative;
+    max-width: 85vw;
+    max-height: 85vh;
+    background: transparent !important; /* override the old white box */
+    box-shadow: none !important;
+}
+
+.portfolio-pro-lightbox .lightbox-image {
+    max-width: 100%;
+    max-height: 75vh;
+    object-fit: contain;
+    border-radius: 4px;
+}
+
+.portfolio-pro-lightbox .lightbox-caption {
+    background: transparent !important;
+    color: #fff !important;
+    text-align: center;
+    padding: 1.5rem 0 0 0 !important;
+}
+
+.portfolio-pro-lightbox #lightbox-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-style: italic;
+    color: #d4af37;
+    margin-bottom: 0.5rem;
+}
+
+.portfolio-pro-lightbox #lightbox-description {
+    color: rgba(255,255,255,0.6);
+    font-size: 0.9rem;
+}
+
+.portfolio-pro-lightbox .lightbox-close {
+    position: absolute;
+    top: 2rem;
+    right: 3rem;
+    background: transparent !important;
+    color: rgba(255,255,255,0.5) !important;
+    font-size: 2.5rem;
+    border: none;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+.portfolio-pro-lightbox .lightbox-close:hover {
+    color: #d4af37 !important;
+    transform: scale(1.1);
+}
+
+.portfolio-pro-lightbox .lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent !important;
+    border: none;
+    color: rgba(255,255,255,0.3);
+    font-size: 3rem;
+    cursor: pointer;
+    padding: 1rem;
+    transition: color 0.3s ease;
+}
+.portfolio-pro-lightbox .lightbox-nav:hover {
+    color: #d4af37;
+}
+.portfolio-pro-lightbox .lightbox-prev { left: 2rem; }
+.portfolio-pro-lightbox .lightbox-next { right: 2rem; }
