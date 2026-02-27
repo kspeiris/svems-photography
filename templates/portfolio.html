@@ -1,16 +1,16 @@
 {% extends "base.html" %}
 
 {% block content %}
-<section class="portfolio-pro-hero pro-hero relative overflow-hidden bg-slate-950 py-20 text-white md:py-24" aria-labelledby="portfolio-pro-title">
+<section class="portfolio-pro-hero relative overflow-hidden bg-slate-950 py-20 text-white md:py-24" aria-labelledby="portfolio-pro-title">
     <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(14,116,144,0.5),transparent_50%)]"></div>
-    <div class="container portfolio-pro-hero-inner pro-hero-inner mx-auto max-w-6xl px-4 md:px-6">
-        <p class="portfolio-pro-eyebrow pro-eyebrow text-sm font-semibold uppercase tracking-[0.22em] text-cyan-200">Selected Work</p>
-        <h1 class="portfolio-pro-title pro-title mt-4 max-w-4xl font-display text-4xl font-bold leading-tight md:text-5xl" id="portfolio-pro-title">A curated collection of portraits, landscapes, and story-driven moments.</h1>
-        <p class="portfolio-pro-subtitle pro-subtitle mt-5 max-w-3xl text-lg text-slate-200">Each image reflects a balance of composition, natural light, and emotional detail.</p>
+    <div class="container portfolio-pro-hero-inner mx-auto max-w-6xl px-4 md:px-6">
+        <p class="portfolio-pro-eyebrow text-sm font-semibold uppercase tracking-[0.22em] text-cyan-200">Selected Work</p>
+        <h1 class="portfolio-pro-title mt-4 max-w-4xl font-display text-4xl font-bold leading-tight md:text-5xl" id="portfolio-pro-title">A curated collection of portraits, landscapes, and story-driven moments.</h1>
+        <p class="portfolio-pro-subtitle mt-5 max-w-3xl text-lg text-slate-200">Each image reflects a balance of composition, natural light, and emotional detail.</p>
     </div>
 </section>
 
-<section class="portfolio-pro-content pro-content py-14 md:py-16" aria-labelledby="portfolio-pro-title">
+<section class="portfolio-pro-content py-14 md:py-16" aria-labelledby="portfolio-pro-title">
     <div class="container mx-auto max-w-6xl px-4 md:px-6">
         <div class="portfolio-pro-toolbar mb-6 flex flex-wrap items-center justify-between gap-3">
             <div class="category-filter portfolio-pro-filter flex flex-wrap gap-2" role="tablist" aria-label="Portfolio categories">
@@ -53,10 +53,10 @@
 
 <section class="portfolio-pro-cta py-14 md:py-16" aria-labelledby="portfolio-cta-title">
     <div class="container mx-auto max-w-6xl px-4 md:px-6">
-    <div class="pro-cta-block rounded-3xl bg-slate-900 px-6 py-10 text-center text-white shadow-xl md:px-10">
+    <div class="rounded-3xl bg-slate-900 px-6 py-10 text-center text-white shadow-xl md:px-10">
         <h2 id="portfolio-cta-title" class="font-display text-3xl font-bold md:text-4xl">Interested In A Session Like These?</h2>
         <p class="mx-auto mt-3 max-w-2xl text-slate-200">Let's plan a shoot that fits your style, timeline, and story.</p>
-        <div class="pro-cta-actions mt-6 flex flex-wrap items-center justify-center gap-3">
+        <div class="mt-6 flex flex-wrap items-center justify-center gap-3">
             <a href="{{ url_for('contact') }}" class="btn btn-primary rounded-xl px-6 py-3 font-semibold">Start A Project</a>
             <a href="{{ url_for('about') }}" class="btn btn-outline rounded-xl border border-white/40 px-6 py-3 font-semibold text-white hover:bg-white/10">About The Photographer</a>
         </div>

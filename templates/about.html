@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 
 {% block content %}
-<section class="about-pro-hero pro-hero relative overflow-hidden bg-slate-950 py-20 text-white md:py-24" aria-labelledby="about-pro-title">
+<section class="about-pro-hero relative overflow-hidden bg-slate-950 py-20 text-white md:py-24" aria-labelledby="about-pro-title">
     <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(6,182,212,0.35),transparent_45%)]"></div>
-    <div class="container about-pro-hero-inner pro-hero-inner mx-auto max-w-6xl px-4 md:px-6">
-        <p class="about-pro-eyebrow pro-eyebrow text-sm font-semibold uppercase tracking-[0.22em] text-cyan-200">About Svems</p>
-        <h1 class="about-pro-title pro-title mt-4 max-w-4xl font-display text-4xl font-bold leading-tight md:text-5xl" id="about-pro-title">I create elegant, story-first photography for people who care about meaning, not just images.</h1>
-        <p class="about-pro-subtitle pro-subtitle mt-5 max-w-3xl text-lg text-slate-200">From portraits to live events, my approach blends editorial composition with natural emotion so every frame feels intentional and timeless.</p>
+    <div class="container about-pro-hero-inner mx-auto max-w-6xl px-4 md:px-6">
+        <p class="about-pro-eyebrow text-sm font-semibold uppercase tracking-[0.22em] text-cyan-200">About Svems</p>
+        <h1 class="about-pro-title mt-4 max-w-4xl font-display text-4xl font-bold leading-tight md:text-5xl" id="about-pro-title">I create elegant, story-first photography for people who care about meaning, not just images.</h1>
+        <p class="about-pro-subtitle mt-5 max-w-3xl text-lg text-slate-200">From portraits to live events, my approach blends editorial composition with natural emotion so every frame feels intentional and timeless.</p>
     </div>
 </section>
 
@@ -202,10 +202,10 @@
 
 <section class="about-pro-cta py-14 md:py-16" aria-labelledby="about-cta-title">
     <div class="container mx-auto max-w-6xl px-4 md:px-6">
-    <div class="about-pro-cta-inner pro-cta-block rounded-3xl bg-slate-900 px-6 py-10 text-center text-white shadow-xl md:px-10">
+    <div class="about-pro-cta-inner rounded-3xl bg-slate-900 px-6 py-10 text-center text-white shadow-xl md:px-10">
         <h2 id="about-cta-title" class="font-display text-3xl font-bold md:text-4xl">Ready to Create Something Memorable?</h2>
         <p class="mx-auto mt-3 max-w-2xl text-slate-200">Let's turn your vision into a focused, beautifully executed photo story.</p>
-        <div class="about-pro-cta-actions pro-cta-actions mt-6 flex flex-wrap items-center justify-center gap-3">
+        <div class="about-pro-cta-actions mt-6 flex flex-wrap items-center justify-center gap-3">
             <a href="{{ url_for('contact') }}" class="btn btn-primary rounded-xl px-6 py-3 font-semibold">Book a Session</a>
             <a href="{{ url_for('portfolio') }}" class="btn btn-outline rounded-xl border border-white/40 px-6 py-3 font-semibold text-white hover:bg-white/10">View Portfolio</a>
         </div></div>

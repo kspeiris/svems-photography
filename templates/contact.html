@@ -1,16 +1,16 @@
 {% extends "base.html" %}
 
 {% block content %}
-<section class="contact-pro-hero pro-hero relative overflow-hidden bg-slate-950 py-20 text-white md:py-24" aria-labelledby="contact-pro-title">
+<section class="contact-pro-hero relative overflow-hidden bg-slate-950 py-20 text-white md:py-24" aria-labelledby="contact-pro-title">
     <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(6,182,212,0.35),transparent_46%)]"></div>
-    <div class="container contact-pro-hero-inner pro-hero-inner mx-auto max-w-6xl px-4 md:px-6">
-        <p class="contact-pro-eyebrow pro-eyebrow text-sm font-semibold uppercase tracking-[0.22em] text-cyan-200">Let's Work Together</p>
-        <h1 class="contact-pro-title pro-title mt-4 max-w-4xl font-display text-4xl font-bold leading-tight md:text-5xl" id="contact-pro-title">Start your next shoot with a clear creative direction and a smooth process.</h1>
-        <p class="contact-pro-subtitle pro-subtitle mt-5 max-w-3xl text-lg text-slate-200">Tell me what you're planning, and I'll help shape it into meaningful visuals you'll be proud to share.</p>
+    <div class="container contact-pro-hero-inner mx-auto max-w-6xl px-4 md:px-6">
+        <p class="contact-pro-eyebrow text-sm font-semibold uppercase tracking-[0.22em] text-cyan-200">Let's Work Together</p>
+        <h1 class="contact-pro-title mt-4 max-w-4xl font-display text-4xl font-bold leading-tight md:text-5xl" id="contact-pro-title">Start your next shoot with a clear creative direction and a smooth process.</h1>
+        <p class="contact-pro-subtitle mt-5 max-w-3xl text-lg text-slate-200">Tell me what you're planning, and I'll help shape it into meaningful visuals you'll be proud to share.</p>
     </div>
 </section>
 
-<section class="contact-pro-content pro-content py-14 md:py-16" id="contact-content" aria-labelledby="contact-info-title">
+<section class="contact-pro-content py-14 md:py-16" id="contact-content" aria-labelledby="contact-info-title">
     <div class="container mx-auto max-w-6xl px-4 md:px-6">
         <div class="contact-pro-grid grid gap-6 md:grid-cols-2">
             <aside class="contact-pro-info rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
@@ -85,10 +85,10 @@
 
 <section class="contact-pro-cta py-14 md:py-16" aria-labelledby="contact-cta-title">
     <div class="container mx-auto max-w-6xl px-4 md:px-6">
-    <div class="pro-cta-block rounded-3xl bg-slate-900 px-6 py-10 text-center text-white shadow-xl md:px-10">
+    <div class="rounded-3xl bg-slate-900 px-6 py-10 text-center text-white shadow-xl md:px-10">
         <h2 id="contact-cta-title" class="font-display text-3xl font-bold md:text-4xl">Prefer To Explore First?</h2>
         <p class="mx-auto mt-3 max-w-2xl text-slate-200">View recent work and learn more about my process before booking.</p>
-        <div class="pro-cta-actions mt-6 flex flex-wrap items-center justify-center gap-3">
+        <div class="mt-6 flex flex-wrap items-center justify-center gap-3">
             <a href="{{ url_for('portfolio') }}" class="btn btn-primary rounded-xl px-6 py-3 font-semibold">Browse Portfolio</a>
             <a href="{{ url_for('about') }}" class="btn btn-outline rounded-xl border border-white/40 px-6 py-3 font-semibold text-white hover:bg-white/10">Read About Me</a>
         </div>
