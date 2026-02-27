@@ -4,138 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Admin - Svems Photography{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@600;700&display=swap">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin-redesign.css') }}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <style>
-        /* Admin Login Page Style */
-        body.admin-login {
-            background: linear-gradient(135deg, #4a90e2, #7f8c8d);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-
-        .login-container {
-            background: rgba(255, 255, 255, 0.9);
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            max-width: 400px;
-            transition: transform 0.3s ease-in-out;
-        }
-
-        .login-card {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-        }
-
-        .login-header {
-            margin-bottom: 2rem;
-        }
-
-        .logo {
-            max-width: 100px;
-            margin-bottom: 1rem;
-        }
-
-        .login-header h1 {
-            font-size: 2rem;
-            color: #333;
-            margin: 0;
-        }
-
-        .login-header p {
-            font-size: 1rem;
-            color: #777;
-        }
-
-        .form-group {
-            width: 100%;
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            font-size: 1rem;
-            color: #333;
-            margin-bottom: 0.5rem;
-        }
-
-        .form-group input {
-            width: 100%;
-            padding: 1rem;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-size: 1rem;
-            outline: none;
-            transition: all 0.3s ease;
-            background-color: rgba(0, 100, 0, 0.1); /* Custom background color */
-            color: #333; /* Text color */
-        }
-
-        .form-group input:focus {
-            border-color: #4a90e2; /* Focused border color */
-            background-color: #f0f9ff; /* Light blue background on focus */
-        }
-
-        .btn {
-            width: 100%;
-            padding: 1rem;
-            background-color: #4a90e2;
-            color: white;
-            font-size: 1rem;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .btn:hover {
-            background-color: #357ab7;
-        }
-
-        .flash-messages {
-            width: 100%;
-            margin-bottom: 1rem;
-        }
-
-        .flash-message {
-            padding: 1rem;
-            margin-bottom: 1rem;
-            border-radius: 8px;
-            color: white;
-            text-align: center;
-            font-size: 1rem;
-        }
-
-        .flash-message.success {
-            background-color: #28a745;
-        }
-
-        .flash-message.error {
-            background-color: #dc3545;
-        }
-
-        .flash-message.info {
-            background-color: #4299e1;
-        }
-
-        /* Animation for login card */
-        .login-container {
-            animation: fadeIn 1s ease-out;
-        }
-
-        @keyframes fadeIn {
-            0% { opacity: 0; transform: scale(0.9); }
-            100% { opacity: 1; transform: scale(1); }
-        }
-    </style>
 </head>
 <body class="admin-login">
     <div class="login-container">
@@ -145,35 +20,36 @@
                 <h1>Svems Admin</h1>
                 <p>Sign in to your account</p>
             </div>
-            
+
             {% with messages = get_flashed_messages(with_categories=true) %}
-                {% if messages %}
-                    <div class="flash-messages">
-                        {% for category, message in messages %}
-                            <div class="flash-message {{ category }}">{{ message }}</div>
-                        {% endfor %}
-                    </div>
-                {% endif %}
+            {% if messages %}
+            <div class="flash-messages">
+                {% for category, message in messages %}
+                <div class="flash-message {{ category }}">{{ message }}</div>
+                {% endfor %}
+            </div>
+            {% endif %}
             {% endwith %}
-            
+
             <form action="{{ url_for('admin_login') }}" method="POST" class="login-form">
                 <div class="form-group">
                     <label for="username">Username</label>
                     <input type="text" id="username" name="username" required>
                 </div>
-                
+
                 <div class="form-group">
                     <label for="password">Password</label>
                     <input type="password" id="password" name="password" required>
                 </div>
-                
+
                 <button type="submit" class="btn btn-primary btn-block">Sign In</button>
             </form>
-            
+
             <div class="login-footer">
-                <a href="{{ url_for('home') }}">← Back to Website</a>
+                <a href="{{ url_for('home') }}">&larr; Back to Website</a>
             </div>
         </div>
     </div>
 </body>
 </html>
+
