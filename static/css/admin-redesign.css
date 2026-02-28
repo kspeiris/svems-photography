@@ -284,3 +284,151 @@ body.admin-dark {
     outline-offset: 2px;
     border-radius: 8px;
 }
+
+/* Theme alignment overrides: make admin follow public dark luxury palette */
+body.admin-dark {
+    background:
+        radial-gradient(circle at 0% 0%, rgba(8, 47, 73, 0.32), transparent 40%),
+        radial-gradient(circle at 100% 0%, rgba(15, 23, 42, 0.35), transparent 35%),
+        #020617;
+}
+
+.admin-dark .admin-sidebar {
+    background: linear-gradient(180deg, #020617, #0f172a);
+    border-right: 1px solid #1e293b;
+}
+
+.admin-dark .admin-sidebar .brand {
+    border-bottom-color: #23324a;
+}
+
+.admin-dark .admin-sidebar .nav-links a {
+    color: #cbd5e1;
+}
+
+.admin-dark .admin-sidebar .nav-links a:hover,
+.admin-dark .admin-sidebar .nav-links a.active {
+    background: rgba(34, 211, 238, 0.14);
+    color: #e0f2fe;
+}
+
+.admin-dark .admin-header,
+.admin-dark .admin-content,
+.admin-dark .admin-page-stat-card,
+.admin-dark .admin-table-panel,
+.admin-dark .admin-gallery-list,
+.admin-dark .admin-upload-section,
+.admin-dark .admin-empty-state,
+.admin-dark .admin-card,
+.admin-dark .admin-table-wrap {
+    background: #0b1220 !important;
+    border-color: #23324a !important;
+    color: #e2e8f0;
+}
+
+.admin-dark .admin-page-header {
+    background: linear-gradient(135deg, #0e7490, #0f766e) !important;
+    border-color: rgba(103, 232, 249, 0.45) !important;
+}
+
+.admin-dark .admin-page-title,
+.admin-dark .admin-page-section-title,
+.admin-dark .admin-page-stat-number,
+.admin-dark .admin-label,
+.admin-dark .admin-form h3 {
+    color: #f8fafc !important;
+}
+
+.admin-dark .admin-page-subtitle,
+.admin-dark .admin-page-stat-label,
+.admin-dark .admin-upload-hint,
+.admin-dark .admin-empty-state p,
+.admin-dark .admin-form p,
+.admin-dark .text-slate-500,
+.admin-dark .text-slate-600,
+.admin-dark .text-slate-700 {
+    color: #94a3b8 !important;
+}
+
+.admin-dark .admin-input,
+.admin-dark input,
+.admin-dark textarea,
+.admin-dark select {
+    background: #0f172a !important;
+    color: #e2e8f0 !important;
+    border-color: #334155 !important;
+}
+
+.admin-dark .admin-input::placeholder,
+.admin-dark input::placeholder,
+.admin-dark textarea::placeholder {
+    color: #94a3b8;
+}
+
+.admin-dark .admin-input:focus,
+.admin-dark input:focus,
+.admin-dark textarea:focus,
+.admin-dark select:focus {
+    border-color: #22d3ee !important;
+    box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.2) !important;
+}
+
+.admin-dark .table th {
+    background: #111b2e;
+}
+
+.admin-dark .table tr:hover,
+.admin-dark .admin-row-hover:hover,
+.admin-dark .hover\:bg-slate-50:hover {
+    background: #16233a !important;
+}
+
+.admin-dark .bg-white,
+.admin-dark .bg-slate-50,
+.admin-dark .bg-cyan-50\/40,
+.admin-dark .bg-cyan-50,
+.admin-dark .bg-amber-50 {
+    background-color: transparent !important;
+}
+
+.admin-dark .border-slate-100,
+.admin-dark .border-slate-200,
+.admin-dark .border-slate-300,
+.admin-dark .border-cyan-300,
+.admin-dark .border-amber-200 {
+    border-color: #23324a !important;
+}
+
+.admin-dark .text-slate-900,
+.admin-dark .text-cyan-700,
+.admin-dark .text-amber-700 {
+    color: #f8fafc !important;
+}
+
+.admin-dark .admin-btn-mark,
+.admin-dark .btn-primary {
+    background: linear-gradient(135deg, #06b6d4, #0e7490);
+    color: #f8fafc;
+}
+
+.admin-dark .admin-btn-delete,
+.admin-dark .btn-danger {
+    background: #dc2626;
+    color: #fee2e2;
+}
+
+.admin-dark .btn-secondary {
+    background: rgba(15, 23, 42, 0.8);
+    color: #cbd5e1;
+    border: 1px solid #334155;
+}
+
+.admin-dark .btn-outline {
+    border: 1px solid #22d3ee;
+    color: #67e8f9;
+}
+
+.admin-dark .btn-outline:hover {
+    background: rgba(34, 211, 238, 0.16);
+    color: #cffafe;
+}
