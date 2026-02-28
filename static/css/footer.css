@@ -122,6 +122,13 @@ main {
     }
 
     #mobileOverlay {
+        position: fixed !important;
+        inset: 0 !important;
+        width: 100vw;
+        height: 100dvh;
+        display: none;
+        z-index: 2100;
+        overflow-y: auto;
         transform: translateX(100%);
         opacity: 0;
         visibility: hidden;
@@ -130,6 +137,7 @@ main {
     }
 
     #mobileOverlay.is-open {
+        display: block !important;
         transform: translateX(0);
         opacity: 1;
         visibility: visible;
@@ -149,13 +157,23 @@ main {
     }
 
     .mobile-menu-inner {
+        min-height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 2.5rem;
         padding-top: calc(5.5rem + env(safe-area-inset-top));
+        padding-bottom: 3rem;
         position: relative;
         z-index: 2;
     }
 
     .mobile-link {
         display: inline-block;
+        color: rgba(255, 255, 255, 0.78);
+        font-size: clamp(2rem, 8vw, 2.6rem);
+        text-decoration: none;
         padding: 0.25rem 0.5rem;
         line-height: 1.1;
     }

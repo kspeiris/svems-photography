@@ -56,6 +56,16 @@ document.addEventListener('DOMContentLoaded', function () {
         document.addEventListener('keydown', function (event) {
             if (event.key === 'Escape') closeMenu();
         });
+
+        const desktopMediaQuery = window.matchMedia('(min-width: 768px)');
+        function handleDesktopBreakpoint(event) {
+            if (event.matches) closeMenu();
+        }
+        if (typeof desktopMediaQuery.addEventListener === 'function') {
+            desktopMediaQuery.addEventListener('change', handleDesktopBreakpoint);
+        } else if (typeof desktopMediaQuery.addListener === 'function') {
+            desktopMediaQuery.addListener(handleDesktopBreakpoint);
+        }
     }
 
     window.addEventListener('scroll', function () {

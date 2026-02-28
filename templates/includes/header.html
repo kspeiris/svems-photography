@@ -1,12 +1,10 @@
 <nav class="navbar transition-all duration-500">
     <div class="luxury-container flex items-center justify-between h-full">
-        <a href="{{ url_for('home') }}" class="nav-logo flex items-center gap-4 group" aria-label="Svems home">
-            <div class="logo-box border border-white/10 px-3 py-2 group-hover:border-amber-500/50 transition-colors">
+        <a href="{{ url_for('home') }}" class="nav-logo flex items-center group" aria-label="Svems home">
+            <div class="logo-box border border-white/10 px-2 py-1.5 sm:px-3 sm:py-1 group-hover:border-amber-500/50 transition-colors">
                 <img src="{{ url_for('static', filename='images/svems.jpg') }}" alt="Svems Logo"
-                    class="w-28 h-12 object-contain grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all">
+                    class="w-20 h-9 sm:w-28 sm:h-12 object-contain grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all">
             </div>
-            <span
-                class="brand-name font-display text-xl tracking-[0.2em] font-light text-white group-hover:text-amber-500 transition-colors uppercase">Svems</span>
         </a>
 
         <div class="nav-menu hidden md:flex items-center gap-12" id="navMenu">
