@@ -17,7 +17,7 @@
         <aside class="inner-page-hero__meta scroll-reveal reveal-delay-3" aria-label="Contact facts">
             <div class="inner-page-hero__meta-divider"></div>
             <div class="inner-page-hero__meta-stat">
-                <strong>24h</strong>
+                <strong>{{ site_settings.get('contact_response_time', '24h') }}</strong>
                 <span>Response</span>
             </div>
             <div class="inner-page-hero__meta-divider"></div>
@@ -48,7 +48,7 @@
                 <h2 class="font-display italic text-4xl text-white mb-12">Direct Line</h2>
 
                 <div class="space-y-0 mb-16">
-                    <a href="mailto:pulindu@svems.com"
+                    <a href="mailto:{{ site_settings.get('contact_email', 'pulindu@svems.com') }}"
                         class="contact-item-luxury group flex items-start gap-6 py-8 border-b border-white/5 hover:border-amber-500/20 transition-all">
                         <div class="w-10 flex-shrink-0 mt-1">
                             <i
@@ -58,12 +58,12 @@
                             <span
                                 class="block text-[0.6rem] uppercase tracking-[0.4em] text-white/25 font-bold mb-2">Email</span>
                             <span
-                                class="text-white/60 group-hover:text-white transition-colors">pulindu@svems.com</span>
+                                class="text-white/60 group-hover:text-white transition-colors">{{ site_settings.get('contact_email', 'pulindu@svems.com') }}</span>
                         </div>
                         <i
                             class="fas fa-arrow-right ml-auto text-white/10 group-hover:text-amber-500 transition-all group-hover:translate-x-2"></i>
                     </a>
-                    <a href="tel:+94771234567"
+                    <a href="tel:{{ site_settings.get('contact_phone', '+94 77 123 4567')|replace(' ', '') }}"
                         class="contact-item-luxury group flex items-start gap-6 py-8 border-b border-white/5 hover:border-amber-500/20 transition-all">
                         <div class="w-10 flex-shrink-0 mt-1">
                             <i class="fas fa-phone text-amber-500/50 group-hover:text-amber-500 transition-colors"></i>
@@ -71,7 +71,7 @@
                         <div>
                             <span
                                 class="block text-[0.6rem] uppercase tracking-[0.4em] text-white/25 font-bold mb-2">Phone</span>
-                            <span class="text-white/60 group-hover:text-white transition-colors">+94 77 123 4567</span>
+                            <span class="text-white/60 group-hover:text-white transition-colors">{{ site_settings.get('contact_phone', '+94 77 123 4567') }}</span>
                         </div>
                         <i
                             class="fas fa-arrow-right ml-auto text-white/10 group-hover:text-amber-500 transition-all group-hover:translate-x-2"></i>
@@ -83,23 +83,23 @@
                         <div>
                             <span
                                 class="block text-[0.6rem] uppercase tracking-[0.4em] text-white/25 font-bold mb-2">Location</span>
-                            <span class="text-white/60">Colombo, Sri Lanka</span>
+                            <span class="text-white/60">{{ site_settings.get('contact_address', 'Colombo, Sri Lanka') }}</span>
                         </div>
                     </div>
                 </div>
 
                 <div class="flex gap-5">
-                    <a href="#"
+                    <a href="{{ site_settings.get('instagram_url', '#') }}"
                         class="social-icon-luxury group p-3 border border-white/5 hover:border-amber-500/30 transition-all"
                         aria-label="Instagram">
                         <i class="fab fa-instagram text-white/30 group-hover:text-amber-500 transition-colors"></i>
                     </a>
-                    <a href="#"
+                    <a href="{{ site_settings.get('facebook_url', '#') }}"
                         class="social-icon-luxury group p-3 border border-white/5 hover:border-amber-500/30 transition-all"
                         aria-label="Facebook">
                         <i class="fab fa-facebook text-white/30 group-hover:text-amber-500 transition-colors"></i>
                     </a>
-                    <a href="#"
+                    <a href="{{ site_settings.get('twitter_url', '#') }}"
                         class="social-icon-luxury group p-3 border border-white/5 hover:border-amber-500/30 transition-all"
                         aria-label="Twitter">
                         <i class="fab fa-twitter text-white/30 group-hover:text-amber-500 transition-colors"></i>

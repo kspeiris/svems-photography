@@ -37,48 +37,72 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 
-<body class="dark-theme admin-dark font-sans antialiased text-slate-100 bg-slate-950">
+<body class="dark-theme admin-dark admin-body font-sans antialiased text-slate-100 bg-slate-950">
     <div class="admin-layout">
-        <aside class="admin-sidebar">
-            <div class="brand">
-                <img src="{{ url_for('static', filename='images/svems.jpg') }}" alt="Svems Logo" class="logo">
-                <span class="brand-name font-display">Svems Admin</span>
+        <aside class="admin-sidebar" id="adminSidebar">
+            <div class="brand admin-brand">
+                <a href="{{ url_for('admin_dashboard') }}" class="admin-brand-link" aria-label="Svems Admin Dashboard">
+                    <span class="admin-brand-logo-wrap">
+                        <img src="{{ url_for('static', filename='images/svems.jpg') }}" alt="Svems Logo" class="logo admin-brand-logo">
+                    </span>
+                    <span class="admin-brand-copy">
+                        <span class="admin-brand-title font-display">Admin Workspace</span>
+                        <span class="admin-brand-subtitle">Secure Studio Tools</span>
+                    </span>
+                </a>
             </div>
-            <ul class="nav-links text-sm">
-                <li><a href="{{ url_for('admin_dashboard') }}"
+            <div class="admin-nav-section">
+                <p class="admin-nav-title">Management</p>
+                <ul class="nav-links text-sm">
+                    <li><a href="{{ url_for('admin_dashboard') }}"
                         class="{% if request.endpoint == 'admin_dashboard' %}active{% endif %}">
                         <i class="fas fa-tachometer-alt"></i> Dashboard
                     </a></li>
-                <li><a href="{{ url_for('admin_gallery') }}"
+                    <li><a href="{{ url_for('admin_gallery') }}"
                         class="{% if request.endpoint == 'admin_gallery' %}active{% endif %}">
                         <i class="fas fa-images"></i> Gallery
                     </a></li>
-                <li><a href="{{ url_for('admin_messages') }}"
+                    <li><a href="{{ url_for('admin_messages') }}"
                         class="{% if request.endpoint == 'admin_messages' %}active{% endif %}">
                         <i class="fas fa-envelope"></i> Messages
                     </a></li>
-                <li><a href="{{ url_for('admin_settings') }}"
+                    <li><a href="{{ url_for('admin_settings') }}"
                         class="{% if request.endpoint == 'admin_settings' %}active{% endif %}">
                         <i class="fas fa-cog"></i> Settings
                     </a></li>
-                <li><a href="{{ url_for('home') }}" target="_blank">
+                </ul>
+            </div>
+            <div class="admin-nav-section">
+                <p class="admin-nav-title">Workspace</p>
+                <ul class="nav-links text-sm">
+                    <li><a href="{{ url_for('home') }}" target="_blank">
                         <i class="fas fa-external-link-alt"></i> View Site
                     </a></li>
-                <li>
-                    <form action="{{ url_for('admin_logout') }}" method="POST" class="admin-inline-form">
-                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-                        <button type="submit"
-                            class="w-full cursor-pointer border-0 bg-transparent p-0 text-left text-inherit">
-                            <i class="fas fa-sign-out-alt"></i> Logout
-                        </button>
-                    </form>
-                </li>
-            </ul>
+                    <li>
+                        <form action="{{ url_for('admin_logout') }}" method="POST" class="admin-inline-form">
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                            <button type="submit"
+                                class="w-full cursor-pointer border-0 bg-transparent p-0 text-left text-inherit">
+                                <i class="fas fa-sign-out-alt"></i> Logout
+                            </button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+            <div class="admin-sidebar-foot">
+                <p>Studio administration panel with secure tools for portfolio, messages, and settings.</p>
+            </div>
         </aside>
+        <div id="adminSidebarBackdrop" class="admin-sidebar-backdrop"></div>
 
         <main class="admin-main">
             <header class="admin-header px-6 py-5">
-                <h1 class="font-display text-xl md:text-2xl">{% block page_title %}Admin Panel{% endblock %}</h1>
+                <div class="flex items-center gap-3">
+                    <button type="button" id="adminSidebarToggle" class="admin-sidebar-toggle md:hidden" aria-label="Toggle admin navigation" aria-expanded="false">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1 class="font-display text-xl md:text-2xl">{% block page_title %}Admin Panel{% endblock %}</h1>
+                </div>
                 <div class="admin-user text-slate-600">
                     <span>Welcome, {{ current_user.username }}</span>
                 </div>
@@ -101,6 +125,7 @@
     </div>
 
     <script src="{{ url_for('static', filename='js/main.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='js/admin.js') }}" defer></script>
     {% block scripts %}{% endblock %}
 </body>
 

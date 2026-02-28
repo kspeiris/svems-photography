@@ -80,7 +80,56 @@
                                 class="w-full rounded-lg border border-slate-300 px-4 py-2 focus:border-amber-500 focus:outline-none"
                                 value="{{ settings.get('facebook_url', '') }}" placeholder="https://facebook.com/...">
                         </div>
+
+                        <div class="form-group">
+                            <label for="twitter_url" class="block text-sm font-semibold mb-1">Twitter/X URL</label>
+                            <input type="url" id="twitter_url" name="twitter_url"
+                                class="w-full rounded-lg border border-slate-300 px-4 py-2 focus:border-amber-500 focus:outline-none"
+                                value="{{ settings.get('twitter_url', '') }}" placeholder="https://x.com/...">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="linkedin_url" class="block text-sm font-semibold mb-1">LinkedIn URL</label>
+                            <input type="url" id="linkedin_url" name="linkedin_url"
+                                class="w-full rounded-lg border border-slate-300 px-4 py-2 focus:border-amber-500 focus:outline-none"
+                                value="{{ settings.get('linkedin_url', '') }}" placeholder="https://linkedin.com/in/...">
+                        </div>
                     </div>
+                </div>
+
+                <div class="space-y-4 md:col-span-2">
+                    <h3 class="font-display text-xl font-semibold border-b border-slate-100 pb-2 mt-4">Public Page Content</h3>
+
+                    <div class="form-group">
+                        <label for="portfolio_intro" class="block text-sm font-semibold mb-1">Portfolio Intro</label>
+                        <textarea id="portfolio_intro" name="portfolio_intro"
+                            class="w-full rounded-lg border border-slate-300 px-4 py-2 focus:border-amber-500 focus:outline-none"
+                            rows="3">{{ settings.get('portfolio_intro', '') }}</textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="about_intro" class="block text-sm font-semibold mb-1">About Intro</label>
+                        <textarea id="about_intro" name="about_intro"
+                            class="w-full rounded-lg border border-slate-300 px-4 py-2 focus:border-amber-500 focus:outline-none"
+                            rows="3">{{ settings.get('about_intro', '') }}</textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contact_response_time" class="block text-sm font-semibold mb-1">Contact Response Time Label</label>
+                        <input type="text" id="contact_response_time" name="contact_response_time"
+                            class="w-full rounded-lg border border-slate-300 px-4 py-2 focus:border-amber-500 focus:outline-none"
+                            value="{{ settings.get('contact_response_time', '24h') }}" placeholder="24h">
+                    </div>
+                </div>
+            </div>
+
+            <div class="rounded-xl border border-slate-200 bg-slate-50 p-4">
+                <p class="text-xs font-semibold uppercase tracking-wide text-slate-500">Public Page References</p>
+                <div class="mt-3 flex flex-wrap gap-2">
+                    <a href="{{ url_for('home') }}" target="_blank" class="rounded-lg border border-slate-300 px-3 py-2 text-xs font-semibold">Home</a>
+                    <a href="{{ url_for('portfolio') }}" target="_blank" class="rounded-lg border border-slate-300 px-3 py-2 text-xs font-semibold">Portfolio</a>
+                    <a href="{{ url_for('about') }}" target="_blank" class="rounded-lg border border-slate-300 px-3 py-2 text-xs font-semibold">About</a>
+                    <a href="{{ url_for('contact') }}" target="_blank" class="rounded-lg border border-slate-300 px-3 py-2 text-xs font-semibold">Contact</a>
                 </div>
             </div>
 

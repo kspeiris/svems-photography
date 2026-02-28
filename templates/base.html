@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Svems Photography - Professional Photography by Pulindu Peiris{% endblock %}</title>
+    <title>{% block title %}{{ site_settings.get('site_title', 'Svems') }} Photography - Professional Photography by Pulindu Peiris{% endblock %}</title>
     <meta name="description"
         content="Professional photography services by Pulindu Peiris. Specializing in portraits, landscapes, events, and commercial photography.">
     <meta name="theme-color" content="#d4af37">

@@ -6,20 +6,47 @@
     <p class="admin-page-subtitle mt-2 text-cyan-50">Welcome back, {{ current_user.username }}!</p>
 </div>
 
-<div class="admin-page-stats mt-6 grid gap-4 md:grid-cols-3">
+<div class="admin-page-stats mt-6 grid gap-4 md:grid-cols-4">
     <div class="admin-page-stat-card rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
         <span class="admin-page-stat-number block text-4xl font-bold text-slate-900">{{ stats.total_images }}</span>
         <span class="admin-page-stat-label mt-1 block text-slate-500">Total Images</span>
     </div>
-    
+
+    <div class="admin-page-stat-card rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+        <span class="admin-page-stat-number block text-4xl font-bold text-slate-900">{{ stats.featured_images }}</span>
+        <span class="admin-page-stat-label mt-1 block text-slate-500">Featured Images</span>
+    </div>
+
     <div class="admin-page-stat-card rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
         <span class="admin-page-stat-number block text-4xl font-bold text-slate-900">{{ stats.unread_messages }}</span>
         <span class="admin-page-stat-label mt-1 block text-slate-500">Unread Messages</span>
     </div>
-    
+
     <div class="admin-page-stat-card rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
         <span class="admin-page-stat-number block text-4xl font-bold text-slate-900">{{ stats.total_contacts }}</span>
         <span class="admin-page-stat-label mt-1 block text-slate-500">Total Contacts</span>
+    </div>
+</div>
+
+<div class="admin-page-section mt-8">
+    <h2 class="admin-page-section-title font-display text-2xl font-semibold text-slate-900">Public Page References</h2>
+    <div class="mt-4 grid gap-4 md:grid-cols-4">
+        <a href="{{ url_for('home') }}" target="_blank" class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm hover:border-cyan-400">
+            <p class="text-xs uppercase tracking-wide text-slate-500">Public</p>
+            <p class="mt-1 font-semibold text-slate-900">Home Page</p>
+        </a>
+        <a href="{{ url_for('portfolio') }}" target="_blank" class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm hover:border-cyan-400">
+            <p class="text-xs uppercase tracking-wide text-slate-500">Public</p>
+            <p class="mt-1 font-semibold text-slate-900">Portfolio ({{ stats.total_images }})</p>
+        </a>
+        <a href="{{ url_for('about') }}" target="_blank" class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm hover:border-cyan-400">
+            <p class="text-xs uppercase tracking-wide text-slate-500">Public</p>
+            <p class="mt-1 font-semibold text-slate-900">About Page</p>
+        </a>
+        <a href="{{ url_for('contact') }}" target="_blank" class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm hover:border-cyan-400">
+            <p class="text-xs uppercase tracking-wide text-slate-500">Public</p>
+            <p class="mt-1 font-semibold text-slate-900">Contact Page</p>
+        </a>
     </div>
 </div>
 
@@ -53,7 +80,7 @@
                         {% endif %}
                         <form action="{{ url_for('delete_message', message_id=message._id) }}" method="POST" class="admin-inline-form admin-inline-form-spaced">
                             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-                            <button type="submit" class="btn btn-danger btn-sm delete-btn admin-btn-delete rounded-lg px-3 py-2 text-xs font-semibold" onclick="return confirm('Are you sure you want to delete this message?')">Delete</button>
+                            <button type="submit" class="btn btn-danger btn-sm delete-btn admin-btn-delete rounded-lg px-3 py-2 text-xs font-semibold" data-confirm="Are you sure you want to delete this message?">Delete</button>
                         </form>
                     </td>
                 </tr>
@@ -64,6 +91,45 @@
     {% else %}
     <div class="empty-state admin-empty-state mt-4 rounded-2xl border border-slate-200 bg-white p-8 text-center text-slate-500 shadow-sm">
         <p>No recent messages</p>
+    </div>
+    {% endif %}
+</div>
+
+<div class="admin-page-section mt-8">
+    <h2 class="admin-page-section-title font-display text-2xl font-semibold text-slate-900">Recent Gallery Uploads</h2>
+    {% if stats.recent_images %}
+    <div class="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {% for image in stats.recent_images %}
+        <article class="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
+            <img src="{{ url_for('static', filename='uploads/' + image.filename) }}" alt="{{ image.title }}" class="h-44 w-full object-cover">
+            <div class="p-4">
+                <p class="font-semibold text-slate-900">{{ image.title }}</p>
+                <p class="mt-1 text-sm text-slate-500">{{ image.category }}</p>
+            </div>
+        </article>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="empty-state admin-empty-state mt-4 rounded-2xl border border-slate-200 bg-white p-8 text-center text-slate-500 shadow-sm">
+        <p>No recent uploads</p>
+    </div>
+    {% endif %}
+</div>
+
+<div class="admin-page-section mt-8">
+    <h2 class="admin-page-section-title font-display text-2xl font-semibold text-slate-900">Category Breakdown</h2>
+    {% if stats.categories %}
+    <div class="mt-4 grid gap-3 md:grid-cols-2">
+        {% for bucket in stats.categories %}
+        <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+            <p class="text-sm uppercase tracking-wide text-slate-500">{{ bucket._id or 'uncategorized' }}</p>
+            <p class="mt-1 text-2xl font-semibold text-slate-900">{{ bucket.count }}</p>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="empty-state admin-empty-state mt-4 rounded-2xl border border-slate-200 bg-white p-8 text-center text-slate-500 shadow-sm">
+        <p>No category data yet</p>
     </div>
     {% endif %}
 </div>
