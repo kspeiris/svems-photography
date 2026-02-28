@@ -7,7 +7,7 @@
 
 A modern photography portfolio and admin management platform built with Flask + MongoDB.
 
-![Svems Hero](static/images/hero-new.png)
+![Svems Hero](static/images/svemhero.png)
 
 ## ✨ Highlights
 
@@ -45,10 +45,7 @@ flowchart TD
 
 ### Core Data Flow
 
-1. User requests a page (`/`, `/portfolio`, `/contact`) -> Flask renders Jinja templates.
-2. Admin logs in via `/admin/login` -> session-based authentication via `Flask-Login`.
-3. Admin uploads an image -> Pillow resizes/optimizes -> file saved under `static/uploads/<category>/` -> metadata stored in MongoDB.
-4. Contact submissions are validated and stored, then managed in Admin Messages.
+![Svems Hero](static/images/svemarchi.png)
 
 ## 📁 Project Structure
 
@@ -243,20 +240,4 @@ git push -u origin feature/readme-improvements
 - File uploads are restricted by extension and processed before save.
 - Keep `.env` private and never commit real production secrets.
 
-## 📦 Production Notes
 
-This project includes `gunicorn` in dependencies for deployment. Typical command:
-
-```bash
-gunicorn app:app --bind 0.0.0.0:5000
-```
-
-Use a reverse proxy (e.g., Nginx) and secure environment variables for production.
-
-## 👤 Author
-
-**Pulindu / Svems**
-
----
-
-If you want, I can also add a `docs/architecture.png` diagram and wire this README to show that visual architecture image alongside the Mermaid chart.
