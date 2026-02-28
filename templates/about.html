@@ -1,220 +1,319 @@
-{% extends "base.html" %}
+﻿{% extends "base.html" %}
 
 {% block content %}
-<section class="about-pro-hero pro-hero relative overflow-hidden bg-slate-950 py-20 text-white md:py-24" aria-labelledby="about-pro-title">
-    <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(6,182,212,0.35),transparent_45%)]"></div>
-    <div class="container about-pro-hero-inner pro-hero-inner mx-auto max-w-6xl px-4 md:px-6">
-        <p class="about-pro-eyebrow pro-eyebrow text-sm font-semibold uppercase tracking-[0.22em] text-cyan-200">About Svems</p>
-        <h1 class="about-pro-title pro-title mt-4 max-w-4xl font-display text-4xl font-bold leading-tight md:text-5xl" id="about-pro-title">I create elegant, story-first photography for people who care about meaning, not just images.</h1>
-        <p class="about-pro-subtitle pro-subtitle mt-5 max-w-3xl text-lg text-slate-200">From portraits to live events, my approach blends editorial composition with natural emotion so every frame feels intentional and timeless.</p>
+
+<!-- Page Hero -->
+<section class="inner-page-hero" aria-label="About page header">
+    <div class="luxury-container inner-page-hero__content">
+        <span class="luxury-eyebrow scroll-reveal">About Svems</span>
+        <h1 class="inner-page-hero__title scroll-reveal reveal-delay-1">
+            I create images<br>
+            <span class="inner-page-hero__title--light">that last.</span>
+        </h1>
+        <p class="inner-page-hero__subtitle scroll-reveal reveal-delay-2">
+            {{ site_settings.get('about_intro', 'From intimate portraits to expansive landscapes - my approach blends editorial composition with genuine human emotion.') }}
+        </p>
+        <!-- Right Meta Panel -->
+        <aside class="inner-page-hero__meta scroll-reveal reveal-delay-3" aria-label="Studio facts">
+            <div class="inner-page-hero__meta-divider"></div>
+            <div class="inner-page-hero__meta-stat">
+                <strong>8+</strong>
+                <span>Years Active</span>
+            </div>
+            <div class="inner-page-hero__meta-divider"></div>
+            <div class="inner-page-hero__meta-stat">
+                <strong>500+</strong>
+                <span>Projects</span>
+            </div>
+            <div class="inner-page-hero__meta-divider"></div>
+            <div class="inner-page-hero__meta-stat">
+                <strong>100%</strong>
+                <span>Satisfaction</span>
+            </div>
+        </aside>
+    </div>
+    <div class="luxury-container">
+        <div class="inner-page-hero__line" aria-hidden="true"></div>
     </div>
 </section>
 
-<section class="about-pro-profile py-14 md:py-16" aria-labelledby="about-profile-title">
-    <div class="container mx-auto max-w-6xl px-4 md:px-6">
-        <div class="about-pro-profile-grid grid gap-8 md:grid-cols-2">
-            <div class="about-pro-images">
-                <div class="about-pro-main-image overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
-                    <img src="{{ url_for('static', filename='images/pulindu-about.jpg') }}" alt="Portrait of Pulindu Peiris" loading="lazy" decoding="async">
+<!-- Profile Section -->
+<section class="py-32 bg-[#050505]" aria-labelledby="about-profile-title">
+    <div class="luxury-container">
+        <div class="split-text-image">
+            <!-- Images -->
+            <div class="relative scroll-reveal">
+                <div class="aspect-[3/4] overflow-hidden">
+                    <img src="{{ url_for('static', filename='images/pulindu-about.jpg') }}"
+                        alt="Portrait of Pulindu Peiris"
+                        class="w-full h-full object-cover grayscale-[0.2] hover:grayscale-0 transition-all duration-1000">
                 </div>
-                <div class="about-pro-image-stack mt-4 grid gap-4 sm:grid-cols-2">
-                    <img src="{{ url_for('static', filename='images/about-1.jpg') }}" alt="Photography composition scene" loading="lazy" decoding="async">
-                    <img src="{{ url_for('static', filename='images/about-2.jpg') }}" alt="Camera and photography equipment" loading="lazy" decoding="async">
+                <div class="grid grid-cols-2 gap-4 mt-4">
+                    <div class="aspect-video overflow-hidden">
+                        <img src="{{ url_for('static', filename='images/about-1.jpg') }}"
+                            alt="Photography composition scene" class="w-full h-full object-cover grayscale-[0.3]">
+                    </div>
+                    <div class="aspect-video overflow-hidden">
+                        <img src="{{ url_for('static', filename='images/about-2.jpg') }}"
+                            alt="Camera and photography equipment" class="w-full h-full object-cover grayscale-[0.3]">
+                    </div>
                 </div>
             </div>
 
-            <div class="about-pro-copy rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-                <h2 id="about-profile-title" class="font-display text-3xl font-bold text-slate-900">Pulindu Peiris</h2>
-                <p class="about-pro-role mt-2 text-sm font-semibold uppercase tracking-wide text-cyan-700">Professional Photographer and Visual Storyteller</p>
-                <div class="about-pro-story">
-                    <p class="mt-4 text-slate-600">I build photographs around people first. Comfort, trust, and timing are the foundation of every strong image.</p>
-                    <p class="mt-3 text-slate-600">Over the last eight years, I've developed a style focused on clean light, rich tones, and emotional clarity that still feels natural.</p>
-                    <p class="mt-3 text-slate-600">My goal is simple: deliver work that still feels powerful years later, not just the day it's captured.</p>
+            <!-- Copy -->
+            <div class="scroll-reveal reveal-delay-1">
+                <span class="luxury-eyebrow">The Photographer</span>
+                <h2 id="about-profile-title" class="font-display text-5xl text-white mb-4">Pulindu Peiris</h2>
+                <p class="text-[0.65rem] uppercase tracking-[0.4em] text-amber-500 font-bold mb-10">Professional
+                    Photographer & Visual Storyteller</p>
+                <div class="space-y-6 text-white/50 text-lg font-light leading-loose">
+                    <p>I build photographs around people first. Comfort, trust, and timing are the foundation of every
+                        strong image.</p>
+                    <p>Over the last eight years, I've developed a style focused on clean light, rich tones, and
+                        emotional clarity that still feels natural.</p>
+                    <p>My goal is simple: deliver work that still feels powerful years later - not just the day it's
+                        captured.</p>
                 </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="about-pro-values py-14 md:py-16" aria-labelledby="values-title">
-    <div class="container mx-auto max-w-6xl px-4 md:px-6">
-        <div class="about-pro-section-head">
-            <h2 id="values-title" class="font-display text-3xl font-bold text-slate-900">What Defines My Work</h2>
-            <p class="mt-2 text-slate-600">The principles behind every shoot, edit, and final delivery.</p>
-        </div>
-        <div class="about-pro-values-grid grid gap-5 sm:grid-cols-2">
-            <article class="about-pro-value-card rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-                <h3 class="font-display text-lg font-semibold text-slate-900">Story Before Style</h3>
-                <p class="mt-2 text-slate-600">Every frame starts with context and emotion, then visual polish follows.</p>
-            </article>
-            <article class="about-pro-value-card rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-                <h3 class="font-display text-lg font-semibold text-slate-900">Direction With Ease</h3>
-                <p class="mt-2 text-slate-600">I guide posing and flow clearly while keeping sessions relaxed and natural.</p>
-            </article>
-            <article class="about-pro-value-card rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-                <h3 class="font-display text-lg font-semibold text-slate-900">Consistent Quality</h3>
-                <p class="mt-2 text-slate-600">From shooting to editing, color and tone remain cohesive across the whole gallery.</p>
-            </article>
-            <article class="about-pro-value-card rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-                <h3 class="font-display text-lg font-semibold text-slate-900">Reliable Process</h3>
-                <p class="mt-2 text-slate-600">Clear planning, on-time delivery, and transparent communication at every stage.</p>
-            </article>
-        </div>
-    </div>
-</section>
-
-<section class="about-pro-expertise py-14 md:py-16" aria-labelledby="expertise-title">
-    <div class="container mx-auto max-w-6xl px-4 md:px-6">
-        <div class="about-pro-section-head">
-            <h2 id="expertise-title" class="font-display text-3xl font-bold text-slate-900">Core Expertise</h2>
-            <p class="mt-2 text-slate-600">A balanced mix of technical craft and artistic vision across multiple photography disciplines.</p>
-        </div>
-
-        <div class="about-pro-skills-grid grid gap-4 md:grid-cols-2">
-            <article class="about-pro-skill-card rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
-                <div class="about-pro-skill-head flex items-center justify-between text-sm font-semibold text-slate-900">
-                    <span>Portrait Photography</span>
-                    <strong>95%</strong>
+                <div class="grid grid-cols-3 gap-8 mt-16 pt-12 border-t border-white/5">
+                    <div>
+                        <span class="block text-4xl font-display italic text-white mb-2">500+</span>
+                        <span
+                            class="text-[0.55rem] uppercase tracking-[0.3em] text-white/25 font-bold block">Projects</span>
+                    </div>
+                    <div>
+                        <span class="block text-4xl font-display italic text-white mb-2">8+</span>
+                        <span
+                            class="text-[0.55rem] uppercase tracking-[0.3em] text-white/25 font-bold block">Years</span>
+                    </div>
+                    <div>
+                        <span class="block text-4xl font-display italic text-white mb-2">100%</span>
+                        <span
+                            class="text-[0.55rem] uppercase tracking-[0.3em] text-white/25 font-bold block">Satisfaction</span>
+                    </div>
                 </div>
-                <div class="about-pro-skill-track mt-3 h-2 rounded-full bg-slate-200">
-                    <div class="about-pro-skill-fill h-2 rounded-full bg-cyan-600" data-level="95"></div>
-                </div>
-            </article>
-
-            <article class="about-pro-skill-card rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
-                <div class="about-pro-skill-head flex items-center justify-between text-sm font-semibold text-slate-900">
-                    <span>Landscape Photography</span>
-                    <strong>90%</strong>
-                </div>
-                <div class="about-pro-skill-track mt-3 h-2 rounded-full bg-slate-200">
-                    <div class="about-pro-skill-fill h-2 rounded-full bg-cyan-600" data-level="90"></div>
-                </div>
-            </article>
-
-            <article class="about-pro-skill-card rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
-                <div class="about-pro-skill-head flex items-center justify-between text-sm font-semibold text-slate-900">
-                    <span>Event Photography</span>
-                    <strong>88%</strong>
-                </div>
-                <div class="about-pro-skill-track mt-3 h-2 rounded-full bg-slate-200">
-                    <div class="about-pro-skill-fill h-2 rounded-full bg-cyan-600" data-level="88"></div>
-                </div>
-            </article>
-
-            <article class="about-pro-skill-card rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
-                <div class="about-pro-skill-head flex items-center justify-between text-sm font-semibold text-slate-900">
-                    <span>Photo Editing</span>
-                    <strong>92%</strong>
-                </div>
-                <div class="about-pro-skill-track mt-3 h-2 rounded-full bg-slate-200">
-                    <div class="about-pro-skill-fill h-2 rounded-full bg-cyan-600" data-level="92"></div>
-                </div>
-            </article>
-        </div>
-
-        <div class="about-pro-metrics mt-5 grid gap-4 sm:grid-cols-3">
-            <div class="about-pro-metric-card rounded-2xl bg-slate-900 p-5 text-center text-white">
-                <span class="about-pro-metric-number">500+</span>
-                <span class="about-pro-metric-label">Projects Completed</span>
-            </div>
-            <div class="about-pro-metric-card rounded-2xl bg-slate-900 p-5 text-center text-white">
-                <span class="about-pro-metric-number">8</span>
-                <span class="about-pro-metric-label">Years Experience</span>
-            </div>
-            <div class="about-pro-metric-card rounded-2xl bg-slate-900 p-5 text-center text-white">
-                <span class="about-pro-metric-number">100%</span>
-                <span class="about-pro-metric-label">Client Satisfaction</span>
             </div>
         </div>
     </div>
 </section>
 
-<section class="about-pro-process py-14 md:py-16" aria-labelledby="process-title">
-    <div class="container mx-auto max-w-6xl px-4 md:px-6">
-        <div class="about-pro-section-head">
-            <h2 id="process-title" class="font-display text-3xl font-bold text-slate-900">How I Work</h2>
-            <p class="mt-2 text-slate-600">A structured workflow designed to keep quality high and collaboration easy.</p>
+<!-- Values Section -->
+<section class="py-32 bg-[#0d0d0d]" aria-labelledby="values-title">
+    <div class="luxury-container">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-24">
+            <div class="scroll-reveal">
+                <span class="luxury-eyebrow">Philosophy</span>
+                <h2 id="values-title" class="font-display italic text-5xl md:text-6xl text-white">What Defines My Work
+                </h2>
+            </div>
         </div>
-        <div class="about-pro-timeline grid gap-4 md:grid-cols-2">
-            <article class="about-pro-step rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-                <span class="about-pro-step-index text-xs font-bold uppercase tracking-[0.2em] text-cyan-700">01</span>
-                <div>
-                    <h3 class="mt-2 font-display text-xl font-semibold text-slate-900">Discovery</h3>
-                    <p class="mt-2 text-slate-600">We define your vision, style preferences, timeline, and deliverables.</p>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-0 border-l border-white/5 stagger-container">
+            <article
+                class="stagger-item border-r border-b border-white/5 p-10 group hover:bg-white/[0.02] transition-colors">
+                <div class="w-8 h-[1px] bg-amber-500/50 mb-10 group-hover:w-16 transition-all duration-700"></div>
+                <h3 class="font-display text-2xl text-white mb-4">Story Before Style</h3>
+                <p class="text-white/30 text-sm leading-loose">Every frame starts with context and emotion - visual
+                    polish follows naturally.</p>
+            </article>
+            <article
+                class="stagger-item border-r border-b border-white/5 p-10 group hover:bg-white/[0.02] transition-colors">
+                <div class="w-8 h-[1px] bg-amber-500/50 mb-10 group-hover:w-16 transition-all duration-700"></div>
+                <h3 class="font-display text-2xl text-white mb-4">Direction With Ease</h3>
+                <p class="text-white/30 text-sm leading-loose">I guide posing and flow clearly while keeping sessions
+                    relaxed and natural.</p>
+            </article>
+            <article
+                class="stagger-item border-r border-b border-white/5 p-10 group hover:bg-white/[0.02] transition-colors">
+                <div class="w-8 h-[1px] bg-amber-500/50 mb-10 group-hover:w-16 transition-all duration-700"></div>
+                <h3 class="font-display text-2xl text-white mb-4">Consistent Quality</h3>
+                <p class="text-white/30 text-sm leading-loose">From shoot to edit, color and tone remain cohesive across
+                    the entire gallery.</p>
+            </article>
+            <article
+                class="stagger-item border-r border-b border-white/5 p-10 group hover:bg-white/[0.02] transition-colors">
+                <div class="w-8 h-[1px] bg-amber-500/50 mb-10 group-hover:w-16 transition-all duration-700"></div>
+                <h3 class="font-display text-2xl text-white mb-4">Reliable Process</h3>
+                <p class="text-white/30 text-sm leading-loose">Clear planning, on-time delivery, and transparent
+                    communication at every stage.</p>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- Expertise Section -->
+<section class="py-32 bg-[#050505]" aria-labelledby="expertise-title">
+    <div class="luxury-container">
+        <div class="split-text-image">
+            <div class="scroll-reveal">
+                <span class="luxury-eyebrow">Expertise</span>
+                <h2 id="expertise-title" class="font-display italic text-5xl md:text-6xl text-white mb-10">Core
+                    Disciplines</h2>
+                <p class="text-white/40 text-lg font-light leading-loose mb-16">A balanced mix of technical craft and
+                    artistic vision across multiple photographic disciplines.</p>
+
+                <div class="space-y-8">
+                    <div class="expertise-bar">
+                        <div class="flex justify-between mb-3">
+                            <span class="text-white text-sm font-bold uppercase tracking-widest">Portrait
+                                Photography</span>
+                            <span class="text-amber-500 text-sm font-bold">95%</span>
+                        </div>
+                        <div class="h-[1px] bg-white/10 relative">
+                            <div class="about-pro-skill-fill absolute top-0 left-0 h-[1px] bg-amber-500" data-level="95"
+                                style="width: 0; transition: width 1.5s ease;"></div>
+                        </div>
+                    </div>
+                    <div class="expertise-bar">
+                        <div class="flex justify-between mb-3">
+                            <span class="text-white text-sm font-bold uppercase tracking-widest">Landscape
+                                Photography</span>
+                            <span class="text-amber-500 text-sm font-bold">90%</span>
+                        </div>
+                        <div class="h-[1px] bg-white/10 relative">
+                            <div class="about-pro-skill-fill absolute top-0 left-0 h-[1px] bg-amber-500" data-level="90"
+                                style="width: 0; transition: width 1.5s ease;"></div>
+                        </div>
+                    </div>
+                    <div class="expertise-bar">
+                        <div class="flex justify-between mb-3">
+                            <span class="text-white text-sm font-bold uppercase tracking-widest">Event
+                                Photography</span>
+                            <span class="text-amber-500 text-sm font-bold">88%</span>
+                        </div>
+                        <div class="h-[1px] bg-white/10 relative">
+                            <div class="about-pro-skill-fill absolute top-0 left-0 h-[1px] bg-amber-500" data-level="88"
+                                style="width: 0; transition: width 1.5s ease;"></div>
+                        </div>
+                    </div>
+                    <div class="expertise-bar">
+                        <div class="flex justify-between mb-3">
+                            <span class="text-white text-sm font-bold uppercase tracking-widest">Photo Editing &
+                                Post-Production</span>
+                            <span class="text-amber-500 text-sm font-bold">92%</span>
+                        </div>
+                        <div class="h-[1px] bg-white/10 relative">
+                            <div class="about-pro-skill-fill absolute top-0 left-0 h-[1px] bg-amber-500" data-level="92"
+                                style="width: 0; transition: width 1.5s ease;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Process steps -->
+            <div class="scroll-reveal reveal-delay-2">
+                <span class="luxury-eyebrow">Process</span>
+                <h2 class="font-display italic text-5xl md:text-6xl text-white mb-16">How I Work</h2>
+                <div class="space-y-0">
+                    <div class="process-step flex gap-6 pb-12 border-b border-white/5 group">
+                        <span
+                            class="text-amber-500/40 text-[0.6rem] font-bold uppercase tracking-[0.3em] pt-1 min-w-[2.5rem]">01</span>
+                        <div>
+                            <h3 class="text-white font-bold text-lg mb-2 group-hover:text-amber-500 transition-colors">
+                                Discovery</h3>
+                            <p class="text-white/30 text-sm leading-loose">We define your vision, style preferences,
+                                timeline, and deliverables.</p>
+                        </div>
+                    </div>
+                    <div class="process-step flex gap-6 py-12 border-b border-white/5 group">
+                        <span
+                            class="text-amber-500/40 text-[0.6rem] font-bold uppercase tracking-[0.3em] pt-1 min-w-[2.5rem]">02</span>
+                        <div>
+                            <h3 class="text-white font-bold text-lg mb-2 group-hover:text-amber-500 transition-colors">
+                                Planning</h3>
+                            <p class="text-white/30 text-sm leading-loose">Location, mood, timing, and shot priorities
+                                are organized before shoot day.</p>
+                        </div>
+                    </div>
+                    <div class="process-step flex gap-6 py-12 border-b border-white/5 group">
+                        <span
+                            class="text-amber-500/40 text-[0.6rem] font-bold uppercase tracking-[0.3em] pt-1 min-w-[2.5rem]">03</span>
+                        <div>
+                            <h3 class="text-white font-bold text-lg mb-2 group-hover:text-amber-500 transition-colors">
+                                Capture</h3>
+                            <p class="text-white/30 text-sm leading-loose">I direct the session with calm pacing to
+                                capture expressive and polished frames.</p>
+                        </div>
+                    </div>
+                    <div class="process-step flex gap-6 pt-12 group">
+                        <span
+                            class="text-amber-500/40 text-[0.6rem] font-bold uppercase tracking-[0.3em] pt-1 min-w-[2.5rem]">04</span>
+                        <div>
+                            <h3 class="text-white font-bold text-lg mb-2 group-hover:text-amber-500 transition-colors">
+                                Refinement</h3>
+                            <p class="text-white/30 text-sm leading-loose">Final edits are curated for consistent color,
+                                detail, and narrative flow.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials -->
+<section class="py-32 bg-[#0d0d0d]" aria-labelledby="testimonials-section">
+    <div class="luxury-container">
+        <div class="text-center mb-24 scroll-reveal">
+            <span class="luxury-eyebrow mx-auto">Recognition</span>
+            <h2 id="testimonials-section" class="font-display italic text-5xl md:text-6xl text-white">Client
+                Testimonials</h2>
+        </div>
+        <div class="grid md:grid-cols-3 gap-0 border-l border-white/5 stagger-container">
+            <article class="stagger-item border-r border-b border-white/5 p-10">
+                <i class="fas fa-quote-left text-amber-500/30 text-2xl mb-8 block"></i>
+                <p class="text-white/50 text-base leading-loose mb-10 italic font-light">&ldquo;Pulindu captured our
+                    wedding day perfectly. Every image feels emotional, natural, and beautifully composed.&rdquo;</p>
+                <div class="border-t border-white/5 pt-6">
+                    <strong class="block text-white text-sm font-bold">Sarah & James</strong>
+                    <span class="text-[0.6rem] uppercase tracking-[0.3em] text-white/25 font-bold">Wedding
+                        Clients</span>
                 </div>
             </article>
-            <article class="about-pro-step rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-                <span class="about-pro-step-index text-xs font-bold uppercase tracking-[0.2em] text-cyan-700">02</span>
-                <div>
-                    <h3 class="mt-2 font-display text-xl font-semibold text-slate-900">Planning</h3>
-                    <p class="mt-2 text-slate-600">Location, mood, timing, and shot priorities are organized before shoot day.</p>
+            <article class="stagger-item border-r border-b border-white/5 p-10">
+                <i class="fas fa-quote-left text-amber-500/30 text-2xl mb-8 block"></i>
+                <p class="text-white/50 text-base leading-loose mb-10 italic font-light">&ldquo;The family portraits are
+                    incredible. We felt comfortable throughout, and the final gallery exceeded expectations.&rdquo;</p>
+                <div class="border-t border-white/5 pt-6">
+                    <strong class="block text-white text-sm font-bold">The Johnson Family</strong>
+                    <span class="text-[0.6rem] uppercase tracking-[0.3em] text-white/25 font-bold">Family
+                        Portrait</span>
                 </div>
             </article>
-            <article class="about-pro-step rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-                <span class="about-pro-step-index text-xs font-bold uppercase tracking-[0.2em] text-cyan-700">03</span>
-                <div>
-                    <h3 class="mt-2 font-display text-xl font-semibold text-slate-900">Capture</h3>
-                    <p class="mt-2 text-slate-600">I direct the session with calm pacing to capture expressive and polished frames.</p>
-                </div>
-            </article>
-            <article class="about-pro-step rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-                <span class="about-pro-step-index text-xs font-bold uppercase tracking-[0.2em] text-cyan-700">04</span>
-                <div>
-                    <h3 class="mt-2 font-display text-xl font-semibold text-slate-900">Refinement</h3>
-                    <p class="mt-2 text-slate-600">Final edits are curated for consistent color, detail, and narrative flow.</p>
+            <article class="stagger-item border-r border-b border-white/5 p-10">
+                <i class="fas fa-quote-left text-amber-500/30 text-2xl mb-8 block"></i>
+                <p class="text-white/50 text-base leading-loose mb-10 italic font-light">&ldquo;Professional,
+                    detail-oriented, and easy to work with. Our corporate photos now look polished and
+                    consistent.&rdquo;</p>
+                <div class="border-t border-white/5 pt-6">
+                    <strong class="block text-white text-sm font-bold">TechCorp Inc.</strong>
+                    <span class="text-[0.6rem] uppercase tracking-[0.3em] text-white/25 font-bold">Corporate
+                        Client</span>
                 </div>
             </article>
         </div>
     </div>
 </section>
 
-<section class="about-pro-testimonials py-14 md:py-16" aria-labelledby="testimonials-section">
-    <div class="container mx-auto max-w-6xl px-4 md:px-6">
-        <div class="about-pro-section-head">
-            <h2 id="testimonials-section" class="font-display text-3xl font-bold text-slate-900">Client Testimonials</h2>
-            <p class="mt-2 text-slate-600">What clients value most: comfort during shoots, strong creative direction, and reliable results.</p>
-        </div>
-        <div class="about-pro-testimonials-grid grid gap-5 md:grid-cols-3">
-            <article class="about-pro-testimonial-card rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-                <p class="text-slate-600">"Pulindu captured our wedding day perfectly. Every image feels emotional, natural, and beautifully composed."</p>
-                <div class="about-pro-testimonial-author">
-                    <strong>Sarah & James</strong>
-                    <span>Wedding Clients</span>
-                </div>
-            </article>
-            <article class="about-pro-testimonial-card rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-                <p class="text-slate-600">"The family portraits are incredible. We felt comfortable throughout, and the final gallery exceeded expectations."</p>
-                <div class="about-pro-testimonial-author">
-                    <strong>The Johnson Family</strong>
-                    <span>Family Portrait</span>
-                </div>
-            </article>
-            <article class="about-pro-testimonial-card rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-                <p class="text-slate-600">"Professional, detail-oriented, and easy to work with. Our corporate photos now look polished and consistent."</p>
-                <div class="about-pro-testimonial-author">
-                    <strong>TechCorp Inc.</strong>
-                    <span>Corporate Client</span>
-                </div>
-            </article>
+<!-- CTA -->
+<section class="py-32 bg-[#050505]">
+    <div class="luxury-container text-center scroll-reveal">
+        <span class="luxury-eyebrow mx-auto">Ready to Begin?</span>
+        <h2 class="font-display italic text-5xl md:text-7xl text-white mb-10">Let's create something <br><span
+                class="text-white/30 font-sans not-italic font-extralight">unforgettable.</span></h2>
+        <div class="flex flex-col md:flex-row items-center justify-center gap-8 mt-16">
+            <a href="{{ url_for('contact') }}" class="btn-primary-luxury group">
+                Book a Session <i
+                    class="fas fa-arrow-right-long ml-3 transition-transform group-hover:translate-x-2"></i>
+            </a>
+            <a href="{{ url_for('portfolio') }}"
+                class="text-white/40 uppercase tracking-[0.3em] font-bold text-xs hover:text-amber-500 transition-colors">View
+                Portfolio</a>
         </div>
     </div>
 </section>
 
-<section class="about-pro-cta py-14 md:py-16" aria-labelledby="about-cta-title">
-    <div class="container mx-auto max-w-6xl px-4 md:px-6">
-    <div class="about-pro-cta-inner pro-cta-block rounded-3xl bg-slate-900 px-6 py-10 text-center text-white shadow-xl md:px-10">
-        <h2 id="about-cta-title" class="font-display text-3xl font-bold md:text-4xl">Ready to Create Something Memorable?</h2>
-        <p class="mx-auto mt-3 max-w-2xl text-slate-200">Let's turn your vision into a focused, beautifully executed photo story.</p>
-        <div class="about-pro-cta-actions pro-cta-actions mt-6 flex flex-wrap items-center justify-center gap-3">
-            <a href="{{ url_for('contact') }}" class="btn btn-primary rounded-xl px-6 py-3 font-semibold">Book a Session</a>
-            <a href="{{ url_for('portfolio') }}" class="btn btn-outline rounded-xl border border-white/40 px-6 py-3 font-semibold text-white hover:bg-white/10">View Portfolio</a>
-        </div></div>
-    </div>
-</section>
 {% endblock %}
 
 {% block scripts %}
 <script src="{{ url_for('static', filename='js/about.js') }}"></script>
 {% endblock %}
-
-

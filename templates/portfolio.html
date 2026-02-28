@@ -1,39 +1,83 @@
 {% extends "base.html" %}
 
 {% block content %}
-<section class="portfolio-pro-hero pro-hero relative overflow-hidden bg-slate-950 py-20 text-white md:py-24" aria-labelledby="portfolio-pro-title">
-    <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(14,116,144,0.5),transparent_50%)]"></div>
-    <div class="container portfolio-pro-hero-inner pro-hero-inner mx-auto max-w-6xl px-4 md:px-6">
-        <p class="portfolio-pro-eyebrow pro-eyebrow text-sm font-semibold uppercase tracking-[0.22em] text-cyan-200">Selected Work</p>
-        <h1 class="portfolio-pro-title pro-title mt-4 max-w-4xl font-display text-4xl font-bold leading-tight md:text-5xl" id="portfolio-pro-title">A curated collection of portraits, landscapes, and story-driven moments.</h1>
-        <p class="portfolio-pro-subtitle pro-subtitle mt-5 max-w-3xl text-lg text-slate-200">Each image reflects a balance of composition, natural light, and emotional detail.</p>
+
+<!-- Page Hero -->
+<section class="inner-page-hero" aria-label="Portfolio page header">
+    <div class="luxury-container inner-page-hero__content">
+        <span class="luxury-eyebrow scroll-reveal">Selected Work</span>
+        <h1 class="inner-page-hero__title scroll-reveal reveal-delay-1">
+            A curated<br>
+            <span class="inner-page-hero__title--light">collection.</span>
+        </h1>
+        <p class="inner-page-hero__subtitle scroll-reveal reveal-delay-2">
+            {{ site_settings.get('portfolio_intro', 'Each image reflects a balance of composition, natural light, and emotional detail drawn from life itself.') }}
+        </p>
+        <!-- Right Meta Panel -->
+        <aside class="inner-page-hero__meta scroll-reveal reveal-delay-3" aria-label="Portfolio facts">
+            <div class="inner-page-hero__meta-divider"></div>
+            <div class="inner-page-hero__meta-stat">
+                <strong>{{ images|length }}</strong>
+                <span>Artworks</span>
+            </div>
+            <div class="inner-page-hero__meta-divider"></div>
+            <div class="inner-page-hero__meta-stat">
+                <strong>{{ categories|length }}</strong>
+                <span>Categories</span>
+            </div>
+            <div class="inner-page-hero__meta-divider"></div>
+            <div class="inner-page-hero__meta-stat">
+                <strong>2017</strong>
+                <span>Est.</span>
+            </div>
+        </aside>
+    </div>
+    <div class="luxury-container">
+        <div class="inner-page-hero__line" aria-hidden="true"></div>
     </div>
 </section>
 
-<section class="portfolio-pro-content pro-content py-14 md:py-16" aria-labelledby="portfolio-pro-title">
-    <div class="container mx-auto max-w-6xl px-4 md:px-6">
-        <div class="portfolio-pro-toolbar mb-6 flex flex-wrap items-center justify-between gap-3">
-            <div class="category-filter portfolio-pro-filter flex flex-wrap gap-2" role="tablist" aria-label="Portfolio categories">
-                <button class="filter-btn active rounded-xl border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-cyan-600 hover:text-cyan-700" data-filter="all" aria-label="Show all projects" aria-pressed="true">All</button>
+<!-- Portfolio Section -->
+<section class="py-24 bg-[#050505]" aria-labelledby="portfolio-title">
+    <div class="luxury-container">
+
+        <!-- Filter Toolbar -->
+        <div class="flex flex-wrap items-center justify-between gap-6 mb-16 scroll-reveal">
+            <div class="flex flex-wrap gap-3" role="tablist" aria-label="Portfolio categories">
+                <button class="filter-btn-luxury active" data-filter="all">All</button>
                 {% for category in categories %}
-                <button class="filter-btn rounded-xl border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-cyan-600 hover:text-cyan-700" data-filter="{{ category }}" aria-label="Filter by {{ category.title() }}" aria-pressed="false">{{ category.title() }}</button>
+                <button class="filter-btn-luxury" data-filter="{{ category }}">{{ category.title() }}</button>
                 {% endfor %}
             </div>
-            <p class="portfolio-pro-count text-sm font-semibold text-slate-500" id="portfolioCount">{{ images|length }} images</p>
+            <div class="flex items-center gap-3">
+                <span class="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse"></span>
+                <p class="text-white/30 text-[0.65rem] uppercase tracking-[0.3em] font-bold" id="portfolioCount">{{
+                    images|length }} Works</p>
+            </div>
         </div>
 
-        <div class="portfolio-grid portfolio-pro-grid grid gap-5 md:grid-cols-2 lg:grid-cols-3" id="portfolioGrid" role="grid" aria-labelledby="portfolio-pro-title">
+        <!-- Grid -->
+        <div class="portfolio-luxury-grid grid md:grid-cols-2 lg:grid-cols-3 gap-8 stagger-container" id="portfolioGrid"
+            role="grid" aria-labelledby="portfolio-title">
             {% for image in images %}
-            <article class="portfolio-item portfolio-pro-item group overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-xl" data-category="{{ image.category }}" role="gridcell" tabindex="0">
-                <div class="portfolio-card portfolio-pro-card relative">
-                    <img src="{{ url_for('static', filename='uploads/' + image.filename) }}" 
-                         alt="{{ image.title }}" 
-                         class="portfolio-image h-72 w-full object-cover transition duration-500 group-hover:scale-105" loading="lazy" decoding="async">
-                    <div class="portfolio-overlay portfolio-pro-overlay absolute inset-0 flex items-end bg-gradient-to-t from-slate-950/90 via-slate-900/20 to-transparent p-4" role="presentation">
-                        <div class="portfolio-info portfolio-pro-info">
-                            <h3 class="text-lg font-semibold text-white">{{ image.title }}</h3>
-                            <p class="mt-1 text-sm text-slate-200">{{ image.description or 'A crafted visual moment from the Svems collection.' }}</p>
-                            <span class="portfolio-category portfolio-pro-category mt-2 inline-flex rounded-full border border-white/30 bg-white/10 px-3 py-1 text-xs font-semibold capitalize text-white">{{ image.category }}</span>
+            <article class="portfolio-item portfolio-luxury-item stagger-item group"
+                data-category="{{ image.category }}" role="gridcell" tabindex="0">
+                <div class="relative overflow-hidden">
+                    <div class="aspect-[4/5] overflow-hidden bg-[#0d0d0d]">
+                        <img src="{{ url_for('static', filename='uploads/' + image.filename) }}" alt="{{ image.title }}"
+                            class="w-full h-full object-cover grayscale-[0.2] transition-all duration-1000 group-hover:scale-105 group-hover:grayscale-0"
+                            loading="lazy" decoding="async">
+                    </div>
+                    <div
+                        class="absolute inset-0 bg-black/0 group-hover:bg-black/50 transition-colors duration-500 flex flex-col justify-end p-8 opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-700">
+                        <span class="text-amber-500 text-[0.55rem] font-bold uppercase tracking-[0.3em] mb-2">{{
+                            image.category }}</span>
+                        <h3 class="font-display text-2xl text-white">{{ image.title }}</h3>
+                        {% if image.description %}
+                        <p class="text-white/50 text-sm mt-2 leading-relaxed">{{ image.description }}</p>
+                        {% endif %}
+                        <div
+                            class="w-8 h-[1px] bg-amber-500 mt-4 origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-700 delay-200">
                         </div>
                     </div>
                 </div>
@@ -42,27 +86,36 @@
         </div>
 
         {% if not images %}
-        <div class="empty-state portfolio-pro-empty rounded-2xl border border-slate-200 bg-white p-8 text-center shadow-sm" role="alert">
-            <i class="fas fa-images text-3xl text-slate-400"></i>
-            <h3 class="mt-4 text-xl font-semibold text-slate-900">No images yet</h3>
-            <p class="mt-2 text-slate-600">Check back soon for amazing photography work!</p>
+        <div class="py-32 text-center">
+            <i class="fas fa-camera-retro text-white/10 text-5xl mb-8 block"></i>
+            <h3 class="font-display italic text-3xl text-white/30 mb-4">No images yet</h3>
+            <p class="text-white/20 text-sm uppercase tracking-widest">Check back soon</p>
         </div>
         {% endif %}
     </div>
 </section>
 
-<section class="portfolio-pro-cta py-14 md:py-16" aria-labelledby="portfolio-cta-title">
-    <div class="container mx-auto max-w-6xl px-4 md:px-6">
-    <div class="pro-cta-block rounded-3xl bg-slate-900 px-6 py-10 text-center text-white shadow-xl md:px-10">
-        <h2 id="portfolio-cta-title" class="font-display text-3xl font-bold md:text-4xl">Interested In A Session Like These?</h2>
-        <p class="mx-auto mt-3 max-w-2xl text-slate-200">Let's plan a shoot that fits your style, timeline, and story.</p>
-        <div class="pro-cta-actions mt-6 flex flex-wrap items-center justify-center gap-3">
-            <a href="{{ url_for('contact') }}" class="btn btn-primary rounded-xl px-6 py-3 font-semibold">Start A Project</a>
-            <a href="{{ url_for('about') }}" class="btn btn-outline rounded-xl border border-white/40 px-6 py-3 font-semibold text-white hover:bg-white/10">About The Photographer</a>
+<!-- CTA Section -->
+<section class="py-32 bg-[#0d0d0d] border-t border-white/5">
+    <div class="luxury-container text-center scroll-reveal">
+        <span class="luxury-eyebrow mx-auto">Your Vision</span>
+        <h2 class="font-display italic text-5xl md:text-6xl text-white mb-6">Interested in a <br><span
+                class="font-sans not-italic font-extralight text-white/30">session like these?</span></h2>
+        <p class="text-white/30 text-lg font-light max-w-lg mx-auto mb-16">Let's plan a shoot that fits your style,
+            timeline, and story.</p>
+        <div class="flex flex-col md:flex-row items-center justify-center gap-8">
+            <a href="{{ url_for('contact') }}" class="btn-primary-luxury group">
+                Start A Project <i
+                    class="fas fa-arrow-right-long ml-3 transition-transform group-hover:translate-x-2"></i>
+            </a>
+            <a href="{{ url_for('about') }}"
+                class="text-white/30 uppercase tracking-[0.3em] font-bold text-xs hover:text-amber-500 transition-colors">About
+                The Photographer</a>
         </div>
-    </div></div>
+    </div>
 </section>
 
+<!-- Lightbox -->
 <div id="lightbox" class="lightbox portfolio-pro-lightbox" role="dialog" aria-modal="true" aria-hidden="true">
     <button type="button" class="lightbox-close" aria-label="Close lightbox">&times;</button>
     <div class="lightbox-content">
@@ -75,9 +128,30 @@
     <button class="lightbox-nav lightbox-prev" aria-label="Previous image">&#10094;</button>
     <button class="lightbox-nav lightbox-next" aria-label="Next image">&#10095;</button>
 </div>
+
 {% endblock %}
 
 {% block scripts %}
 <script src="{{ url_for('static', filename='js/portfolio.js') }}"></script>
-{% endblock %}
+<style>
+    .filter-btn-luxury {
+        padding: 0.5rem 1.5rem;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        color: rgba(255, 255, 255, 0.3);
+        font-size: 0.65rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.3em;
+        transition: all 0.4s ease;
+        background: transparent;
+        cursor: pointer;
+    }
 
+    .filter-btn-luxury:hover,
+    .filter-btn-luxury.active {
+        border-color: var(--ui-primary);
+        color: var(--ui-primary);
+        background: rgba(212, 175, 55, 0.05);
+    }
+</style>
+{% endblock %}

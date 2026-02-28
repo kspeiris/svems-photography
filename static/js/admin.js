@@ -1,128 +1,208 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // Upload Area Handling
+document.addEventListener('DOMContentLoaded', function () {
+    const body = document.body;
+
+    // Mobile sidebar toggle for admin layout
+    const sidebar = document.getElementById('adminSidebar');
+    const sidebarToggle = document.getElementById('adminSidebarToggle');
+    const sidebarBackdrop = document.getElementById('adminSidebarBackdrop');
+
+    const closeSidebar = () => {
+        body.classList.remove('admin-sidebar-open');
+        if (sidebarToggle) {
+            sidebarToggle.setAttribute('aria-expanded', 'false');
+        }
+    };
+
+    const openSidebar = () => {
+        body.classList.add('admin-sidebar-open');
+        if (sidebarToggle) {
+            sidebarToggle.setAttribute('aria-expanded', 'true');
+        }
+    };
+
+    if (sidebar && sidebarToggle) {
+        sidebarToggle.addEventListener('click', () => {
+            if (body.classList.contains('admin-sidebar-open')) {
+                closeSidebar();
+            } else {
+                openSidebar();
+            }
+        });
+    }
+
+    if (sidebarBackdrop) {
+        sidebarBackdrop.addEventListener('click', closeSidebar);
+    }
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+            closeSidebar();
+        }
+    });
+
+    // Upload area behavior
     const uploadArea = document.getElementById('uploadArea');
     const fileInput = document.getElementById('imageFile');
     const preview = document.getElementById('uploadPreview');
 
+    function handleFileSelect(file) {
+        if (!preview) {
+            return;
+        }
+
+        if (!file || !file.type.startsWith('image/')) {
+            preview.innerHTML = '<p class="error-text">Please upload a valid image file.</p>';
+            return;
+        }
+
+        if (file.size > 16 * 1024 * 1024) {
+            preview.innerHTML = '<p class="error-text">File is too large. Max 16MB.</p>';
+            return;
+        }
+
+        const reader = new FileReader();
+        reader.onload = function (event) {
+            preview.innerHTML = `<img src="${event.target.result}" alt="Uploaded image preview" class="preview-img">`;
+        };
+        reader.readAsDataURL(file);
+    }
+
     if (uploadArea && fileInput) {
-        // Open file input when the upload area is clicked
         uploadArea.addEventListener('click', () => fileInput.click());
 
-        // Drag Over Effect for upload area
-        uploadArea.addEventListener('dragover', (e) => {
-            e.preventDefault();
-            uploadArea.classList.add('dragover'); // Highlight upload area on drag
+        uploadArea.addEventListener('dragover', (event) => {
+            event.preventDefault();
+            uploadArea.classList.add('dragover');
         });
 
-        // Remove drag over effect when dragging leaves the upload area
         uploadArea.addEventListener('dragleave', () => {
             uploadArea.classList.remove('dragover');
         });
 
-        // Handle drop event to select files for upload
-        uploadArea.addEventListener('drop', (e) => {
-            e.preventDefault();
+        uploadArea.addEventListener('drop', (event) => {
+            event.preventDefault();
             uploadArea.classList.remove('dragover');
-            const files = e.dataTransfer.files;
+            const files = event.dataTransfer.files;
             if (files.length > 0) {
                 fileInput.files = files;
                 handleFileSelect(files[0]);
             }
         });
 
-        // Handle file input change (e.g., file selection through file dialog)
-        fileInput.addEventListener('change', (e) => {
-            if (e.target.files.length > 0) {
-                handleFileSelect(e.target.files[0]);
+        fileInput.addEventListener('change', (event) => {
+            if (event.target.files.length > 0) {
+                handleFileSelect(event.target.files[0]);
             }
         });
     }
 
-    // Function to display image preview after file selection
-    function handleFileSelect(file) {
-        if (file && file.type.startsWith('image/')) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                preview.innerHTML = `<img src="${e.target.result}" alt="Preview" class="preview-img">`;
-            };
-            reader.readAsDataURL(file);
-        } else {
-            preview.innerHTML = `<p class="error-text">Please upload a valid image file.</p>`;
+    // Confirm actions with explicit data-confirm text
+    document.querySelectorAll('[data-confirm]').forEach((element) => {
+        element.addEventListener('click', (event) => {
+            const message = element.getAttribute('data-confirm') || 'Are you sure?';
+            if (!window.confirm(message)) {
+                event.preventDefault();
+            }
+        });
+    });
+
+    // Bulk selection and selected-count handling
+    document.querySelectorAll('[data-select-all]').forEach((masterCheckbox) => {
+        const group = masterCheckbox.getAttribute('data-select-all');
+        const items = document.querySelectorAll(`input[type="checkbox"][data-group="${group}"]`);
+        const countLabel = document.querySelector(`[data-selected-count="${group}"]`);
+
+        const updateState = () => {
+            const checkedCount = Array.from(items).filter((checkbox) => checkbox.checked).length;
+            masterCheckbox.checked = checkedCount > 0 && checkedCount === items.length;
+            if (countLabel) {
+                countLabel.textContent = `${checkedCount} selected`;
+            }
+        };
+
+        masterCheckbox.addEventListener('change', () => {
+            items.forEach((item) => {
+                item.checked = masterCheckbox.checked;
+            });
+            updateState();
+        });
+
+        items.forEach((item) => {
+            item.addEventListener('change', updateState);
+        });
+
+        updateState();
+    });
+
+    // Prevent invalid bulk submissions
+    document.querySelectorAll('form').forEach((form) => {
+        const actionSelect = form.querySelector('select[name="action"]');
+        if (!actionSelect) {
+            return;
         }
-    }
 
-    // Delete Item with Confirmation
-    const deleteButtons = document.querySelectorAll('.delete-btn');
-    deleteButtons.forEach(button => {
-        button.addEventListener('click', function(e) {
-            if (!confirm('Are you sure you want to delete this item?')) {
-                e.preventDefault();
+        form.addEventListener('submit', function (event) {
+            const selectedAction = (actionSelect.value || '').trim();
+            const insideItems = form.querySelectorAll('input[type="checkbox"][name$="_ids"]:checked');
+            const linkedItems = form.id
+                ? document.querySelectorAll(`input[type="checkbox"][name$="_ids"][form="${form.id}"]:checked`)
+                : [];
+            const targetCount = insideItems.length + linkedItems.length;
+
+            if (!selectedAction) {
+                event.preventDefault();
+                alert('Choose a bulk action first.');
+                return;
+            }
+
+            if (targetCount === 0) {
+                event.preventDefault();
+                alert('Select at least one item first.');
+                return;
+            }
+
+            if (selectedAction === 'delete' && !window.confirm('Delete the selected items?')) {
+                event.preventDefault();
             }
         });
     });
 
-    // Mark Message as Read
-    const markReadButtons = document.querySelectorAll('.mark-read-btn');
-    markReadButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const messageId = this.dataset.messageId;
-            fetch(`/admin/mark-read/${messageId}`, { method: 'POST' })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        this.closest('.message-item').classList.remove('unread'); // Remove unread class
-                        this.remove(); // Remove the "mark read" button
-                        alert("Message marked as read!");
-                    } else {
-                        alert("Failed to mark as read. Please try again.");
-                    }
-                })
-                .catch(error => {
-                    console.error("Error marking message as read:", error);
-                    alert("An error occurred. Please try again.");
-                });
+    // Message full-view modal
+    const messageModal = document.getElementById('messageViewModal');
+    if (messageModal) {
+        const modalName = document.getElementById('modalMessageName');
+        const modalEmail = document.getElementById('modalMessageEmail');
+        const modalDate = document.getElementById('modalMessageDate');
+        const modalBody = document.getElementById('modalMessageBody');
+
+        const openMessageModal = (button) => {
+            modalName.textContent = button.getAttribute('data-name') || '-';
+            modalEmail.textContent = button.getAttribute('data-email') || '-';
+            modalDate.textContent = button.getAttribute('data-submitted') || '-';
+            modalBody.textContent = button.getAttribute('data-message') || '';
+            messageModal.classList.remove('hidden');
+            messageModal.setAttribute('aria-hidden', 'false');
+            body.classList.add('admin-modal-open');
+        };
+
+        const closeMessageModal = () => {
+            messageModal.classList.add('hidden');
+            messageModal.setAttribute('aria-hidden', 'true');
+            body.classList.remove('admin-modal-open');
+        };
+
+        document.querySelectorAll('[data-message-view]').forEach((button) => {
+            button.addEventListener('click', () => openMessageModal(button));
         });
-    });
 
-    // Accessibility Enhancements
-    const imagePreview = document.querySelector('.preview-img');
-    if (imagePreview) {
-        // Add alt text for accessibility purposes
-        imagePreview.alt = "Uploaded image preview";
-    }
-
-    // Adding focus state for interactive elements (e.g., buttons)
-    const interactiveElements = document.querySelectorAll('a, button');
-    interactiveElements.forEach(element => {
-        element.addEventListener('focus', () => {
-            element.classList.add('focused');
+        messageModal.querySelectorAll('[data-modal-close]').forEach((element) => {
+            element.addEventListener('click', closeMessageModal);
         });
-        element.addEventListener('blur', () => {
-            element.classList.remove('focused');
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && messageModal.getAttribute('aria-hidden') === 'false') {
+                closeMessageModal();
+            }
         });
-    });
-
-    // Smooth Scroll to Top for better UX (optional)
-    const scrollToTopBtn = document.getElementById('scrollToTopBtn');
-    if (scrollToTopBtn) {
-        scrollToTopBtn.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-    }
-
-    // Optional: Add smooth transition to file upload area and buttons
-    if (uploadArea) {
-        uploadArea.classList.add('transition-all');
-    }
-    if (fileInput) {
-        fileInput.classList.add('transition-all');
-    }
-    document.querySelectorAll('.delete-btn, .mark-read-btn').forEach(button => {
-        button.classList.add('transition-all');
-    });
-
-    // Make sure preview area fades in smoothly
-    if (preview) {
-        preview.classList.add('fade-in');
     }
 });

@@ -1,0 +1,188 @@
+.footer {
+    background: linear-gradient(to bottom, var(--ui-surface), var(--ui-bg));
+    border-top: 1px solid var(--ui-border);
+    padding: 100px 0 40px;
+    margin-top: 100px;
+    position: relative;
+    z-index: 10;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 4rem;
+}
+
+.footer-section h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    color: #fff;
+    font-family: var(--font-display);
+}
+
+.footer-link {
+    display: block;
+    color: var(--ui-muted) !important;
+    text-decoration: none;
+    margin-bottom: 1rem;
+    transition: var(--transition);
+    font-weight: 500;
+}
+
+.footer-link:hover {
+    color: var(--ui-primary) !important;
+    transform: translateX(5px);
+}
+
+.footer-bottom {
+    margin-top: 80px;
+    padding-top: 40px;
+    text-align: center;
+    border-top: 1px solid var(--ui-border);
+    color: var(--ui-muted);
+    font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+}
+
+/* Global UI fixes (loaded after redesign.css) */
+main {
+    padding-top: 0 !important;
+}
+
+.luxury-page-header {
+    padding-top: clamp(0.5rem, 2vw, 1rem) !important;
+    padding-bottom: clamp(2.5rem, 6vw, 4rem) !important;
+    margin-top: 0 !important;
+}
+
+.navbar .nav-logo {
+    flex-shrink: 0;
+    margin-right: clamp(1.5rem, 4vw, 3rem);
+}
+
+.navbar .nav-menu {
+    margin-left: auto;
+    gap: clamp(1.6rem, 3vw, 3rem) !important;
+}
+
+.navbar .nav-link {
+    display: inline-block;
+    white-space: nowrap;
+}
+
+.full-hero,
+.page-header {
+    margin-top: 0 !important;
+}
+
+@media (max-width: 768px) {
+    #navToggle {
+        position: fixed !important;
+        top: 14px;
+        right: 14px;
+        z-index: 2200 !important;
+        width: 44px;
+        height: 44px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 999px;
+        background: rgba(5, 5, 5, 0.7);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #navToggle #bar1,
+    #navToggle #bar2 {
+        background: #f8fafc !important;
+        box-shadow: 0 0 6px rgba(255, 255, 255, 0.35);
+    }
+
+    #navToggle.active {
+        border-color: rgba(212, 175, 55, 0.55);
+        background: rgba(5, 5, 5, 0.9);
+    }
+
+    #navToggle.active #bar1,
+    #navToggle.active #bar2 {
+        background: #d4af37 !important;
+        box-shadow: 0 0 8px rgba(212, 175, 55, 0.55);
+    }
+
+    .luxury-page-header {
+        padding-top: 0.4rem !important;
+    }
+
+    #mobileOverlay {
+        position: fixed !important;
+        inset: 0 !important;
+        width: 100vw;
+        height: 100dvh;
+        display: none;
+        z-index: 2100;
+        overflow-y: auto;
+        transform: translateX(100%);
+        opacity: 0;
+        visibility: hidden;
+        background: rgba(5, 5, 5, 0.98);
+        padding-top: max(0px, env(safe-area-inset-top));
+    }
+
+    #mobileOverlay.is-open {
+        display: block !important;
+        transform: translateX(0);
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+    }
+
+    body.menu-open {
+        overflow: hidden;
+    }
+
+    body.menu-open #mobileOverlay {
+        display: block !important;
+        transform: translateX(0) !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+    }
+
+    .mobile-menu-inner {
+        min-height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 2.5rem;
+        padding-top: calc(5.5rem + env(safe-area-inset-top));
+        padding-bottom: 3rem;
+        position: relative;
+        z-index: 2;
+    }
+
+    .mobile-link {
+        display: inline-block;
+        color: rgba(255, 255, 255, 0.78);
+        font-size: clamp(2rem, 8vw, 2.6rem);
+        text-decoration: none;
+        padding: 0.25rem 0.5rem;
+        line-height: 1.1;
+    }
+
+    #navToggle.active #bar1 {
+        transform: translateY(5px) rotate(45deg);
+    }
+
+    #navToggle.active #bar2 {
+        transform: translateY(-5px) rotate(-45deg);
+    }
+}

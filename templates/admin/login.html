@@ -11,7 +11,7 @@
                     extend: {
                         fontFamily: {
                             sans: ['Manrope', 'Segoe UI', 'sans-serif'],
-                            display: ['Sora', 'Manrope', 'sans-serif']
+                            display: ['Playfair Display', 'Georgia', 'serif']
                         }
                     }
                 }
@@ -21,17 +21,17 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@600;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,800;1,700&display=swap">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/admin-redesign.css') }}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
-<body class="admin-login font-sans antialiased">
+<body class="admin-login admin-dark font-sans antialiased">
     <div class="login-container">
         <div class="login-card">
             <div class="login-header">
-                <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="Svems Logo" class="logo">
+                <img src="{{ url_for('static', filename='images/svems.jpg') }}" alt="Svems Logo" class="logo">
                 <h1 class="font-display text-3xl">Svems Admin</h1>
                 <p class="text-slate-600">Sign in to your account</p>
             </div>
@@ -47,6 +47,7 @@
             {% endwith %}
 
             <form action="{{ url_for('admin_login') }}" method="POST" class="login-form">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                 <div class="form-group">
                     <label for="username" class="text-sm font-semibold text-slate-700">Username</label>
                     <input type="text" id="username" name="username" required>

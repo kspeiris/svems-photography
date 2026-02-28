@@ -1,89 +1,262 @@
-# Svems Photography
+# Svems Photographer
 
-**Svems Photography** is a professional photography portfolio website built with **Flask**, **HTML**, **CSS**, and **JavaScript**. This website showcases the photography services of Pulindu Peiris, specializing in portrait, landscape, event, and commercial photography. Users can view a gallery of images, contact the photographer, and book sessions online.
+![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)
+![Flask](https://img.shields.io/badge/Flask-2.3-black?logo=flask)
+![MongoDB](https://img.shields.io/badge/MongoDB-Database-47A248?logo=mongodb&logoColor=white)
+![License](https://img.shields.io/badge/Status-Active-success)
 
-## Features
+A modern photography portfolio and admin management platform built with Flask + MongoDB.
 
-- **Portfolio Gallery**: Display images from different categories like portraits, landscapes, events, etc.
-- **Admin Panel**: Manage gallery images, view contact messages, and manage other settings.
-- **Responsive Design**: The site is optimized for desktop, tablet, and mobile devices.
-- **Upload Images**: Admin can upload new images to the gallery.
-- **Flash Messages**: Notifications for the admin panel (e.g., success or error messages).
-- **File Upload**: Drag and drop or click to upload images with preview support.
+![Svems Hero](static/images/hero-new.png)
 
-## Tech Stack
+## ✨ Highlights
 
-- **Backend**: Flask (Python)
-- **Frontend**: HTML, CSS, JavaScript
-- **Database**: MongoDB (for storing images, messages, and other data)
-- **Styling**: Custom CSS with Flexbox, Grid Layout, and responsive design techniques
-- **Icons**: Font Awesome
+- Public portfolio with category-based galleries
+- Contact form with server-side validation
+- Secure admin authentication with `Flask-Login`
+- Image upload, optimization, and category management
+- Featured image toggling and bulk actions
+- Admin dashboard with gallery and messages management
+- Site settings editor from admin panel
+- Validator unit tests included
 
-## Installation
+## 🧰 Tech Stack
 
-1. Clone the repository:
+- **Backend:** Flask, Flask-Login, Flask-PyMongo
+- **Database:** MongoDB
+- **Image Processing:** Pillow
+- **Auth/Security:** Werkzeug password hashing (`scrypt`), CSRF token checks
+- **Runtime:** Python 3.10+ (recommended 3.11/3.12)
+- **Server (production):** Gunicorn
 
-    ```bash
-    git clone https://github.com/username/svems-photography.git
-    cd svems-photography
-    ```
+## 🏗️ System Architecture
 
-2. Create a virtual environment:
+```mermaid
+flowchart TD
+    A[Browser / Client] --> B[Flask App app.py]
+    B --> C[Public Routes<br/>Home / Portfolio / About / Contact]
+    B --> D[Admin Routes<br/>Login / Dashboard / Gallery / Messages / Settings]
+    B --> E[Services<br/>Validation + Image Processing + CSRF]
+    D --> F[(MongoDB)]
+    C --> F
+    E --> G[static/uploads/*]
+    B --> H[templates/* + static/*]
+```
 
-    ```bash
-    python -m venv venv
-    ```
+### Core Data Flow
 
-3. Activate the virtual environment:
-    - **Windows**: 
-      ```bash
-      venv\Scripts\activate
-      ```
-    - **Mac/Linux**:
-      ```bash
-      source venv/bin/activate
-      ```
+1. User requests a page (`/`, `/portfolio`, `/contact`) -> Flask renders Jinja templates.
+2. Admin logs in via `/admin/login` -> session-based authentication via `Flask-Login`.
+3. Admin uploads an image -> Pillow resizes/optimizes -> file saved under `static/uploads/<category>/` -> metadata stored in MongoDB.
+4. Contact submissions are validated and stored, then managed in Admin Messages.
 
-4. Install the required dependencies:
+## 📁 Project Structure
 
-    ```bash
-    pip install -r requirements.txt
-    ```
+```text
+Svems_photographer/
+|- app.py                  # Main Flask application and routes
+|- config.py               # App configuration and env bindings
+|- models.py               # User/Gallery model helpers
+|- requirements.txt        # Python dependencies
+|- init_db.py              # DB bootstrap helper
+|- create_admin.py         # Creates default admin user
+|- seed_db.py              # Seeds sample gallery + admin
+|- templates/              # Jinja2 templates (public + admin)
+|- static/
+|  |- css/                 # Frontend/Admin styles
+|  |- js/                  # Frontend/Admin scripts
+|  |- images/              # Branding and UI assets
+|  |- uploads/             # Uploaded gallery files
+|- utils/                  # Validation and file handler utilities
+|- tests/                  # Unit tests
+```
 
-5. Set up MongoDB and add the necessary configurations in your `.env` file.
+## 🚀 Getting Started
 
-6. Run the Flask application:
+### 1. Clone and enter project
 
-    ```bash
-    flask run
-    ```
+```bash
+git clone <your-repo-url>
+cd Svems_photographer
+```
 
-   The app should now be accessible at `http://127.0.0.1:5000/`.
+### 2. Create virtual environment
 
-## Admin Panel
+```bash
+python -m venv venv
+```
 
-To log in to the admin panel, visit the login page and enter the credentials. The admin can:
-- View and manage the gallery images.
-- View messages from the contact form.
-- Perform other admin functions (like marking messages as read).
+Activate:
 
-## File Structure
+- **Windows (PowerShell):**
 
-- `static/`: Contains static assets like images, CSS, and JavaScript files.
-- `templates/`: Contains HTML templates for the website.
-- `app.py`: Main Flask application file.
-- `config.py`: Configuration for Flask app, including database settings.
-- `requirements.txt`: List of dependencies.
+```powershell
+.\venv\Scripts\Activate.ps1
+```
 
-## License
+- **macOS/Linux:**
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+```bash
+source venv/bin/activate
+```
 
-## Contact
+### 3. Install dependencies
 
-For inquiries, please contact:
+```bash
+pip install -r requirements.txt
+```
 
-- **Pulindu Peiris** – [pulindu@svems.com](mailto:pulindu@svems.com)
+### 4. Configure environment
 
-Feel free to check out the site and explore the work!
+Create/update `.env`:
 
+```env
+SECRET_KEY=change-this-in-production
+FLASK_ENV=development
+FLASK_DEBUG=True
+MONGO_URI=mongodb://localhost:27017/svems_photography
+ADMIN_USERNAME=admin
+ADMIN_EMAIL=admin@example.com
+ADMIN_PASSWORD=change-this-too
+```
+
+### 5. Initialize data
+
+```bash
+python init_db.py
+python seed_db.py
+# Optional helper:
+python create_admin.py
+```
+
+### 6. Run app
+
+```bash
+python app.py
+```
+
+App URLs:
+
+- Public site: `http://localhost:5000/`
+- Admin login: `http://localhost:5000/admin/login`
+
+## 🔑 Default Dev Admin (from seed/helpers)
+
+- Username: `pulindu`
+- Password: `admin123`
+
+Use only for local development. Change credentials before any deployment.
+
+## 🧪 Run Tests
+
+```bash
+python -m unittest discover -s tests -p "test_*.py"
+```
+
+## 🧭 Git Setup and Workflow
+
+### Initialize Git (if needed)
+
+```bash
+git init
+git add .
+git commit -m "Initial commit"
+```
+
+### Connect remote and push
+
+```bash
+git remote add origin <your-github-repo-url>
+git branch -M main
+git push -u origin main
+```
+
+### Recommended day-to-day flow
+
+```bash
+git checkout -b feature/readme-improvements
+git add .
+git commit -m "docs: improve project readme"
+git push -u origin feature/readme-improvements
+```
+
+## 🖼️ Screenshots
+
+### Screenshot 1
+
+![Screenshot 1](static/images/image1.png)
+
+### Screenshot 2
+
+![Screenshot 2](static/images/image2.png)
+
+### Screenshot 3
+
+![Screenshot 3](static/images/image3.png)
+
+### Screenshot 4
+
+![Screenshot 4](static/images/image4.png)
+
+### Screenshot 5
+
+![Screenshot 5](static/images/image5.png)
+
+### Screenshot 6
+
+![Screenshot 6](static/images/image6.png)
+
+### Screenshot 7
+
+![Screenshot 7](static/images/image7.png)
+
+### Screenshot 8
+
+![Screenshot 8](static/images/image8.png)
+
+### Screenshot 9
+
+![Screenshot 9](static/images/image9.png)
+
+## 🌐 Key Routes
+
+### Public
+
+- `GET /`
+- `GET /portfolio`
+- `GET /about`
+- `GET|POST /contact`
+
+### Admin
+
+- `GET|POST /admin/login`
+- `GET /admin/dashboard`
+- `GET|POST /admin/gallery`
+- `GET /admin/messages`
+- `GET|POST /admin/settings`
+- `POST /admin/logout`
+
+## 🔒 Security Notes
+
+- Passwords are hashed with Werkzeug `scrypt`.
+- CSRF token validation is implemented for form actions.
+- File uploads are restricted by extension and processed before save.
+- Keep `.env` private and never commit real production secrets.
+
+## 📦 Production Notes
+
+This project includes `gunicorn` in dependencies for deployment. Typical command:
+
+```bash
+gunicorn app:app --bind 0.0.0.0:5000
+```
+
+Use a reverse proxy (e.g., Nginx) and secure environment variables for production.
+
+## 👤 Author
+
+**Pulindu / Svems**
+
+---
+
+If you want, I can also add a `docs/architecture.png` diagram and wire this README to show that visual architecture image alongside the Mermaid chart.

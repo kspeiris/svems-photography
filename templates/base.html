@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Svems Photography - Professional Photography by Pulindu Peiris{% endblock %}</title>
-    <meta name="description" content="Professional photography services by Pulindu Peiris. Specializing in portraits, landscapes, events, and commercial photography.">
-    <meta name="theme-color" content="#006400">
+    <title>{% block title %}{{ site_settings.get('site_title', 'Svems') }} Photography - Professional Photography by Pulindu Peiris{% endblock %}</title>
+    <meta name="description"
+        content="Professional photography services by Pulindu Peiris. Specializing in portraits, landscapes, events, and commercial photography.">
+    <meta name="theme-color" content="#d4af37">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
@@ -16,7 +18,7 @@
                     extend: {
                         fontFamily: {
                             sans: ['Manrope', 'Segoe UI', 'sans-serif'],
-                            display: ['Sora', 'Manrope', 'sans-serif']
+                            display: ['Playfair Display', 'Georgia', 'serif'],
                         },
                         colors: {
                             brand: {
@@ -34,56 +36,67 @@
         };
     </script>
     <script src="https://cdn.tailwindcss.com"></script>
-    
+
     <!-- Preload Essential Assets -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@600;700&display=swap" as="style">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@600;700&display=swap">
-    <link rel="preload" href="{{ url_for('static', filename='images/logo.svg') }}" as="image">
-    
+    <link rel="preload"
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@600;700&family=Playfair+Display:ital,wght@0,700;0,800;1,700&display=swap"
+        as="style">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,500;0,700;0,800;1,400;1,500;1,700;1,800&display=swap">
+    <link rel="preload" href="{{ url_for('static', filename='images/svems.jpg') }}" as="image">
+
     <!-- CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/redesign.css') }}">
-    
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/luxury-overrides.css') }}">
+
     <!-- Fonts & Icons -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    
+
     <!-- Favicon -->
     <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
-    
+
     {% block extra_css %}{% endblock %}
-    
+
     <!-- Smooth Scroll and Animations -->
     <style>
         /* Smooth scrolling */
         html {
             scroll-behavior: smooth;
         }
-        
+
         /* Animation for fade-in */
         .fade-in {
             animation: fadeIn 1s ease-out;
         }
-        
+
         @keyframes fadeIn {
-            0% { opacity: 0; }
-            100% { opacity: 1; }
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
         }
-        
+
         /* Transition for smooth loading screen */
         #loading-screen {
             transition: opacity 0.5s ease-out;
         }
     </style>
 </head>
-<body class="fade-in font-sans antialiased text-slate-800 bg-slate-100">
+
+<body class="dark-theme fade-in font-sans antialiased text-slate-100 bg-slate-950">
     <a href="#main-content" class="skip-link">Skip to content</a>
 
     <!-- Loading Screen -->
     <div id="loading-screen" class="loading-screen" aria-live="polite">
         <div class="loading-content">
             <div class="loading-logo">
-                <img src="{{ url_for('static', filename='images/logo.svg') }}" alt="Svems Logo" aria-hidden="true">
+                <img src="{{ url_for('static', filename='images/svems.jpg') }}" alt="Svems Logo" aria-hidden="true">
                 <span class="brand-name" aria-hidden="true">Svems</span>
             </div>
             <div class="loading-spinner" aria-hidden="true"></div>
@@ -93,7 +106,7 @@
 
     <!-- Header Include -->
     {% include 'includes/header.html' %}
-    
+
     <!-- Flash Messages -->
     {% include 'includes/flash_messages.html' %}
 
@@ -108,9 +121,11 @@
     <!-- Scripts -->
     <script src="{{ url_for('static', filename='js/main.js') }}" defer></script>
     <script src="{{ url_for('static', filename='js/enhanced.js') }}" defer></script>
-    
+    <script src="{{ url_for('static', filename='js/modern-interactions.js') }}" defer></script>
+
     <!-- Page Specific Scripts -->
     {% block scripts %}{% endblock %}
 
 </body>
+
 </html>

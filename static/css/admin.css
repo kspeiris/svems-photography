@@ -185,7 +185,7 @@
 /* Admin page utility styles for dashboard/gallery/messages */
 .admin-page-header {
     margin-top: 1rem;
-    background: #4caf50;
+    background: #14b8a6;
     color: #fff;
     padding: 1.5rem;
     border-radius: 8px;
@@ -290,7 +290,7 @@
 }
 
 .admin-btn-mark {
-    background: #4caf50;
+    background: #14b8a6;
     color: #fff;
 }
 
@@ -386,14 +386,14 @@
 }
 
 .admin-upload-area {
-    border-color: #4caf50;
+    border-color: #14b8a6;
     padding: 2rem;
     border-radius: 8px;
 }
 
 .admin-upload-icon {
     font-size: 2rem;
-    color: #4caf50;
+    color: #14b8a6;
 }
 
 .admin-upload-hint {
@@ -425,7 +425,7 @@
 }
 
 .status-read {
-    color: #4caf50;
+    color: #14b8a6;
     font-weight: 700;
 }
 
