@@ -216,7 +216,6 @@ class MongoJSONProvider(DefaultJSONProvider):
 
 app.json = MongoJSONProvider(app)
 
-# ===== MAIN ROUTES =====
 @app.route('/')
 def home():
     try:
@@ -265,7 +264,6 @@ def contact():
     
     return render_template('contact.html')
 
-# ===== ADMIN ROUTES =====
 @app.route('/admin/login', methods=['GET', 'POST'])
 def admin_login():
     if current_user.is_authenticated:
@@ -797,7 +795,6 @@ def admin_logout():
     flash('You have been logged out successfully', 'success')
     return redirect(url_for('home'))
 
-# ===== UTILITY ROUTES =====
 @app.route('/debug')
 def debug_info():
     """Debug route to check database status"""
@@ -899,7 +896,6 @@ def fix_password_hash():
             'error': str(exc)
         })
 
-# ===== ERROR HANDLERS =====
 @app.errorhandler(404)
 def not_found_error(error):
     return render_template('errors/404.html'), 404
@@ -918,7 +914,6 @@ def inject_current_year():
     }
 
 if __name__ == '__main__':
-    # Create necessary directories
     os.makedirs('static/uploads/portraits', exist_ok=True)
     os.makedirs('static/uploads/landscapes', exist_ok=True)
     os.makedirs('static/uploads/events', exist_ok=True)

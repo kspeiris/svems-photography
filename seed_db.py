@@ -12,11 +12,9 @@ def seed_database():
     client = MongoClient(MONGO_URI)
     db = client.get_database()
     
-    # 1. Clear Existing Gallery
     print("Clearing existing gallery data...")
     db.gallery.delete_many({})
     
-    # 2. Add Professional Portfolio Items
     print("Adding professional portfolio items...")
     
     portfolio_items = [
@@ -72,7 +70,6 @@ def seed_database():
     
     db.gallery.insert_many(portfolio_items)
     
-    # 3. Ensure Admin User exists
     print("Ensuring admin user exists...")
     admin_user = db.users.find_one({'username': 'pulindu'})
     if not admin_user:

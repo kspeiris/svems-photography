@@ -3,7 +3,6 @@ from models import User
 
 def init_database():
     with app.app_context():
-        # Create admin user if it doesn't exist
         admin_exists = mongo.db.users.find_one({'username': 'pulindu'})
         if not admin_exists:
             User.create_user(mongo.db, 'pulindu', 'pulindu@svems.com', 'admin123')

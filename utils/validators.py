@@ -32,10 +32,9 @@ def validate_image_upload(file):
     if file_ext not in allowed_extensions:
         return False, "Invalid file type. Allowed types: PNG, JPG, JPEG, GIF, WEBP"
     
-    # Check file size (16MB max)
-    file.seek(0, 2)  # Seek to end
+    file.seek(0, 2)
     file_size = file.tell()
-    file.seek(0)  # Seek back to start
+    file.seek(0)
     
     if file_size > 16 * 1024 * 1024:
         return False, "File size too large. Maximum size is 16MB"

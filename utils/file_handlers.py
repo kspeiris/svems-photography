@@ -15,22 +15,14 @@ def save_image(file, category='general'):
         category_folder = category.lower()
         upload_path = os.path.join(current_app.config['UPLOAD_FOLDER'], category_folder)
         
-        # Create category directory if it doesn't exist
         os.makedirs(upload_path, exist_ok=True)
         
         filepath = os.path.join(upload_path, filename)
         
         try:
-            # Open and process image
             img = Image.open(file)
-            
-            # Handle image orientation based on EXIF data
             img = correct_image_orientation(img)
-            
-            # Resize image to fit within maximum dimensions
             img.thumbnail((1200, 1200), Image.Resampling.LANCZOS)
-            
-            # Save the image
             img.save(filepath, optimize=True, quality=85)
             
             return f"{category_folder}/{filename}"
@@ -60,7 +52,6 @@ def correct_image_orientation(img):
                 img = img.rotate(90, expand=True)
                 
     except (AttributeError, KeyError, IndexError, Exception):
-        # No EXIF data or orientation tag, or other error
         pass
     
     return img
