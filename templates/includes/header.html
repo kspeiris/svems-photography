@@ -25,17 +25,18 @@
             {% endif %}
         </div>
 
-        <button type="button" class="nav-toggle md:hidden p-4 relative z-[2000] focus:outline-none" id="navToggle"
-            aria-label="Toggle navigation menu">
-            <div class="w-6 h-px bg-white mb-2 transition-transform duration-300 origin-center" id="bar1"></div>
-            <div class="w-6 h-px bg-white transition-transform duration-300 origin-center" id="bar2"></div>
+        <button type="button" class="nav-toggle md:hidden p-3 relative z-[2200] focus:outline-none" id="navToggle"
+            aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobileOverlay">
+            <div class="w-6 h-[2px] bg-white mb-[6px] transition-transform duration-300 origin-center" id="bar1"></div>
+            <div class="w-6 h-[2px] bg-white transition-transform duration-300 origin-center" id="bar2"></div>
         </button>
     </div>
 
     <!-- Mobile Menu Overlay -->
     <div id="mobileOverlay"
-        class="fixed inset-0 bg-[#050505] z-[1500] flex flex-col items-center justify-center translate-x-full transition-transform duration-700 pointer-events-none md:hidden">
-        <div class="flex flex-col items-center gap-10 text-center">
+        class="fixed inset-0 bg-[#050505] z-[1500] hidden translate-x-full transition-transform duration-700 pointer-events-none md:hidden overflow-y-auto"
+        aria-hidden="true">
+        <div class="mobile-menu-inner min-h-full flex flex-col items-center justify-start gap-10 pt-28 pb-12 text-center">
             <a href="{{ url_for('home') }}"
                 class="mobile-link text-3xl font-display italic text-white/50 hover:text-white transition-all">Home</a>
             <a href="{{ url_for('portfolio') }}"

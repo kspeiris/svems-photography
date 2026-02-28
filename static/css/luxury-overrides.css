@@ -81,16 +81,17 @@ main {
 .inner-page-hero::before {
     content: 'SVEMS';
     position: absolute;
-    right: -1rem;
-    bottom: -3rem;
+    right: -2rem;
+    bottom: -6rem;
     font-family: 'Playfair Display', serif;
-    font-size: 22rem;
+    font-size: 24rem;
     font-weight: 800;
-    color: rgba(255, 255, 255, 0.018);
+    color: rgba(255, 255, 255, 0.012);
+    /* reduced opacity greatly */
     pointer-events: none;
     user-select: none;
     line-height: 1;
-    letter-spacing: -0.05em;
+    letter-spacing: -0.04em;
 }
 
 /* Full-width 2-column grid: headline left, meta right */
@@ -113,9 +114,9 @@ main {
     font-family: 'Playfair Display', serif;
     font-style: italic;
     font-size: clamp(4rem, 9vw, 8rem);
-    line-height: 1.0;
+    line-height: 0.9;
     color: #ffffff;
-    margin-bottom: 2.5rem;
+    margin-bottom: 2rem;
     letter-spacing: -0.02em;
     grid-column: 1 / 2;
 }
@@ -124,17 +125,24 @@ main {
     font-family: 'Manrope', sans-serif;
     font-style: normal;
     font-weight: 200;
-    color: rgba(255, 255, 255, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-size: 0.45em;
+    /* relative to the huge serif */
+    color: #d4af37;
+    /* gold accent for the second line */
     display: block;
+    margin-top: 1rem;
 }
 
 .inner-page-hero__subtitle {
-    font-size: 1rem;
+    font-size: 1.05rem;
     font-weight: 300;
-    color: rgba(255, 255, 255, 0.4);
+    color: rgba(255, 255, 255, 0.5);
     line-height: 1.9;
-    max-width: 480px;
+    max-width: 520px;
     grid-column: 1 / 2;
+    margin-top: 1.5rem;
 }
 
 /* Right meta panel — sits in right column, spans all rows */
@@ -145,9 +153,9 @@ main {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    gap: 2rem;
+    gap: 1.5rem;
     padding-bottom: 0.5rem;
-    min-width: 200px;
+    min-width: 180px;
 }
 
 .inner-page-hero__meta-stat {
@@ -170,14 +178,15 @@ main {
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 0.4em;
-    color: rgba(255, 255, 255, 0.2);
-    margin-top: 0.4rem;
+    color: rgba(255, 255, 255, 0.25);
+    margin-top: 0.5rem;
 }
 
 .inner-page-hero__meta-divider {
-    width: 1px;
-    height: 60px;
-    background: linear-gradient(to bottom, rgba(212, 175, 55, 0.4), transparent);
+    width: 30px;
+    height: 1px;
+    background: rgba(212, 175, 55, 0.4);
+    /* Horizontal line instead of long vertical line */
 }
 
 /* Bottom separator line */
@@ -328,26 +337,15 @@ main {
     border-color: rgba(212, 175, 55, 0.4);
     background: rgba(212, 175, 55, 0.02);
 }
-/* Ensure meta divider shows properly */
-.inner-page-hero__meta-divider {
-    width: 1px;
-    height: 60px;
-    background: linear-gradient(to bottom, rgba(212,175,55,0.4), transparent);
-}
-@media (max-width: 900px) {
-    .inner-page-hero__meta-divider {
-        width: 40px;
-        height: 1px;
-        background: linear-gradient(to right, rgba(212,175,55,0.4), transparent);
-        align-self: center;
-    }
-}
+
+
 
 /* ============================================================
    LIGHTBOX FIX
    ============================================================ */
 .portfolio-pro-lightbox {
-    display: none; /* Hidden by default */
+    display: none;
+    /* Hidden by default */
     position: fixed !important;
     top: 0;
     left: 0;
@@ -365,7 +363,8 @@ main {
     position: relative;
     max-width: 85vw;
     max-height: 85vh;
-    background: transparent !important; /* override the old white box */
+    background: transparent !important;
+    /* override the old white box */
     box-shadow: none !important;
 }
 
@@ -392,7 +391,7 @@ main {
 }
 
 .portfolio-pro-lightbox #lightbox-description {
-    color: rgba(255,255,255,0.6);
+    color: rgba(255, 255, 255, 0.6);
     font-size: 0.9rem;
 }
 
@@ -401,12 +400,13 @@ main {
     top: 2rem;
     right: 3rem;
     background: transparent !important;
-    color: rgba(255,255,255,0.5) !important;
+    color: rgba(255, 255, 255, 0.5) !important;
     font-size: 2.5rem;
     border: none;
     cursor: pointer;
     transition: color 0.3s ease;
 }
+
 .portfolio-pro-lightbox .lightbox-close:hover {
     color: #d4af37 !important;
     transform: scale(1.1);
@@ -418,14 +418,54 @@ main {
     transform: translateY(-50%);
     background: transparent !important;
     border: none;
-    color: rgba(255,255,255,0.3);
+    color: rgba(255, 255, 255, 0.3);
     font-size: 3rem;
     cursor: pointer;
     padding: 1rem;
     transition: color 0.3s ease;
 }
+
 .portfolio-pro-lightbox .lightbox-nav:hover {
     color: #d4af37;
 }
-.portfolio-pro-lightbox .lightbox-prev { left: 2rem; }
-.portfolio-pro-lightbox .lightbox-next { right: 2rem; }
+
+.portfolio-pro-lightbox .lightbox-prev {
+    left: 2rem;
+}
+
+.portfolio-pro-lightbox .lightbox-next {
+    right: 2rem;
+}
+
+/* ============================================================
+   HOME HERO READABILITY + NAVBAR CLEARANCE FIX
+   ============================================================ */
+.full-hero {
+    margin-top: 0 !important;
+    height: 100vh;
+    min-height: 680px;
+}
+
+.hero-content-wrap {
+    padding-top: clamp(5.5rem, 10vh, 8rem);
+}
+
+.hero-eyebrow {
+    color: #f2bf47 !important;
+    text-shadow: 0 2px 16px rgba(0, 0, 0, 0.7);
+    letter-spacing: 0.45em !important;
+}
+
+@media (max-width: 768px) {
+    .full-hero {
+        min-height: 620px;
+    }
+
+    .hero-content-wrap {
+        padding-top: calc(80px + 2rem);
+    }
+
+    .hero-eyebrow {
+        letter-spacing: 0.28em !important;
+    }
+}

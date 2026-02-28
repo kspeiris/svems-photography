@@ -1,0 +1,96 @@
+{% extends "admin/base_admin.html" %}
+
+{% block title %}Site Settings - Svems Photography{% endblock %}
+{% block page_title %}Site Settings{% endblock %}
+
+{% block content %}
+<div
+    class="admin-page-header rounded-2xl border border-amber-500/50 bg-gradient-to-r from-amber-700 to-yellow-600 p-6 text-white shadow-lg">
+    <h1 class="admin-page-title font-display text-3xl font-bold">Site Settings</h1>
+    <p class="admin-page-subtitle mt-2 text-amber-50">Manage your website's public information and links.</p>
+</div>
+
+<div class="admin-page-section mt-8">
+    <div class="admin-card rounded-2xl border border-slate-200 bg-white shadow-sm p-6 text-slate-800">
+        <form action="{{ url_for('admin_settings') }}" method="POST" class="admin-form space-y-6">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- General Info -->
+                <div class="space-y-4">
+                    <h3 class="font-display text-xl font-semibold border-b border-slate-100 pb-2">General</h3>
+
+                    <div class="form-group">
+                        <label for="site_title" class="block text-sm font-semibold mb-1">Site Title</label>
+                        <input type="text" id="site_title" name="site_title"
+                            class="w-full rounded-lg border border-slate-300 px-4 py-2 focus:border-amber-500 focus:outline-none"
+                            value="{{ settings.get('site_title', 'Svems') }}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="hero_subtitle" class="block text-sm font-semibold mb-1">Home Hero Subtitle</label>
+                        <input type="text" id="hero_subtitle" name="hero_subtitle"
+                            class="w-full rounded-lg border border-slate-300 px-4 py-2 focus:border-amber-500 focus:outline-none"
+                            value="{{ settings.get('hero_subtitle', 'The Art of Visual Storytelling') }}">
+                    </div>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="space-y-4">
+                    <h3 class="font-display text-xl font-semibold border-b border-slate-100 pb-2">Contact Details</h3>
+
+                    <div class="form-group">
+                        <label for="contact_email" class="block text-sm font-semibold mb-1">Email Address</label>
+                        <input type="email" id="contact_email" name="contact_email"
+                            class="w-full rounded-lg border border-slate-300 px-4 py-2 focus:border-amber-500 focus:outline-none"
+                            value="{{ settings.get('contact_email', 'pulindu@svems.com') }}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contact_phone" class="block text-sm font-semibold mb-1">Phone Number</label>
+                        <input type="text" id="contact_phone" name="contact_phone"
+                            class="w-full rounded-lg border border-slate-300 px-4 py-2 focus:border-amber-500 focus:outline-none"
+                            value="{{ settings.get('contact_phone', '+94 77 123 4567') }}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contact_address" class="block text-sm font-semibold mb-1">Location/Address</label>
+                        <input type="text" id="contact_address" name="contact_address"
+                            class="w-full rounded-lg border border-slate-300 px-4 py-2 focus:border-amber-500 focus:outline-none"
+                            value="{{ settings.get('contact_address', 'Colombo, Sri Lanka') }}">
+                    </div>
+                </div>
+
+                <!-- Social Links -->
+                <div class="space-y-4 md:col-span-2">
+                    <h3 class="font-display text-xl font-semibold border-b border-slate-100 pb-2 mt-4">Social Media
+                        Links</h3>
+
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="form-group">
+                            <label for="instagram_url" class="block text-sm font-semibold mb-1">Instagram URL</label>
+                            <input type="url" id="instagram_url" name="instagram_url"
+                                class="w-full rounded-lg border border-slate-300 px-4 py-2 focus:border-amber-500 focus:outline-none"
+                                value="{{ settings.get('instagram_url', '') }}" placeholder="https://instagram.com/...">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="facebook_url" class="block text-sm font-semibold mb-1">Facebook URL</label>
+                            <input type="url" id="facebook_url" name="facebook_url"
+                                class="w-full rounded-lg border border-slate-300 px-4 py-2 focus:border-amber-500 focus:outline-none"
+                                value="{{ settings.get('facebook_url', '') }}" placeholder="https://facebook.com/...">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pt-6 border-t border-slate-100 mt-8 flex justify-end">
+                <button type="submit"
+                    class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-3 px-8 rounded-xl transition-colors shadow-md">
+                    Save Settings
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

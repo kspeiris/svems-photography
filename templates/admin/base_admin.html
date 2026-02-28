@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,12 +29,14 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@600;700&display=swap">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@600;700&display=swap">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/admin-redesign.css') }}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
+
 <body class="admin-dark font-sans antialiased text-slate-100 bg-slate-950">
     <div class="admin-layout">
         <aside class="admin-sidebar">
@@ -42,29 +45,37 @@
                 <span class="brand-name font-display">Svems Admin</span>
             </div>
             <ul class="nav-links text-sm">
-                <li><a href="{{ url_for('admin_dashboard') }}" class="{% if request.endpoint == 'admin_dashboard' %}active{% endif %}">
-                    <i class="fas fa-tachometer-alt"></i> Dashboard
-                </a></li>
-                <li><a href="{{ url_for('admin_gallery') }}" class="{% if request.endpoint == 'admin_gallery' %}active{% endif %}">
-                    <i class="fas fa-images"></i> Gallery
-                </a></li>
-                <li><a href="{{ url_for('admin_messages') }}" class="{% if request.endpoint == 'admin_messages' %}active{% endif %}">
-                    <i class="fas fa-envelope"></i> Messages
-                </a></li>
+                <li><a href="{{ url_for('admin_dashboard') }}"
+                        class="{% if request.endpoint == 'admin_dashboard' %}active{% endif %}">
+                        <i class="fas fa-tachometer-alt"></i> Dashboard
+                    </a></li>
+                <li><a href="{{ url_for('admin_gallery') }}"
+                        class="{% if request.endpoint == 'admin_gallery' %}active{% endif %}">
+                        <i class="fas fa-images"></i> Gallery
+                    </a></li>
+                <li><a href="{{ url_for('admin_messages') }}"
+                        class="{% if request.endpoint == 'admin_messages' %}active{% endif %}">
+                        <i class="fas fa-envelope"></i> Messages
+                    </a></li>
+                <li><a href="{{ url_for('admin_settings') }}"
+                        class="{% if request.endpoint == 'admin_settings' %}active{% endif %}">
+                        <i class="fas fa-cog"></i> Settings
+                    </a></li>
                 <li><a href="{{ url_for('home') }}" target="_blank">
-                    <i class="fas fa-external-link-alt"></i> View Site
-                </a></li>
+                        <i class="fas fa-external-link-alt"></i> View Site
+                    </a></li>
                 <li>
                     <form action="{{ url_for('admin_logout') }}" method="POST" class="admin-inline-form">
                         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-                        <button type="submit" class="w-full cursor-pointer border-0 bg-transparent p-0 text-left text-inherit">
+                        <button type="submit"
+                            class="w-full cursor-pointer border-0 bg-transparent p-0 text-left text-inherit">
                             <i class="fas fa-sign-out-alt"></i> Logout
                         </button>
                     </form>
                 </li>
             </ul>
         </aside>
-        
+
         <main class="admin-main">
             <header class="admin-header px-6 py-5">
                 <h1 class="font-display text-xl md:text-2xl">{% block page_title %}Admin Panel{% endblock %}</h1>
@@ -72,18 +83,18 @@
                     <span>Welcome, {{ current_user.username }}</span>
                 </div>
             </header>
-            
+
             <div class="admin-content p-6">
                 {% with messages = get_flashed_messages(with_categories=true) %}
-                    {% if messages %}
-                        <div class="flash-messages space-y-2">
-                            {% for category, message in messages %}
-                                <div class="flash-message {{ category }} rounded-lg px-4 py-3">{{ message }}</div>
-                            {% endfor %}
-                        </div>
-                    {% endif %}
+                {% if messages %}
+                <div class="flash-messages space-y-2">
+                    {% for category, message in messages %}
+                    <div class="flash-message {{ category }} rounded-lg px-4 py-3">{{ message }}</div>
+                    {% endfor %}
+                </div>
+                {% endif %}
                 {% endwith %}
-                
+
                 {% block content %}{% endblock %}
             </div>
         </main>
@@ -92,4 +103,5 @@
     <script src="{{ url_for('static', filename='js/main.js') }}" defer></script>
     {% block scripts %}{% endblock %}
 </body>
+
 </html>
