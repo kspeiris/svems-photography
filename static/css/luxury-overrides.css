@@ -75,6 +75,7 @@ main {
     padding-bottom: 4rem;
     position: relative;
     overflow: hidden;
+    min-height: 70vh;
 }
 
 /* Subtle background watermark */
